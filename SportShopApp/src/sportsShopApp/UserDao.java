@@ -1,4 +1,4 @@
-package SihgnUp;
+package sportsShopApp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class UserDao {
 	Scanner sc = new Scanner(System.in);
 
-	public void insert()throws ClassNotFoundException, SQLException
+	public void registration()throws ClassNotFoundException, SQLException
 	{
 		String userName= null;
 		String firstName= null;

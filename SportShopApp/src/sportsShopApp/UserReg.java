@@ -1,4 +1,4 @@
-package SihgnUp;
+package sportsShopApp;
 
 public class UserReg {
 	private String user_name;

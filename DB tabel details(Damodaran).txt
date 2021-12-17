@@ -1,0 +1,16 @@
+
+Table- customers_detail
+customerModel - completed
+customerDao - [user registration details{completed}, user login{completed}, change password{on process}]
+
+Table - cart
+cartModel - completed
+cartDao - [Add products{pending},place order{pending}]
+
+Table - orders_detail
+orderDetailModel - completed
+orderDetailDao - [ordered detail{on process}, status,{on process}]
+
+Table - product_details
+productDetailModel - completed
+productDetailDao - [add product{completed},delete product{completed}, view product{on process},move to cart{pending}]

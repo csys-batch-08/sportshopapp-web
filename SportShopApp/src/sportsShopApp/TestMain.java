@@ -1,4 +1,4 @@
-package SihgnUp;
+package sportsShopApp;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -15,11 +15,13 @@ public class TestMain {
 		switch (n) {
 		case 1:
 		UserDao obj = new UserDao();
-		obj.insert();
-		break;
-		case 2:
+		obj.registration();
 		UserDao obj1 = new UserDao();
 		obj1.login();
+		break;
+		case 2:
+		UserDao obj2 = new UserDao();
+		obj2.login();
 		break;
 		default:
 		System.out.println("enter the valid option");
