@@ -28,10 +28,10 @@ public class ProductDao {
 	String query = "insert into product_items values(?,?,?,?)";
 	PreparedStatement stmt = con.prepareStatement(query);
 	
-	stmt.setString(2, str.getProductName());
-	stmt.setInt(1, str.getProductId());
+	stmt.setString(1, str.getProductName());
+	stmt.setInt(2, str.getProductId());
 	stmt.setDouble(3, str.getStrandardCost());
-	stmt.setString(2, str.getCategory());
+	stmt.setString(4, str.getCategory());
 	stmt.executeUpdate();
 	System.out.println("Product Added");
 	}
@@ -49,7 +49,7 @@ public class ProductDao {
 	Connection con= Connect.getDbConnection();
 	ProductModel str = new ProductModel();
 	str.setProductId(prodId);
-	String query = "delete from  product_items where product_id=?";
+	String query = "delete from  product_items where products_id=?";
 	PreparedStatement stmt = con.prepareStatement(query);
 
 	stmt.setInt(1, str.getProductId());
