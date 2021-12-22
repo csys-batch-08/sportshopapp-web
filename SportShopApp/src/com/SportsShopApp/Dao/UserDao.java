@@ -1,10 +1,14 @@
-package sportsShopApp;
+package com.SportsShopApp.Dao;
 
 import java.sql.Connection;
+import com.SportsShopApp.Model.UserRegModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import com.SportsShopApp.Connection.Connect;
+import com.SportsShopApp.Model.UserRegModel;
 
 public class UserDao {
 	Scanner sc = new Scanner(System.in);
@@ -120,14 +124,14 @@ public class UserDao {
 		}while(flag);
 		
 	    
-		UserReg str= new UserReg(userName,address,firstName,lastName,mail,phone,password);
+		UserRegModel str= new UserRegModel(userName,address,firstName,lastName,mail,phone,password);
 		Connection con= Connect.getDbConnection();
 		String query = "insert into customers_detail(user_name,address, first_name, last_name, email, phone, password)values (?,?,?,?,?,?,?)";
 		PreparedStatement stmt= con.prepareStatement(query);
-		stmt.setString(1, str.getUser_name());
+		stmt.setString(1, str.getUserName());
 		stmt.setString(2, str.getAddress());
-		stmt.setString(3, str.getFirst_name());
-		stmt.setString(4, str.getLast_name());
+		stmt.setString(3, str.getFirstName());
+		stmt.setString(4, str.getLastName());
 		stmt.setString(5, str.getEmail());
 		stmt.setLong(6, str.getPhone());
 		stmt.setString(7, str.getPassword());
@@ -140,19 +144,22 @@ public class UserDao {
 		String username = sc.nextLine();
 		System.out.println("enter the password");
 		String passname = sc.nextLine();
-		UserReg str = new UserReg();
-		str.setUser_name(username);
+		UserRegModel str = new UserRegModel();
+		str.setUserName(username);
 		str.setPassword(passname);
 		Connection con = Connect.getDbConnection();
 		String query = "select first_name from customers_detail where user_name= ? and password= ? ";
 		PreparedStatement stmt = con.prepareStatement(query);
-		stmt.setString(1, str.getUser_name());
+		stmt.setString(1, str.getUserName());
 		stmt.setString(2, str.getPassword());
+		
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			System.out.println("welcome " + rs.getString("first_name"));
-		} else {
+		} 
+		else {
 			System.out.println("Incorrect user credential");
+			
 		}
 
 	}

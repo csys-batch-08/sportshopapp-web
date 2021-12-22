@@ -1,9 +1,17 @@
-package sportsShopApp;
+package com.SportsShopApp.Dao;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.SportsShopApp.Connection.Connect;
+import com.SportsShopApp.Model.ProductModel;
 
 public class ProductDao {
 	Scanner sc = new Scanner(System.in);
@@ -58,9 +66,23 @@ public class ProductDao {
 	}
      
 	}
-	public void viewProduct() throws ClassNotFoundException, SQLException {
-		System.out.println("enter the username ");
 	
+		public List<ProductModel> viewAllProducts() throws ClassNotFoundException, SQLException {
+			
+			Connection con = Connect.getDbConnection();
+			Statement stmt = con.createStatement();
+			
+			List<ProductModel> productList = new ArrayList<ProductModel>();
+			String view = " SELECT * FROM product_items";
+			ResultSet rs = stmt.executeQuery(view);
+			while (rs.next()) {
+				// System.out.println(rs.getInt(2) + " " + rs.getString(1)+" "+ rs.getInt(3));
+				ProductModel product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4));
+				productList.add(product);
+			}
+			return productList;
+		}
 	}
+	
+	
 
-}

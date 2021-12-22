@@ -1,4 +1,4 @@
-package sportsShopApp;
+package com.SportsShopApp.Model;
 
 public class ProductModel {
 	private String productName;
@@ -20,7 +20,7 @@ public class ProductModel {
 	public double getStrandardCost() {
 		return strandardCost;
 	}
-	public void setStrandardCost(int strandardCost) {
+	public void setStrandardCost(double strandardCost) {
 		this.strandardCost = strandardCost;
 	}
 	public String getCategory() {
