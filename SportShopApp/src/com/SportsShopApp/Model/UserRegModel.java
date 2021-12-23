@@ -55,9 +55,10 @@ public class UserRegModel {
 		// TODO Auto-generated constructor stub
 		
 	}
-	public UserRegModel(String user_name, String address, String first_name, String last_name, String email, long phone,
+	public UserRegModel(String userName, String address, String firstName, String lastName, String email, long phone,
 			String password) {
 		super();
+		
 		this.userName = userName;
 		this.address = address;
 		this.firstName = firstName;
