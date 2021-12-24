@@ -1,10 +1,13 @@
 package com.SportsShopApp.Main;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
+import com.SportsShopApp.Dao.AdminDao;
 import com.SportsShopApp.Dao.ProductDao;
 import com.SportsShopApp.Dao.UserDao;
+import com.SportsShopApp.Model.AdminModel;
 import com.SportsShopApp.Model.UserRegModel;
 
 public class TestMain {
@@ -27,7 +30,7 @@ public class TestMain {
 		
 		case 1:
 			
-			String userName;
+			String userName = null;
 			String firstName= null;
 			String lastName=null;
 			String address =null;
@@ -138,109 +141,172 @@ public class TestMain {
 		    System.out.println(userName);
 			UserRegModel reg= new UserRegModel(userName,address,firstName,lastName,mail,phone,password);
 			UserDao register = new UserDao();
-			register.registration(reg);
+			UserDao.registration(reg);
 	
 		break;
 	
 		case 2:
 			System.out.println("login page");
 			String logUserName = null;
-			boolean logFlag = true;
-			System.out.println("enter userName and password to login");
+			String loginPassword = null;
+			boolean logFlag = false ;
+			
 			do {
-
+			System.out.println("enter userName and password to login");
 			System.out.println("enter userName");
 			logUserName = sc.nextLine();
-			if (logUserName.matches("[a-z][a-z0-9]*[@][a-z]+[.][A-Za-z]{2,3}")) {
-			logFlag = false;
-			logUserName = logUserName.toLowerCase();
-			} else
-			System.out.println("email format should be in xyz@abc.com");
+			if (logUserName.matches("[a-zA-Z]+") && logUserName != "") {
+				
+				flag = false;
+				} else {
+				flag = true;
+				}
+				
 			} while (logFlag);
 
-			String loginPassword = null;
-			boolean loginFlagPswd = true;
+			
+			boolean loginFlagPswd = false;
 			do {
 			System.out.println("Enter password");
 			loginPassword = sc.nextLine();
-			if (loginPassword
-			.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%?&])[A-Za-z\\d@$!%*?&]{8,15}$")) {
-			loginFlagPswd = false;
-			// System.out.println(password);
-			} else {
-			System.out.println("password must have 8 to 15 characters only \n"
-			+ " contains one upper case, one lower case, one number , one special character");
-			}
-
+			if (loginPassword.matches("[a-zA-Z0-9@#!]+") && loginPassword != "") {
+                //System.out.println("valid");
+				flag = false;
+				} else {
+				 System.out.println("enter a valid password");
+				flag = true;
+				}
 			} while (loginFlagPswd);
-			boolean b1 = true;
-
-			if (logUserName.endsWith("medhub.com")) {
+			boolean b1 = false;
+			
+			if (logUserName.contains("adminolympus")) {
 			do {
-			AdminModel admin = adminDao.login(loginEmail, loginPassword);
-
+			AdminModel admin = AdminDao.adlogin(logUserName, loginPassword);
+			System.out.println(admin);
 			if (admin == null) {
 			System.out.println("invalid username or password");
 			b1 = true;
 			} else {
-			System.out.println(" welcome " + admin.getAdminName());
+			System.out.println(" welcome " + admin.getUserName());
 			b1 = false;
 			}
 			} while (b1);
-			   boolean adminChoice = true;
 			
-//			boolean logFlag = false;
-//			
-//			String logUserName;
-//			String passname;
+			System.out.println("1. Show all products   2. Show all users   3. Add product   4.update Product Details   5.Delete Product ");
+			int num = Integer.parseInt(sc.nextLine());
+			
+			switch (num) {
+			case 1 :
+				System.out.println("to view all products type 'Y'");
+				ProductDao viewProducts = new  ProductDao();
+				viewProducts.insert();
+				break;
+				
+				
+			case 2 :
+				System.out.println("to view all users type 'Y'");
+				UserDao allUsers = new  UserDao();
+				List<UserRegModel> alluser = allUsers.viewAllUsers();
+				for(UserRegModel ur : alluser) {
+					System.out.println(ur.toString());
+				}
+				break;
+				
+			case 3 :
+				System.out.println("to enter products type 'Y'");
+				ProductDao prod = new  ProductDao();
+				prod.insert();
+				break;
+			case 5 :
+				System.out.println("to delete products type 'Y'");
+				ProductDao prodDelete = new  ProductDao();
+				prodDelete.insert();
+				break;
+				
+				
+				
+			
+			}
+//			   boolean adminChoice = true;
+			}
+			else {
+				
+				boolean flag1= true;
+				do {
+					UserRegModel user = new  UserRegModel(logUserName,loginPassword);
+					UserDao userdao = new UserDao();
+					int i = userdao.login(user);
+					if(i == 1) {
+					flag1 = false;
+					}
+				}while(flag1);
+				System.out.println("1. Show All Products    2.Update Account    3.Delete Account");
+				
+			}
+			
+			int m = Integer.parseInt(sc.nextLine());
+			switch (m) {
+			case 1:
+				System.out.println("to view all products type 'Y'");
+				ProductDao viewProducts = new  ProductDao();
+				viewProducts.insert();
+				break;
+				
+			}
+			
+			 break;
 //			do {
-//			System.out.println("Enter the userName");
-//			userName = sc.nextLine();
-//			if (userName.matches("[a-zA-Z]+") && userName != "") {
-//			
-//			flag = false;
-//			} else {
-//			
-//			flag = true;
-//			}
-//			} while (flag);
-//			do {
-//			System.out.println("Enter the password");
-//			passname = sc.nextLine();
-//			if (passname.matches("[a-zA-Z0-9@#!]+") && passname != "") {
-//			/// System.out.println("valid");
-//			flag = false;
-//			} else {
-//			// System.out.println("invalid");
-//			flag = true;
-//			}
-//			} while (flag);
-//			UserRegModel log = new UserRegModel();
-//			log.setUserName(userName);
-//			log.setPassword(passname);
-//			UserDao obj = new UserDao();// name
-//			String username = obj.login(log);
-//			//System.out.println("hi" + userid);
-//
-//			return username;
+//				System.out.println("1. Show all products   2. Show all users   3. Add product   4.update Product Details   5.Delete Product ");
 		
-		
-		
-		break;
+			
+			
 		default:
 		
 		System.out.println("enter the valid option");
 		break;
-		
-		
-		
 }
 		
 		
-		public static String log() throws ClassNotFoundException, SQLException{
-			
-		}
-	
-	
+//		public static String log() throws ClassNotFoundException, SQLException{
+//			
+//		}
+//	
+//	
 
-}
+	}
+	}
+//}
+//boolean logFlag = false;
+//
+//String logUserName;
+//String passname;
+//do {
+//System.out.println("Enter the userName");
+//userName = sc.nextLine();
+//if (userName.matches("[a-zA-Z]+") && userName != "") {
+//
+//flag = false;
+//} else {
+//
+//flag = true;
+//}
+//} while (flag);
+//do {
+//System.out.println("Enter the password");
+//passname = sc.nextLine();
+//if (passname.matches("[a-zA-Z0-9@#!]+") && passname != "") {
+///// System.out.println("valid");
+//flag = false;
+//} else {
+//// System.out.println("invalid");
+//flag = true;
+//}
+//} while (flag);
+//UserRegModel log = new UserRegModel();
+//log.setUserName(userName);
+//log.setPassword(passname);
+//UserDao obj = new UserDao();// name
+//String username = obj.login(log);
+////System.out.println("hi" + userid);
+//
+//return username;

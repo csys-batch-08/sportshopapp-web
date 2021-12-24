@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import com.SportsShopApp.Connection.Connect;
 import com.SportsShopApp.Model.ProductModel;
+import com.SportsShopApp.Model.UserRegModel;
 
 public class ProductDao {
 	Scanner sc = new Scanner(System.in);
@@ -82,7 +83,21 @@ public class ProductDao {
 			}
 			return productList;
 		}
-	}
+		
+		
+	
+		public void updateProducts(String updateProductName, int updateProductId, double updateStandardPrize, String updateProductCategory) throws SQLException, ClassNotFoundException {
+			String updateQuery="update product_items set products_name=?,standard_cost=?, category=? where products_id=?";
+			Connection con = Connect.getDbConnection();
+			PreparedStatement pstm=null;
+			pstm = con.prepareStatement(updateQuery);
+			pstm.setString(1, updateProductName);
+			pstm.setInt(2, updateProductId);
+			pstm.setDouble(3, updateStandardPrize);
+			pstm.setString(4, updateProductCategory);
+			
+		}
+}
 	
 	
 

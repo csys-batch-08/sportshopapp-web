@@ -67,6 +67,14 @@ public class UserRegModel {
 		this.phone = phone;
 		this.password = password;
 	}
+	
+	public UserRegModel(String userName, String password) {
+		super();
+		
+		this.userName = userName;
+		
+		this.password = password;
+	}
 	@Override
 	public String toString() {
 		return "UserReg [user_name=" + userName + ", address=" + address + ", first_name=" + firstName

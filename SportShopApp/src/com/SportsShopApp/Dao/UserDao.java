@@ -5,13 +5,16 @@ import com.SportsShopApp.Model.UserRegModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.SportsShopApp.Connection.Connect;
 import com.SportsShopApp.Model.UserRegModel;
 
 public class UserDao {
-	Scanner sc = new Scanner(System.in);
+	
 
 	public static void registration(UserRegModel reg)throws ClassNotFoundException, SQLException
 	{
@@ -29,8 +32,8 @@ public class UserDao {
 		stmt.executeUpdate();
 		System.out.println("Register successfull");
 	}
-	String username ;
-	public String login(UserRegModel log) throws ClassNotFoundException, SQLException {
+	//String username ;
+	public static int login(UserRegModel log) throws ClassNotFoundException, SQLException {
 		
 		Connection con = Connect.getDbConnection();
 		String query = "select user_name from customers_detail where user_name= ? and password= ? ";
@@ -39,18 +42,32 @@ public class UserDao {
 		stmt.setString(2, log.getPassword());
 		
 		ResultSet rs = stmt.executeQuery();
+		int i = -1;
 		if (rs.next()) {
-			
+			i = 1;
 			String userName = rs.getString("user_name");
-			System.out.println("welcome " + rs.getString("first_name"));
+			System.out.println("welcome " + rs.getString(1));
 		} 
 		else {
 			System.out.println("Incorrect user credential");
 			
 		}
-		return username;
+	return i;
 
 	}
-
+	public List<UserRegModel> viewAllUsers() throws ClassNotFoundException, SQLException {
+		Connection con = Connect.getDbConnection();
+		Statement stmt = con.createStatement();
+		
+		List<UserRegModel> userList = new ArrayList<UserRegModel>();
+		String view = " SELECT * FROM customers_detail";
+		ResultSet rs = stmt.executeQuery(view);
+		while (rs.next()) {
+			
+			UserRegModel users = new UserRegModel(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getString(7));
+			userList.add(users);
+	}
+		return userList;
+	}
 }
 

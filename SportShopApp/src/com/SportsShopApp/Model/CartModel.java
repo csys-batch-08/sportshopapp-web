@@ -44,6 +44,10 @@ public class CartModel {
 		this.standardCost = standardCost;
 		this.quantity = quantity;
 	}
+	public CartModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "CartModel [userName=" + userName + ", category=" + category + ", productId=" + productId
