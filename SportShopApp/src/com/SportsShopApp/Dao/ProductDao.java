@@ -30,17 +30,20 @@ public class ProductDao {
 	Double price = Double.parseDouble(sc.nextLine());
 	System.out.println("Enter the product category");
 	String prodCategory = sc.nextLine();
+	System.out.println("enter the product quantity");
+	int prodQuantity = sc.nextInt();
 	
 	
-	ProductModel str = new ProductModel( pName, prodId, price,prodCategory);
+	ProductModel str = new ProductModel( pName, prodId, price,prodCategory,prodQuantity);
 	Connection con= Connect.getDbConnection();
-	String query = "insert into product_items values(?,?,?,?)";
+	String query = "insert into product_items values(?,?,?,?,?)";
 	PreparedStatement stmt = con.prepareStatement(query);
 	
 	stmt.setString(1, str.getProductName());
 	stmt.setInt(2, str.getProductId());
 	stmt.setDouble(3, str.getStrandardCost());
 	stmt.setString(4, str.getCategory());
+	stmt.setInt(5, str.getQuantity());
 	stmt.executeUpdate();
 	System.out.println("Product Added");
 	}
@@ -78,16 +81,15 @@ public class ProductDao {
 			ResultSet rs = stmt.executeQuery(view);
 			while (rs.next()) {
 				// System.out.println(rs.getInt(2) + " " + rs.getString(1)+" "+ rs.getInt(3));
-				ProductModel product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4));
+				ProductModel product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 				productList.add(product);
 			}
 			return productList;
 		}
 		
-		
 	
-		public void updateProducts(String updateProductName, int updateProductId, double updateStandardPrize, String updateProductCategory) throws SQLException, ClassNotFoundException {
-			String updateQuery="update product_items set products_name=?,standard_cost=?, category=? where products_id=?";
+		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize, String updateProductCategory, int updateProductQuantity) throws SQLException, ClassNotFoundException {
+			String updateQuery="update product_items set products_name=?,standard_cost=?, category=?, quantity=? where products_id=? " ;
 			Connection con = Connect.getDbConnection();
 			PreparedStatement pstm=null;
 			pstm = con.prepareStatement(updateQuery);
@@ -95,7 +97,27 @@ public class ProductDao {
 			pstm.setInt(2, updateProductId);
 			pstm.setDouble(3, updateStandardPrize);
 			pstm.setString(4, updateProductCategory);
+			pstm.setInt(5, updateProductQuantity);
 			
+			int result =  pstm.executeUpdate();
+			if(result >0) {
+				System.out.println(result + "product is updated");
+			}
+			else {
+				System.out.println("Product not updated, Something went wrong");
+			}
+		}
+		public ProductModel findProductById (int id) throws ClassNotFoundException, SQLException {
+			int productId = 0;
+			String query="select * from product_items where products_id= '" + id+ "'";
+			Connection con = Connect.getDbConnection();
+			PreparedStatement pstm = con.prepareStatement(query);
+			ProductModel product = null;
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()) {
+				product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
+			}
+			return product;
 		}
 }
 	

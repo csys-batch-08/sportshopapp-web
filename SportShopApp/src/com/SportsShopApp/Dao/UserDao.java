@@ -21,6 +21,7 @@ public class UserDao {
 		
 		Connection con= Connect.getDbConnection();
 		String query = "insert into customers_detail(user_name,address, first_name, last_name, email, phone, password)values (?,?,?,?,?,?,?)";
+		String commit= "commit";
 		PreparedStatement stmt= con.prepareStatement(query);
 		stmt.setString(1, reg.getUserName());
 		stmt.setString(2, reg.getAddress());
@@ -30,29 +31,34 @@ public class UserDao {
 		stmt.setLong(6, reg.getPhone());
 		stmt.setString(7, reg.getPassword());
 		stmt.executeUpdate();
+		
+		PreparedStatement com= con.prepareStatement(commit);
+		com.execute();
+	
 		System.out.println("Register successfull");
 	}
 	//String username ;
-	public static int login(UserRegModel log) throws ClassNotFoundException, SQLException {
+	public UserRegModel login( String userName, String password) throws ClassNotFoundException, SQLException {
 		
+		String query = "select * from  customers_detail where user_name = '"+userName+"' and password='"+password +"'" ;
+//		String query = "select user_name from customers_detail where user_name= ? and password= ? ";
 		Connection con = Connect.getDbConnection();
-		String query = "select user_name from customers_detail where user_name= ? and password= ? ";
-		PreparedStatement stmt = con.prepareStatement(query);
-		stmt.setString(1, log.getUserName());
-		stmt.setString(2, log.getPassword());
+		Connect conn = new Connect();
+		PreparedStatement pstm = con.prepareStatement(query);
+		ResultSet rs = pstm.executeQuery(query);
+		UserRegModel user = null;
 		
-		ResultSet rs = stmt.executeQuery();
-		int i = -1;
+		
+//		int i = -1;
 		if (rs.next()) {
-			i = 1;
-			String userName = rs.getString("user_name");
-			System.out.println("welcome " + rs.getString(1));
+			user =new  UserRegModel ();
+        return user;
 		} 
 		else {
 			System.out.println("Incorrect user credential");
 			
 		}
-	return i;
+	return null;
 
 	}
 	public List<UserRegModel> viewAllUsers() throws ClassNotFoundException, SQLException {
@@ -64,10 +70,19 @@ public class UserDao {
 		ResultSet rs = stmt.executeQuery(view);
 		while (rs.next()) {
 			
-			UserRegModel users = new UserRegModel(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getString(7));
+			UserRegModel users = new UserRegModel(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getString(7),rs.getDouble(8));
 			userList.add(users);
 	}
 		return userList;
+	}
+	public void addMoneyWallet (double walletAmount, UserRegModel currentUser) throws ClassNotFoundException, SQLException {
+		System.out.println("add money in wallet");
+		double addMoney = currentUser.getMyWallet()+walletAmount;
+		String walletQuery= "update customer_detail set my_wallet ="+ addMoney + "where user_name ='" + currentUser.getUserName()+"'";
+		Connection con = Connect.getDbConnection();
+		PreparedStatement pstm = con.prepareStatement(walletQuery);
+		pstm.execute();
+		System.out.println("Money added to the wallet");
 	}
 }
 

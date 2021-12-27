@@ -1,34 +1,34 @@
 package com.SportsShopApp.Model;
 
 public class CartModel {
-	private String userName;
-	private String category;
-	private int productId;
+	private UserRegModel user;
+	private ProductModel product;
 	private double standardCost;
+	private double totalPrice;
 	private int quantity;
-	public String getUserName() {
-		return userName;
+	public UserRegModel getUser() {
+		return user;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser(UserRegModel user) {
+		this.user = user;
 	}
-	public String getCategory() {
-		return category;
+	public ProductModel getProduct() {
+		return product;
 	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct(ProductModel product) {
+		this.product = product;
 	}
 	public double getStandardCost() {
 		return standardCost;
 	}
-	public void setStandardCost(int standardCost) {
+	public void setStandardCost(double standardCost) {
 		this.standardCost = standardCost;
+	}
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -36,12 +36,12 @@ public class CartModel {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public CartModel(String userName, String category, int productId, double standardCost, int quantity) {
+	public CartModel(UserRegModel user, ProductModel product, double standardCost, double totalPrice, int quantity) {
 		super();
-		this.userName = userName;
-		this.category = category;
-		this.productId = productId;
+		this.user = user;
+		this.product = product;
 		this.standardCost = standardCost;
+		this.totalPrice = totalPrice;
 		this.quantity = quantity;
 	}
 	public CartModel() {
@@ -50,8 +50,8 @@ public class CartModel {
 	}
 	@Override
 	public String toString() {
-		return "CartModel [userName=" + userName + ", category=" + category + ", productId=" + productId
-				+ ", standardCost=" + standardCost + ", quantity=" + quantity + "]";
+		return "product= " + product + "standardCost= " + standardCost + "totalPrice= "
+				+ totalPrice + "quantity= " + quantity ;
 	}
 	
 	

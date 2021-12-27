@@ -8,6 +8,13 @@ public class UserRegModel {
 	private String email;
 	private long phone;
 	private String password;
+	private double myWallet;
+	public double getMyWallet() {
+		return myWallet;
+	}
+	public void setMyWallet(double myWallet) {
+		this.myWallet = myWallet;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -67,7 +74,6 @@ public class UserRegModel {
 		this.phone = phone;
 		this.password = password;
 	}
-	
 	public UserRegModel(String userName, String password) {
 		super();
 		
@@ -75,10 +81,24 @@ public class UserRegModel {
 		
 		this.password = password;
 	}
+	public UserRegModel(String userName, String address, String firstName, String lastName, String email, long phone,
+			String password, double myWallet) {
+		super();
+		this.userName = userName;
+		this.address = address;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+		this.myWallet = myWallet;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserReg [user_name=" + userName + ", address=" + address + ", first_name=" + firstName
-				+ ", last_name=" + lastName + ", email=" + email + ", phone=" + phone + ", password=" + password + "]";
+		return "UserRegModel [userName=" + userName + ", address=" + address + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", password=" + password
+				+ ", myWallet=" + myWallet + "]";
 	}
 	
 }

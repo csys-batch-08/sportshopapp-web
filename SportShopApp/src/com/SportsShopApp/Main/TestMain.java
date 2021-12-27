@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.SportsShopApp.Dao.AdminDao;
+import com.SportsShopApp.Dao.CartDao;
 import com.SportsShopApp.Dao.ProductDao;
 import com.SportsShopApp.Dao.UserDao;
 import com.SportsShopApp.Model.AdminModel;
+import com.SportsShopApp.Model.CartModel;
+import com.SportsShopApp.Model.ProductModel;
 import com.SportsShopApp.Model.UserRegModel;
 
 public class TestMain {
@@ -15,6 +18,7 @@ public class TestMain {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
+		UserDao userDao1 = new UserDao();
 		int n;
 		
 //		System.out.println("to enter products press 'Y'");
@@ -37,6 +41,7 @@ public class TestMain {
 			String mail = null;
 			String password =null;
 			long phone=0;
+			double myWallet=0;
 			boolean flag ; 
 			
 			
@@ -139,7 +144,7 @@ public class TestMain {
 			}while(flag);
 			
 		    System.out.println(userName);
-			UserRegModel reg= new UserRegModel(userName,address,firstName,lastName,mail,phone,password);
+			UserRegModel reg= new UserRegModel(userName,address,firstName,lastName,mail,phone,password,myWallet);
 			UserDao register = new UserDao();
 			UserDao.registration(reg);
 	
@@ -197,14 +202,17 @@ public class TestMain {
 			
 			switch (num) {
 			case 1 :
-				System.out.println("to view all products type 'Y'");
+				
 				ProductDao viewProducts = new  ProductDao();
-				viewProducts.insert();
+				List<ProductModel> viewProducts1 = viewProducts.viewAllProducts();
+				for(ProductModel ur : viewProducts1) {
+					System.out.println(ur.toString());
+				}
 				break;
 				
 				
 			case 2 :
-				System.out.println("to view all users type 'Y'");
+				
 				UserDao allUsers = new  UserDao();
 				List<UserRegModel> alluser = allUsers.viewAllUsers();
 				for(UserRegModel ur : alluser) {
@@ -217,54 +225,116 @@ public class TestMain {
 				ProductDao prod = new  ProductDao();
 				prod.insert();
 				break;
+				
+			case 4 :
+				System.out.println("update Products");
+				
+				System.out.println("Enter Product Id");
+				int updateProductId = Integer.parseInt(sc.nextLine());
+				System.out.println("Enter product name to be update");
+				String updateProductName = sc.nextLine();
+				
+				System.out.println("enter unitprice to be udpate");
+				double updateUnitPrice = Double.parseDouble(sc.nextLine());
+				System.out.println("Enter product category to be update");
+				String updateProductCategory = sc.nextLine();
+				System.out.println("Enter quantity to be update");
+				int updateQuantity = Integer.parseInt(sc.nextLine());
+				ProductDao update = new ProductDao();
+				update.updateProducts(updateProductId, updateProductName, n, updateProductCategory, updateProductId);
+				break;
 			case 5 :
 				System.out.println("to delete products type 'Y'");
 				ProductDao prodDelete = new  ProductDao();
 				prodDelete.insert();
 				break;
-				
-				
-				
 			
 			}
-//			   boolean adminChoice = true;
+
 			}
 			else {
 				
 				boolean flag1= true;
-				do {
-					UserRegModel user = new  UserRegModel(logUserName,loginPassword);
-					UserDao userdao = new UserDao();
-					int i = userdao.login(user);
-					if(i == 1) {
+				UserRegModel currentUser = userDao1.login(logUserName, loginPassword);
+				if(currentUser==null){
+					System.out.println("not a registered uder");
 					flag1 = false;
-					}
-				}while(flag1);
+				}else {
+					System.out.println("welcome"+ currentUser.getFirstName());
+				}
+			
+				do {
+					ProductDao allProduct = new ProductDao();
+					
 				System.out.println("1. Show All Products    2.Update Account    3.Delete Account");
+				int m = Integer.parseInt(sc.nextLine());
+				switch (m) {
+				case 1:
+					
+					ProductDao viewProducts = new  ProductDao();
+					List<ProductModel> viewProducts1 = viewProducts.viewAllProducts();
+					for(ProductModel ur : viewProducts1) {
+						System.out.println(ur.toString());
+					}
+					boolean product = true;
+					
+					do {
+						System.out.println("1.Add products to cart   2.Buy Products  3.View cart   4.My Orders");
+						int productChoices = Integer.parseInt(sc.nextLine());
+
+						if (productChoices == 1 || productChoices == 2 || productChoices == 3
+								|| productChoices == 4) {
+							switch (productChoices) {
+							case 1 :
+								System.out.println("enter product id");
+								int productId = Integer.parseInt(sc.nextLine());
+								ProductDao prodId = new ProductDao();
+								ProductModel products = prodId.findProductById(productId);
+								System.out.println(products.getProductId());
+								System.out.println(products.getQuantity());
+								int quantity = Integer.parseInt(sc.nextLine());
+								double totalPrice = products.getStrandardCost() * quantity;
+								
+								if (products.getQuantity() >quantity) {
+									CartModel cart = new CartModel(currentUser, products, products.getStrandardCost(),totalPrice, quantity);
+									CartDao cartDao = new CartDao();
+									cartDao.insertProduct(cart);
+								}
+								break;
+							case 2:
+								
+								break;
+							case 3:
+								
+								break;
+							case 4 :
+								
+								break;
+							}
+						}
+					}while(product);
+					
+					
 				
-			}
-			
-			int m = Integer.parseInt(sc.nextLine());
-			switch (m) {
-			case 1:
-				System.out.println("to view all products type 'Y'");
-				ProductDao viewProducts = new  ProductDao();
-				viewProducts.insert();
-				break;
 				
+				}
+				}while(flag1);
+				}
 			}
+		}
 			
-			 break;
+}		
+		
 //			do {
 //				System.out.println("1. Show all products   2. Show all users   3. Add product   4.update Product Details   5.Delete Product ");
 		
 			
 			
-		default:
-		
-		System.out.println("enter the valid option");
-		break;
-}
+//		default:
+//		
+//		System.out.println("enter the valid option");
+//		break;
+
 		
 		
 //		public static String log() throws ClassNotFoundException, SQLException{
@@ -273,40 +343,5 @@ public class TestMain {
 //	
 //	
 
-	}
-	}
-//}
-//boolean logFlag = false;
-//
-//String logUserName;
-//String passname;
-//do {
-//System.out.println("Enter the userName");
-//userName = sc.nextLine();
-//if (userName.matches("[a-zA-Z]+") && userName != "") {
-//
-//flag = false;
-//} else {
-//
-//flag = true;
-//}
-//} while (flag);
-//do {
-//System.out.println("Enter the password");
-//passname = sc.nextLine();
-//if (passname.matches("[a-zA-Z0-9@#!]+") && passname != "") {
-///// System.out.println("valid");
-//flag = false;
-//} else {
-//// System.out.println("invalid");
-//flag = true;
-//}
-//} while (flag);
-//UserRegModel log = new UserRegModel();
-//log.setUserName(userName);
-//log.setPassword(passname);
-//UserDao obj = new UserDao();// name
-//String username = obj.login(log);
-////System.out.println("hi" + userid);
-//
-//return username;
+
+
