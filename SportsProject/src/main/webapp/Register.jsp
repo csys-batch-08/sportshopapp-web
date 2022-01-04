@@ -58,7 +58,7 @@
            
         <table id="buttontable">
             <tr>
-                <td><button type="submit">Click to Register</button></td>  
+                <td><button type="submit">Click to Register</button></td><button type="submit">Login</button></td>  
             </tr>
         </table>    
     </fieldset>

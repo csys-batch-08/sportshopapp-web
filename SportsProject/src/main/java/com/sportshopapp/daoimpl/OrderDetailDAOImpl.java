@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.sportshopapp.dao.OrderDetailDAO;
-import com.sportshopapp.model.OderDetailsModel;
+import com.sportshopapp.model.OderDetails;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class OrderDetailDAOImpl implements OrderDetailDAO{
@@ -29,7 +29,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
     {
     	String query = "select max(order_id) from order_detail";
     	Connection con =ConnectionUtil.getDbConnection();
-    	OderDetailsModel order = null;
+    	OderDetails order = null;
     	int orderId =0;
     	try {
     		Statement stms = con.createStatement();

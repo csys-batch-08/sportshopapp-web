@@ -1,21 +1,21 @@
 package com.sportshopapp.model;
 
-public class CartModel {
-	private UserRegModel user;
-	private ProductModel product;
+public class Cart {
+	private UserReg user;
+	private Product product;
 	private double standardCost;
 	private double totalPrice;
 	private int quantity;
-	public UserRegModel getUser() {
+	public UserReg getUser() {
 		return user;
 	}
-	public void setUser(UserRegModel user) {
+	public void setUser(UserReg user) {
 		this.user = user;
 	}
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 	public double getStandardCost() {
@@ -36,7 +36,7 @@ public class CartModel {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public CartModel(UserRegModel user, ProductModel product, double standardCost, double totalPrice, int quantity) {
+	public Cart(UserReg user, Product product, double standardCost, double totalPrice, int quantity) {
 		super();
 		this.user = user;
 		this.product = product;
@@ -44,7 +44,7 @@ public class CartModel {
 		this.totalPrice = totalPrice;
 		this.quantity = quantity;
 	}
-	public CartModel() {
+	public Cart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

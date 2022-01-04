@@ -2,10 +2,10 @@ package com.sportshopapp.model;
 
 import java.sql.Date;
 
-public class OderDetailsModel {
+public class OderDetails {
 	private int orderId;
-	private UserRegModel user;
-	private ProductModel products;
+	private UserReg user;
+	private Product products;
 	private Date orderDate ;
 	private double price;
 	private String orderStatus;
@@ -16,16 +16,16 @@ public class OderDetailsModel {
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public UserRegModel getUser() {
+	public UserReg getUser() {
 		return user;
 	}
-	public void setUser(UserRegModel user) {
+	public void setUser(UserReg user) {
 		this.user = user;
 	}
-	public ProductModel getProducts() {
+	public Product getProducts() {
 		return products;
 	}
-	public void setProducts(ProductModel products) {
+	public void setProducts(Product products) {
 		this.products = products;
 	}
 	public Date getOrderDate() {
@@ -47,19 +47,19 @@ public class OderDetailsModel {
 		this.orderStatus = orderStatus;
 	}
 	
-	public OderDetailsModel(Date orderDate, double price, String orderStatus) {
+	public OderDetails(Date orderDate, double price, String orderStatus) {
 		super();
 		this.orderDate = orderDate;
 		this.price = price;
 		this.orderStatus = orderStatus;
 	}
-	public OderDetailsModel(UserRegModel currentUser, ProductModel buyProducts, double price) {
+	public OderDetails(UserReg currentUser, Product buyProducts, double price) {
 		super();
 		this.user = currentUser;
 		this.products = buyProducts;
 		this.price = price;
 	}
-	public OderDetailsModel(UserRegModel currentUser, double price) {
+	public OderDetails(UserReg currentUser, double price) {
 		super();
 		this.user = currentUser;
 		this.price = price;
@@ -68,7 +68,7 @@ public class OderDetailsModel {
 	public String toString() {
 		return  ", orderDate=" + orderDate + ", price=" + price + ", orderStatus=" + orderStatus + "]";
 	}
-	public OderDetailsModel() {
+	public OderDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

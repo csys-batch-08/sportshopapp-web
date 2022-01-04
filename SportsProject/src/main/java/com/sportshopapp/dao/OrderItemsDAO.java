@@ -2,11 +2,11 @@ package com.sportshopapp.dao;
 
 import java.sql.SQLException;
 
-import com.sportshopapp.model.OrderItemsModel;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.OrderItems;
+import com.sportshopapp.model.UserReg;
 
 public interface OrderItemsDAO {
 
-	public void insertOrders(OrderItemsModel oi) throws ClassNotFoundException, SQLException ;
-	public void ViewMyOrders(UserRegModel currentUser) throws ClassNotFoundException, SQLException ;
+	public void insertOrders(OrderItems oi) throws ClassNotFoundException, SQLException ;
+	public void ViewMyOrders(UserReg currentUser) throws ClassNotFoundException, SQLException ;
 }

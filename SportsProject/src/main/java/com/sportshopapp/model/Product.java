@@ -1,6 +1,6 @@
 package com.sportshopapp.model;
 
-public class ProductModel {
+public class Product {
 	private String productName;
 	private int productId;
 	private double strandardCost;
@@ -9,10 +9,17 @@ public class ProductModel {
 	public int getQuantity() {
 		return quantity;
 	}
-	public ProductModel(String productName, int productId, double strandardCost, String category, int quantity) {
+	public Product(String productName, int productId, double strandardCost, String category, int quantity) {
 		super();
 		this.productName = productName;
 		this.productId = productId;
+		this.strandardCost = strandardCost;
+		this.category = category;
+		this.quantity = quantity;
+	}
+	public Product(String productName, double strandardCost, String category, int quantity) {
+		super();
+		this.productName = productName;
 		this.strandardCost = strandardCost;
 		this.category = category;
 		this.quantity = quantity;
@@ -51,7 +58,7 @@ public class ProductModel {
 //		this.strandardCost = strandardCost;
 //		this.category = category;
 //	}
-	public ProductModel() {
+	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

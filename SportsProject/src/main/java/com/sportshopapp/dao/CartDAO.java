@@ -3,12 +3,12 @@ package com.sportshopapp.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.sportshopapp.model.CartModel;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.Cart;
+import com.sportshopapp.model.UserReg;
 
 public interface CartDAO {
 
-	public void insertProduct (CartModel cart) throws ClassNotFoundException, SQLException;
-	public List<CartModel> viewCart(UserRegModel currentUser) throws ClassNotFoundException, SQLException;
+	public void insertProduct (Cart cart) throws ClassNotFoundException, SQLException;
+	public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException;
 	
 }

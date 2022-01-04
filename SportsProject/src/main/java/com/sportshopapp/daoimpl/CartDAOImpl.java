@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sportshopapp.dao.CartDAO;
-import com.sportshopapp.model.CartModel;
-import com.sportshopapp.model.ProductModel;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.Cart;
+import com.sportshopapp.model.Product;
+import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class CartDAOImpl implements CartDAO {
-	public void insertProduct (CartModel cart) throws ClassNotFoundException, SQLException {
+	public void insertProduct (Cart cart) throws ClassNotFoundException, SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
 		
 		try {
@@ -40,11 +40,11 @@ public class CartDAOImpl implements CartDAO {
             	 System.out.println("Something went wrong");
 		}
 	}
-	public List<CartModel> viewCart(UserRegModel currentUser) throws ClassNotFoundException, SQLException {
+	public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException {
 		currentUser.getUserName();
 		String query= "select * from cart where user_name='"+currentUser.getUserName()+"'";
 		Connection con=ConnectionUtil.getDbConnection();
-		List<CartModel> allCartItems=new ArrayList<CartModel>();
+		List<Cart> allCartItems=new ArrayList<Cart>();
 		Statement smts = null;
 		ResultSet rs= null;
 		try {
@@ -53,8 +53,8 @@ public class CartDAOImpl implements CartDAO {
 			ProductDAOImpl proDao=new ProductDAOImpl();
 			while(rs.next()) {
 				
-				ProductModel product=proDao.findProductById(rs.getInt(2));
-				CartModel cart=new CartModel(currentUser,product, rs.getDouble(4),rs.getDouble(5),rs.getInt(6));
+				Product product=proDao.findProductById(rs.getInt(2));
+				Cart cart=new Cart(currentUser,product, rs.getDouble(4),rs.getDouble(5),rs.getInt(6));
 				allCartItems.add(cart);				
 				}
 		} catch (SQLException e) {

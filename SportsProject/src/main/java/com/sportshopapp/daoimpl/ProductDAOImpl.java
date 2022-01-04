@@ -10,15 +10,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.sportshopapp.dao.ProductDAO;
-import com.sportshopapp.model.ProductModel;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.Product;
+import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class ProductDAOImpl implements ProductDAO {
 	Scanner sc = new Scanner(System.in);
 
-	public void insert() throws ClassNotFoundException, SQLException {
+	public boolean insert() throws ClassNotFoundException, SQLException {
 	char check;
+	boolean flag=false;
 	System.out.println("Do You Want Enter Product \n Y /N");
 	check = sc.nextLine().charAt(0);
 	if (check == 'y' || check == 'Y') {
@@ -34,7 +35,7 @@ public class ProductDAOImpl implements ProductDAO {
 	int prodQuantity = sc.nextInt();
 	
 	
-	ProductModel str = new ProductModel( pName, prodId, price,prodCategory,prodQuantity);
+	Product str = new Product( pName, prodId, price,prodCategory,prodQuantity);
 	Connection con= ConnectionUtil.getDbConnection();
 	String query = "insert into product_items values(?,?,?,?,?)";
 	PreparedStatement stmt = con.prepareStatement(query);
@@ -44,10 +45,14 @@ public class ProductDAOImpl implements ProductDAO {
 	stmt.setDouble(3, str.getStrandardCost());
 	stmt.setString(4, str.getCategory());
 	stmt.setInt(5, str.getQuantity());
-	stmt.executeUpdate();
-	System.out.println("Product Added");
+	int result =stmt.executeUpdate();
+	if(result>0)
+	{
+		flag=true;
+		return flag;
 	}
-
+	}
+	return flag;
 	}
 
 	public void delete() throws ClassNotFoundException, SQLException {
@@ -59,7 +64,7 @@ public class ProductDAOImpl implements ProductDAO {
 	int prodId = Integer.parseInt(sc.nextLine());
 
 	Connection con= ConnectionUtil.getDbConnection();
-	ProductModel str = new ProductModel();
+	Product str = new Product();
 	str.setProductId(prodId);
 	String query = "delete from  product_items where products_id=?";
 	PreparedStatement stmt = con.prepareStatement(query);
@@ -71,53 +76,63 @@ public class ProductDAOImpl implements ProductDAO {
      
 	}
 	
-		public List<ProductModel> viewAllProducts() throws ClassNotFoundException, SQLException {
+		public List<Product> viewAllProducts() throws ClassNotFoundException, SQLException {
 			
 			Connection con = ConnectionUtil.getDbConnection();
 			Statement stmt = con.createStatement();
 			
-			List<ProductModel> productList = new ArrayList<ProductModel>();
+			List<Product> productList = new ArrayList<Product>();
 			String view = " SELECT * FROM product_items";
 			ResultSet rs = stmt.executeQuery(view);
 			while (rs.next()) {
 				// System.out.println(rs.getInt(2) + " " + rs.getString(1)+" "+ rs.getInt(3));
-				ProductModel product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
+				Product product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 				productList.add(product);
 			}
 			return productList;
 		}
 		
 	
-		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize, String updateProductCategory, int updateProductQuantity) throws SQLException, ClassNotFoundException {
+		public boolean updateProducts(Product product) throws SQLException, ClassNotFoundException {
 			String updateQuery="update product_items set products_name=?,standard_cost=?, category=?, quantity=? where products_id=? " ;
+			boolean b=false;
 			Connection con = ConnectionUtil.getDbConnection();
 			PreparedStatement pstm=null;
 			pstm = con.prepareStatement(updateQuery);
-			pstm.setString(1, updateProductName);
-			pstm.setInt(2, updateProductId);
-			pstm.setDouble(3, updateStandardPrize);
-			pstm.setString(4, updateProductCategory);
-			pstm.setInt(5, updateProductQuantity);
+			pstm.setString(1, product.getProductName());
+			pstm.setInt(2, product.getProductId());
+			pstm.setDouble(3, product.getStrandardCost());
+			pstm.setString(4, product.getCategory());
+			pstm.setInt(5, product.getQuantity());
 			
 			int result =  pstm.executeUpdate();
 			if(result >0) {
-				System.out.println(result + "product is updated");
+				b=true;
+				return b;
 			}
 			else {
 				System.out.println("Product not updated, Something went wrong");
 			}
+			return b;
 		}
-		public ProductModel findProductById (int id) throws ClassNotFoundException, SQLException {
+		public Product findProductById (int id) throws ClassNotFoundException, SQLException {
 			int productId = 0;
 			String query="select * from product_items where products_id= '" + id+ "'";
 			Connection con = ConnectionUtil.getDbConnection();
 			PreparedStatement pstm = con.prepareStatement(query);
-			ProductModel product = null;
+			Product product = null;
 			ResultSet rs = pstm.executeQuery();
 			if(rs.next()) {
-				product = new ProductModel(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
+				product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 			}
 			return product;
+		}
+
+		@Override
+		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize,
+				String updateProductCategory, int updateProductQuantity) throws SQLException, ClassNotFoundException {
+			// TODO Auto-generated method stub
+			
 		}
 		
 //		public List<ProductModel> filterByPrice(int min,int max){   

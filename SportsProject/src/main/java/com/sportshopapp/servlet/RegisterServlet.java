@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sportshopapp.daoimpl.UserDAOImpl;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.UserReg;
 @WebServlet("/registerweb")
 public class RegisterServlet extends HttpServlet   {
 	
@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet   {
 		String password=req.getParameter("UserPassword");
 		System.out.println(password);
 		
-		UserRegModel userModel=new UserRegModel(userName,address,firstName, lastName,mail,mobile,password);
+		UserReg userModel=new UserReg(userName,address,firstName, lastName,mail,mobile,password);
 		System.out.println(userModel);
 		UserDAOImpl userDao=new UserDAOImpl();
 		try {

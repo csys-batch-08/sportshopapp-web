@@ -1,6 +1,6 @@
 package com.sportshopapp.model;
 
-public class UserRegModel {
+public class UserReg {
 	private String userName;
 	private String address;
 	private String firstName;
@@ -57,12 +57,12 @@ public class UserRegModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserRegModel() {
+	public UserReg() {
 		super();
 		// TODO Auto-generated constructor stub
 		
 	}
-	public UserRegModel(String userName, String address, String firstName, String lastName, String email, long phone,
+	public UserReg(String userName, String address, String firstName, String lastName, String email, long phone,
 			String password) {
 		super();
 		
@@ -74,7 +74,7 @@ public class UserRegModel {
 		this.phone = phone;
 		this.password = password;
 	}
-	public UserRegModel(String userName, String address, String firstName, String lastName, String email, long phone,
+	public UserReg(String userName, String address, String firstName, String lastName, String email, long phone,
 			double myWallet) {
 		super();
 		this.userName = userName;
@@ -85,13 +85,13 @@ public class UserRegModel {
 		this.phone = phone;
 		this.myWallet = myWallet;
 	}
-	public UserRegModel(String userName, String password) {
+	public UserReg(String userName, String password) {
 		super();
 		
 		this.userName = userName;
 		this.password = password;
 	}
-	public UserRegModel(String userName, String address, String firstName, String lastName, String email, long phone,
+	public UserReg(String userName, String address, String firstName, String lastName, String email, long phone,
 			String password, double myWallet) {
 		super();
 		this.userName = userName;

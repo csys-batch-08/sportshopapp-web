@@ -1,5 +1,5 @@
 
-<%@page import="com.sportshopapp.model.ProductModel"%>
+<%@page import="com.sportshopapp.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sportshopapp.daoimpl.ProductDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -71,8 +71,10 @@ body {font-family: "Lato", sans-serif;}
 </div>
 
 <div class="main"></div>
-  <% ProductDAOImpl obj = new ProductDAOImpl();
-List<ProductModel> viewProducts =obj.viewAllProducts();%>
+  <%
+  ProductDAOImpl obj = new ProductDAOImpl();
+  List<Product> viewProducts =obj.viewAllProducts();
+  %>
 <div id="allusers">
 <table>
 <thead>
@@ -85,7 +87,9 @@ List<ProductModel> viewProducts =obj.viewAllProducts();%>
 </tr>
 </thead>
 <tbody>
-<%for(ProductModel product:viewProducts){ %>
+<%
+for(Product product:viewProducts){
+%>
 <tr>
 <td><%=product.getProductName()%></td>
 <td><%=product.getProductId()%></td>

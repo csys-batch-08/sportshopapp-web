@@ -1,4 +1,4 @@
-<%@page import="com.sportshopapp.model.UserRegModel"%>
+<%@page import="com.sportshopapp.model.UserReg"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sportshopapp.daoimpl.UserDAOImpl"%>
 <%@page import="com.sportshopapp.dao.UserDaoDAO"%>
@@ -42,8 +42,9 @@
 </head>
 <h1><a href="Logout.jsp">logout</a></h1>
 <body>
-<% UserDaoDAO obj=new UserDAOImpl();
-List<UserRegModel> userList= obj.viewAllUsers();
+<%
+UserDAOImpl obj=new UserDAOImpl();
+List<UserReg> userList= obj.viewAllUsers();
 %>
 <div id="allusers">
 <table>
@@ -60,7 +61,9 @@ List<UserRegModel> userList= obj.viewAllUsers();
 </tr>
 </thead>
 <tbody>
-<%for(UserRegModel customer:userList){ %>
+<%
+for(UserReg customer:userList){
+%>
 <tr>
 <td><%=customer.getUserName() %></td>
 <td><%=customer.getAddress() %></td>

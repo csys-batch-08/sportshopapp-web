@@ -2,9 +2,9 @@ package com.sportshopapp.dao;
 
 import java.sql.SQLException;
 
-import com.sportshopapp.model.AdminModel;
+import com.sportshopapp.model.Admin;
 
 public interface AdminDAO {
 
-	public  AdminModel adlogin (String userName, String password ) throws ClassNotFoundException, SQLException;
+	public  Admin adlogin (String userName, String password ) throws ClassNotFoundException, SQLException;
 }

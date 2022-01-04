@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.sportshopapp.dao.AdminDAO;
-import com.sportshopapp.model.AdminModel;
+import com.sportshopapp.model.Admin;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class AdminDAOImpl implements AdminDAO{
-	public  AdminModel adlogin (String userName, String password ) throws ClassNotFoundException, SQLException
+	public  Admin adlogin (String userName, String password ) throws ClassNotFoundException, SQLException
 	{	
 		
 		Connection con = ConnectionUtil.getDbConnection();
@@ -21,7 +21,7 @@ public class AdminDAOImpl implements AdminDAO{
 //		
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
-			AdminModel adminLogin = new AdminModel(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));
+			Admin adminLogin = new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));
 			System.out.println(rs.getString(1));
 			
    		return adminLogin;

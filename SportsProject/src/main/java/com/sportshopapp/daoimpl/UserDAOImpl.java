@@ -3,7 +3,7 @@ package com.sportshopapp.daoimpl;
 import java.sql.Connection;
 
 import com.sportshopapp.dao.UserDaoDAO;
-import com.sportshopapp.model.UserRegModel;
+import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
 
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class UserDAOImpl implements UserDaoDAO{
 	
 
-	public  void registration(UserRegModel reg)throws ClassNotFoundException, SQLException
+	public  void registration(UserReg reg)throws ClassNotFoundException, SQLException
 	{
 		
 		Connection con= ConnectionUtil.getDbConnection();
@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDaoDAO{
 		System.out.println("Register successfull");
 	}
 	//String username ;
-	public UserRegModel login( String userName, String password) throws ClassNotFoundException, SQLException {
+	public UserReg login( String userName, String password) throws ClassNotFoundException, SQLException {
 		
 		String query = "select * from  customers_detail where user_name = '"+userName+"' and password='"+password +"'" ;
 //		String query = "select user_name from customers_detail where user_name= ? and password= ? ";
@@ -47,12 +47,12 @@ public class UserDAOImpl implements UserDaoDAO{
 		ConnectionUtil conn = new ConnectionUtil();
 		PreparedStatement pstm = con.prepareStatement(query);
 		ResultSet rs = pstm.executeQuery(query);
-		UserRegModel user = null;
-		
+		UserReg user = null;
+	
 		
 //		int i = -1;
 		if (rs.next()) {
-			user =new  UserRegModel ();
+			user =new  UserReg ();
         return user;
 		} 
 		else {
@@ -62,21 +62,21 @@ public class UserDAOImpl implements UserDaoDAO{
 	return null;
 
 	}
-	public List<UserRegModel> viewAllUsers() throws ClassNotFoundException, SQLException {
+	public List<UserReg> viewAllUsers() throws ClassNotFoundException, SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
 		Statement stmt = con.createStatement();
 		
-		List<UserRegModel> userList = new ArrayList<UserRegModel>();
+		List<UserReg> userList = new ArrayList<UserReg>();
 		String view = " SELECT * FROM customers_detail";
 		ResultSet rs = stmt.executeQuery(view);
 		while (rs.next()) {
 			
-			UserRegModel users = new UserRegModel(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getDouble(7));
+			UserReg users = new UserReg(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getString(7),rs.getDouble(8));
 			userList.add(users);
 	}
 		return userList;
 	}
-	public void addMoneyWallet (double walletAmount, UserRegModel currentUser) throws ClassNotFoundException, SQLException {
+	public void addMoneyWallet (double walletAmount, UserReg currentUser) throws ClassNotFoundException, SQLException {
 		System.out.println("add money in wallet");
 		double addMoney = currentUser.getMyWallet()+walletAmount;
 		String walletQuery= "update customer_detail set my_wallet ="+ addMoney + "where user_name ='" + currentUser.getUserName()+"'";

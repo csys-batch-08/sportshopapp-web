@@ -1,6 +1,6 @@
 package com.sportshopapp.model;
 
-public class AdminModel {
+public class Admin {
 	private String userName;
 	private String password;
     private String email;
@@ -29,11 +29,11 @@ public class AdminModel {
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
-	public AdminModel() {
+	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AdminModel(String userName, String password, String email, long mobile) {
+	public Admin(String userName, String password, String email, long mobile) {
 		super();
 		this.userName = userName;
 		this.password = password;

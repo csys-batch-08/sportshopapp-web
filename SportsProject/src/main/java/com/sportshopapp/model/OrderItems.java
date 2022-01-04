@@ -1,10 +1,10 @@
 package com.sportshopapp.model;
 
-public class OrderItemsModel extends OderDetailsModel {
+public class OrderItems extends OderDetails {
 	private int itemId;
-	private UserRegModel user;
-	private ProductModel product;
-	private OderDetailsModel oderModel;
+	private UserReg user;
+	private Product product;
+	private OderDetails oderModel;
 	private int quantity;
 	private double unitPrice;
 	private double totalPrice;
@@ -17,27 +17,27 @@ public class OrderItemsModel extends OderDetailsModel {
 		this.itemId = itemId;
 	}
 
-	public UserRegModel getUser() {
+	public UserReg getUser() {
 		return user;
 	}
 
-	public void setUser(UserRegModel user) {
+	public void setUser(UserReg user) {
 		this.user = user;
 	}
 
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-	public OderDetailsModel getOderModel() {
+	public OderDetails getOderModel() {
 		return oderModel;
 	}
 
-	public void setOderModel(OderDetailsModel oderModel) {
+	public void setOderModel(OderDetails oderModel) {
 		this.oderModel = oderModel;
 	}
 
@@ -65,12 +65,12 @@ public class OrderItemsModel extends OderDetailsModel {
 		this.totalPrice = totalPrice;
 	}
 
-	public OrderItemsModel() {
+	public OrderItems() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderItemsModel(int itemId, UserRegModel user, ProductModel product, OderDetailsModel oderModel,
+	public OrderItems(int itemId, UserReg user, Product product, OderDetails oderModel,
 			int quantity, double unitPrice, double totalPrice) {
 		super();
 		this.itemId = itemId;
