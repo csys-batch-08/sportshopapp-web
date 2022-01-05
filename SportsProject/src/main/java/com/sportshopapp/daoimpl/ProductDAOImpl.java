@@ -17,42 +17,40 @@ import com.sportshopapp.util.ConnectionUtil;
 public class ProductDAOImpl implements ProductDAO {
 	Scanner sc = new Scanner(System.in);
 
-	public boolean insert() throws ClassNotFoundException, SQLException {
+	public Product insert(Product product) throws ClassNotFoundException, SQLException {
 	char check;
-	boolean flag=false;
-	System.out.println("Do You Want Enter Product \n Y /N");
-	check = sc.nextLine().charAt(0);
-	if (check == 'y' || check == 'Y') {
-	System.out.println("Enter the Product Name");
-	String pName = sc.nextLine();
-	System.out.println("Enter the Product ID");
-	int prodId = Integer.parseInt(sc.nextLine());
-	System.out.println("Enter the price");
-	Double price = Double.parseDouble(sc.nextLine());
-	System.out.println("Enter the product category");
-	String prodCategory = sc.nextLine();
-	System.out.println("enter the product quantity");
-	int prodQuantity = sc.nextInt();
+//	System.out.println("Do You Want Enter Product \n Y /N");
+	//check = sc.nextLine().charAt(0);
+	//if (check == 'y' || check == 'Y') {
+////	System.out.println("Enter the Product Name");
+//	//String pName = sc.nextLine();
+////	System.out.println("Enter the Product ID");
+//	int prodId = Integer.parseInt(sc.nextLine());
+////	System.out.println("Enter the price");
+//	Double price = Double.parseDouble(sc.nextLine());
+////	System.out.println("Enter the product category");
+//	String prodCategory = sc.nextLine();
+//	//System.out.println("enter the product quantity");
+//	int prodQuantity = sc.nextInt();
 	
 	
-	Product str = new Product( pName, prodId, price,prodCategory,prodQuantity);
+//	Product str = new Product( pName, prodId, price,prodCategory,prodQuantity);
 	Connection con= ConnectionUtil.getDbConnection();
 	String query = "insert into product_items values(?,?,?,?,?)";
 	PreparedStatement stmt = con.prepareStatement(query);
 	
-	stmt.setString(1, str.getProductName());
-	stmt.setInt(2, str.getProductId());
-	stmt.setDouble(3, str.getStrandardCost());
-	stmt.setString(4, str.getCategory());
-	stmt.setInt(5, str.getQuantity());
+	stmt.setString(1, product.getProductName());
+	stmt.setInt(2, product.getProductId());
+	stmt.setDouble(3, product.getStrandardCost());
+	stmt.setString(4, product.getCategory());
+	stmt.setInt(5, product.getQuantity());
 	int result =stmt.executeUpdate();
 	if(result>0)
 	{
-		flag=true;
-		return flag;
+		return product;
 	}
-	}
-	return flag;
+	
+	return product;
 	}
 
 	public void delete() throws ClassNotFoundException, SQLException {
@@ -100,10 +98,10 @@ public class ProductDAOImpl implements ProductDAO {
 			PreparedStatement pstm=null;
 			pstm = con.prepareStatement(updateQuery);
 			pstm.setString(1, product.getProductName());
-			pstm.setInt(2, product.getProductId());
-			pstm.setDouble(3, product.getStrandardCost());
-			pstm.setString(4, product.getCategory());
-			pstm.setInt(5, product.getQuantity());
+			pstm.setInt(5, product.getProductId());
+			pstm.setDouble(2, product.getStrandardCost());
+			pstm.setString(3, product.getCategory());
+			pstm.setInt(4, product.getQuantity());
 			
 			int result =  pstm.executeUpdate();
 			if(result >0) {
@@ -133,6 +131,12 @@ public class ProductDAOImpl implements ProductDAO {
 				String updateProductCategory, int updateProductQuantity) throws SQLException, ClassNotFoundException {
 			// TODO Auto-generated method stub
 			
+		}
+
+		@Override
+		public boolean insert() throws ClassNotFoundException, SQLException {
+			// TODO Auto-generated method stub
+			return false;
 		}
 		
 //		public List<ProductModel> filterByPrice(int min,int max){   

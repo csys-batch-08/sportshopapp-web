@@ -76,6 +76,32 @@ public class UserDAOImpl implements UserDaoDAO{
 	}
 		return userList;
 	}
+	
+	public UserReg viewCurrentUsers(String username) throws ClassNotFoundException, SQLException {
+		Connection con = ConnectionUtil.getDbConnection();
+		Statement stmt = con.createStatement();
+		UserReg users =new UserReg();
+		String view = " SELECT * FROM customers_detail where user_name='"+username+"'";
+		ResultSet rs = stmt.executeQuery(view);
+		while (rs.next()) {
+			
+			 users = new UserReg(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getLong(5),rs.getString(7),rs.getDouble(8));
+			
+	}
+		return users;
+	}
+	public boolean changepassword(UserReg customer) throws ClassNotFoundException, SQLException {
+
+		Connection con = ConnectionUtil.getDbConnection();
+		String query = "update  customers_detail set password = ? where user_name=?";
+		PreparedStatement stmt = con.prepareStatement(query);
+		// System.out.println(str3.getCustomerid());
+		stmt.setString(1, customer.getPassword());
+		stmt.setString(2, customer.getUserName());
+		stmt.executeUpdate();
+		System.out.println("password update successful ");
+		return true;
+	}
 	public void addMoneyWallet (double walletAmount, UserReg currentUser) throws ClassNotFoundException, SQLException {
 		System.out.println("add money in wallet");
 		double addMoney = currentUser.getMyWallet()+walletAmount;

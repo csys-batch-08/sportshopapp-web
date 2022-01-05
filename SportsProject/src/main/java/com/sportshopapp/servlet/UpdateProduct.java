@@ -17,12 +17,11 @@ public class UpdateProduct extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub 
-		doGet(req,res);
 		int Pid= Integer.parseInt(req.getParameter("pID"));
 		String product= req.getParameter("pName");	
-		double updateUnitPrice = Double.parseDouble("price");
+		double updateUnitPrice = Double.parseDouble(req.getParameter("price"));
 		String category= req.getParameter("pcat");	
-		int qty = Integer.parseInt("pqty");
+		int qty = Integer.parseInt(req.getParameter("pqty"));
 		
 		Product prod = new Product();
 		prod.setProductName(product);
@@ -45,14 +44,14 @@ public class UpdateProduct extends HttpServlet{
 		}
 		if(flag)
 		{
-			 out.print("Change price product"); 
-			 req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, res);
+		
+			 res.sendRedirect("AdminView.jsp");
 				
 		}
 		else
 		{
-			 out.print("Fail"); 	
-			 req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, res);
+			
+			 res.sendRedirect("AdminView.jsp");
 		}
 	}
 }

@@ -1,5 +1,5 @@
 
-<%@page import="com.sportshopapp.model.Product"%>
+ <%@page import="com.sportshopapp.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sportshopapp.daoimpl.ProductDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -63,12 +63,12 @@ body {font-family: "Lato", sans-serif;}
 <body>
 
 
-<div class="sidebar">
-  <a href="AddProduct.jsp"><i class="fa fa-fw fa-home"></i> ADD PROUCTS</a>
+<!-- <div class="sidebar">
+ <a href="AddProduct.jsp"><i class="fa fa-fw fa-home"></i> ADD PROUCTS</a>
   <a href="InActiveProducts.jsp"><i class="fa fa-fw fa-wrench"></i> INACTIVE PRODUCTS</a>
   <a href="Orders.jsp"><i class="fa fa-fw fa-user"></i> CHANGE PRICE OF PRODUCTS</a>
   <a href="Product.jsp"><i class="fa fa-fw fa-envelope"></i> MODIFIY PRODUCT NAME</a>
-</div>
+</div> -->
 
 <div class="main"></div>
   <%
@@ -106,3 +106,5 @@ for(Product product:viewProducts){
 </div>
 </body>
 </html>
+
+

@@ -8,18 +8,21 @@
 </head>
 <body>
 <h1><a href="Logout.jsp">logout</a></h1>
-<form action="Add">
-<label>Enter the product name</label>
-<input type="text" name="pname" required><br><br>
+<form action="UpdateProduct" method= "post">
 <label>Enter the product ID</label>
-<input type="text" name="pid" required><br><br>
-<label>Enter the Price</label>
-<input type="text" name="price" required><br><br>
+<input type="text" name="pID" required>
+<label>Enter the New product Name</label>
+<input type="text" name="pName" required>
+<label>Enter the product price</label>
+<input type="text" name="price" required>
 <label>Enter the product category</label>
-<input type="text" name="pcat" required><br><br>
+<input type="text" name="pcat" required>
 <label>Enter the product quantity</label>
-<input type="text" name="pqty" required><br><br>
-<input type="submit" value="submit">
+<input type="text" name="pqty" required>
+
+
+
+<button type="submit" >submit</button>
 </form>
 </body>
 </html>

@@ -57,8 +57,11 @@ public class LoginServlet extends HttpServlet {
 			UserReg currentUser = null;
 			try {
 				 HttpSession session=req.getSession();  
+				     customer=userDao.viewCurrentUsers(userName);
+				     System.out.println(customer);
 			        session.setAttribute("logincustomer", customer); 
 				currentUser = userDao.login(userName, password);
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
