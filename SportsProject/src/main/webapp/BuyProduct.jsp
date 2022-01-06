@@ -1,9 +1,11 @@
+<%@page import="com.sportshopapp.daoimpl.UserDAOImpl"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sportshopapp.model.UserReg"%>
 <%@page import="com.sportshopapp.model.Product"%>
 <%@page import="com.sportshopapp.daoimpl.ProductDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
-<%@page import="com.medHub.model.Product"%>
-<%@page import="com.medHub.dao.ProductDaoImpl"%>
+
 <%@page import="javax.servlet.http.HttpSession"%>
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@ position: absolute;
 top: 0;
 background-color: rgba(255, 255, 255, 0.603);
 box-shadow: 0 5 black;
-/* margin-top: 0%; */
+margin-top: 0%; 
 right: 0px;
 width: 1372px;
 }
@@ -70,12 +72,11 @@ background-image: url(Images/homepage_img.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 } */
-
-/* .logo img {
+ .logo img {
 height: 60px;
 width: 60px;
 margin-left: 20px;
-} */
+} 
 
 .buyProduct {
 position: absolute;
@@ -89,12 +90,12 @@ height: 300px;
 border-radius: 5px;
 }
 
-/* .buyProduct img {
+ .buyProduct img {
 position:relative;
 left:-30px;
 height: 220px;
 width: 220px;
-} */
+} 
 
 #qty {
 position: relative;
@@ -176,6 +177,17 @@ border: none;
 background-color: rgba(158, 202, 207,0.1);
 color: black;
 }
+#totalprice{
+position: relative;
+top:-190px;
+left:100px;
+outline: none;
+border: none;
+background-color: rgba(158, 202, 207,0.1);
+color: black;
+font-weight: 700;
+font-size: 17px;
+}
 </style>
 </head>
 <body>
@@ -184,32 +196,27 @@ color: black;
 int pId=Integer.parseInt(request.getParameter("pid").toString());
 ProductDAOImpl productDao = new ProductDAOImpl();
 Product currentProduct = productDao.findProductById(pId);
+/* UserReg currentUser =new UserReg();
+UserDAOImpl userRegDAOImpl = new UserDAOImpl(); */
 session.setAttribute("currentproduct", currentProduct);
+
 %>
 <div class="nav">
 
 <nav class="list">
 <ul>
 <li><a>Cart</a></li>
-<li><a>SignOut</a></li>
-<li><a>MyProfile</a></li>
-<li><a>MyOrders</a></li>
+<li><a href ="Login.jsp">SignOut</a></li>
+<li><a href ="UserProfile.jsp">MyProfile</a></li>
+<li><a href= "MyOrders.jsp">MyOrders</a></li>
 </ul>
-<div class="logo">
-<img
-src="https://uxwing.com/wp-content/themes/uxwing/download/21-medical-science-lab/healthcare.png"
-alt="logo">
-</nav>
-</div>
+
 <table class="buyProduct">
 <tbody>
 
 <tr>
 
-<td><img id="pImg"
-src="<%currentProduct.getProductImg(); %>"
-alt=""></td>
-<td>
+
 <div id="pDesc">
 <p>
 <b>Product category:</b>
@@ -217,29 +224,21 @@ alt=""></td>
 <p>
 <b>Product Name:</b>
 </p>
-<p>
-<b>Description:</b>
-</p>
+
 <p>
 <b>Price:</b>
 </p>
 <p>
 <b>Available Quantity:</b>
 </p>
-<p>
-<b>Points:</b>
-</p>
-<p>
-<b>Offer:</b>
-</p></td>
+</td>
 <td>
-<p name="pCategory"><%=currentProduct.getProductCategory() %></p>
+<p name="pCategory"><%=currentProduct.getCategory()%></p>
 <p name="pName"><%=currentProduct.getProductName() %></p>
-<p name="pDescription"><%=currentProduct.getDescription() %></p>
-<input name="pUnitPrice" id="price" value="<%=currentProduct.getUnitPrice()%>" disabled>
+
+<input name="pUnitPrice" id="price" value="<%=currentProduct.getStrandardCost()%>" disabled>
 <p name="pQuantity"><%=currentProduct.getQuantity() %></p>
-<p name="pgetPoints"><%=currentProduct.getPoints() %></p>
-<input name="pOffer" id="offer" value="<%=currentProduct.getOffer()%>" disabled>
+
 </td>
 <td>
 <div id="qty">
@@ -251,7 +250,7 @@ alt=""></td>
 <h3 id="TotalPriceLabel">Total price : Rs </h3>
 <input name="totalPrice" id="totalprice">
 <p name="message" id="message"></p>
-<button type="submit" onclick="totprice()">Paynow</button>
+<button type="submit" >Paynow</button>
 </form>
 </div>
 </td>
@@ -262,22 +261,26 @@ alt=""></td>
 <tr>
 <script>
 function calculateAmt() {
-var price=document.getElementById("price");
-console.log(price.value);
+let price=document.getElementById("price").value;
+
+
 var qty=document.getElementById("quantity");
-console.log(qty.value);
-var discount=document.getElementById("offer");
+var quanty=qty.value;
+console.log(quanty);
+
+let totalAmt = price  * quanty;
+
 /* price=Math.floor((price.value*offer.value)/100);
- */ var totalAmt=price.value * qty.value;
-console.log(totalAmt);
+ *
+ */
+ 
+ 
 
 document.getElementById("totalprice").value=totalAmt;
-
+console.log(totalAmt);
 }
-
-
-
 </script>
+
 </body>
-</html>
+
 </html>

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.sportshopapp.dao.ProductDAO;
+import com.sportshopapp.model.OderDetails;
 import com.sportshopapp.model.Product;
 import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
@@ -124,7 +125,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 			}
 			return product;
-		}
+			}
 
 		@Override
 		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize,
@@ -138,6 +139,23 @@ public class ProductDAOImpl implements ProductDAO {
 			// TODO Auto-generated method stub
 			return false;
 		}
+		public void updateProductQuantity(Product currentProduct, int qty) throws SQLException, ClassNotFoundException
+		{
+			
+			String updateQtyQuery = "update product_items set quantity ="+qty+" where products_id = "+currentProduct.getProductId()+"";
+			
+			
+			Connection con = ConnectionUtil.getDbConnection();
+			
+				PreparedStatement pst=con.prepareStatement(updateQtyQuery);
+				int res=pst.executeUpdate();
+				pst=con.prepareStatement("commit");
+				int res2=pst.executeUpdate();
+				if(res>0)
+				{
+				System.out.println("Order Placed Sucessfully");	
+				}
+
 		
 //		public List<ProductModel> filterByPrice(int min,int max){   
 //			ProductModel product = new ProductModel();
@@ -151,7 +169,8 @@ public class ProductDAOImpl implements ProductDAO {
 //		    }       
 //		    return null;
 //		}
-}
+		}
+		}
 	
 	
 

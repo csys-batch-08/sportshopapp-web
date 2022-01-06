@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class OderDetails {
 	private int orderId;
-	private UserReg user;
-	private Product products;
+	private UserReg user= new UserReg();
+	private Product products = new Product();
 	private Date orderDate ;
 	private double price;
 	private String orderStatus;

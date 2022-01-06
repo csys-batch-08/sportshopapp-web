@@ -17,7 +17,7 @@ public class OderItemsDAOImpl implements OrderItemsDAO {
 	try {
 		PreparedStatement pstm = con.prepareStatement(orderQuery);
 		pstm.setString(1, oi.getUser().getUserName());
-		pstm.setInt(2, oi.getOderModel().getOrderId());
+		pstm.setInt(2, oi.getOrderId());
 		pstm.setInt(3, oi.getProduct().getProductId());
 		pstm.setInt(4, oi.getQuantity());
 		pstm.setDouble(5, oi.getUnitPrice());

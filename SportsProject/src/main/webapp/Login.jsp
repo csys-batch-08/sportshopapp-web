@@ -9,7 +9,7 @@
 <body>
 <form action="loginweb1">
     <fieldset class="login">
-       <center><h2>Registeration</h2></center>
+       <center><h3>Login in</h3></center>
 
         <table id="signuptable" style="border-spacing: 5px;">
              <tr>

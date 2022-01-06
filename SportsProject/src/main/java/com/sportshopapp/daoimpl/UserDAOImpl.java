@@ -3,6 +3,7 @@ package com.sportshopapp.daoimpl;
 import java.sql.Connection;
 
 import com.sportshopapp.dao.UserDaoDAO;
+import com.sportshopapp.model.OderDetails;
 import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
 
@@ -102,14 +103,23 @@ public class UserDAOImpl implements UserDaoDAO{
 		System.out.println("password update successful ");
 		return true;
 	}
-	public void addMoneyWallet (double walletAmount, UserReg currentUser) throws ClassNotFoundException, SQLException {
-		System.out.println("add money in wallet");
-		double addMoney = currentUser.getMyWallet()+walletAmount;
-		String walletQuery= "update customer_detail set my_wallet ="+ addMoney + "where user_name ='" + currentUser.getUserName()+"'";
+	
+		
+	public void addMoneyWallet (OderDetails order) throws ClassNotFoundException, SQLException   {
+	//	System.out.println("add money in wallet");
+	//	double addMoney = currentUser.getMyWallet()+walletAmount;
+		String walletQuery= "update customers_detail set my_wallet ="+ order.getUser().getMyWallet() + "where user_name ='" + order.getUser().getUserName()+"'";
 		Connection con = ConnectionUtil.getDbConnection();
+	
 		PreparedStatement pstm = con.prepareStatement(walletQuery);
-		pstm.execute();
-		System.out.println("Money added to the wallet");
+		pstm.executeUpdate();
+	//	System.out.println("Money added to the wallet");
 	}
+	@Override
+	public void addMoneyWallet(double walletAmount, UserReg currentUser) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
 
