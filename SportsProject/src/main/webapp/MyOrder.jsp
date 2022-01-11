@@ -19,10 +19,18 @@ padding: 0;
 box-sizing: border-box;
 font-family: Arial, Helvetica, sans-serif;
 }
-
 body {
-overflow-x: hidden;
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
+
+/* body {
+overflow-x: hidden;
+} */
 
 .list ul li {
 list-style: none;
@@ -68,12 +76,7 @@ border-radius: 5px;
 cursor: pointer;
 }
 
-body {
- background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); 
-background-image: url(Images/homepage_img.jpg);
-background-repeat: no-repeat;
-background-size: cover;
-}
+
 
 .logo img {
 height: 60px;
@@ -155,6 +158,8 @@ top:180px;
 }
 
 #product #details {
+box-shadow: 0 5 black;
+
 position: relative;
 left: 220px;
 top:70px;
@@ -229,7 +234,7 @@ OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
 
 <nav class="list">
 <ul>
-<li><a>Cart</a></li>
+<li><a href="Cart.jsp">Cart</a></li>
 <li><a href="Login.jsp">SignOut</a></li>
 <li><a href="UserProfile.jsp">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
@@ -241,7 +246,7 @@ OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
 </div>
 
 
-<h2 id="userName">welcome <%=currentUser.getUserName()%></h2>
+<%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
 </div>
 
 <% OderItemsDAOImpl myOrder= new OderItemsDAOImpl();

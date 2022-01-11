@@ -1,3 +1,5 @@
+<%@page import="com.sportshopapp.model.Product"%>
+<%@page import="com.sportshopapp.daoimpl.ProductDAOImpl"%>
 <%@page import="com.sportshopapp.model.UserReg"%>
 <%@page import="com.sportshopapp.model.Cart"%>
 <%@page import="java.util.List"%>
@@ -68,12 +70,10 @@ cursor: pointer;
 }
 
 body {
-	
-	background-image: url(Assests/background.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	/* background-static: */
+/* background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); */
+background-image: url(Images/homepage_img.jpg);
+background-repeat: no-repeat;
+background-size: cover;
 }
 
 .logo img {
@@ -133,6 +133,14 @@ text-align: center;
 position: relative;
 top: 30px;
 left: 50px;
+}
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
 
 #product {
@@ -238,10 +246,10 @@ alt="logo">
 <!-- slideshow -->
 
 <%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
-</div>
+<!-- </div> -->
 <% OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
 CartDAOImpl cartDao = new CartDAOImpl();
-
+Product cost = new Product();
 /* orderDao.deleteProduct(myAllOrders.getOrderModel().getOrderId()); */
 List<Cart> cartItems = cartDao.viewCart(currentUser);
 %>
@@ -256,7 +264,7 @@ List<Cart> cartItems = cartDao.viewCart(currentUser);
 </div>
 <div id="details">
 
-price :<%=cartList.getStandardCost()+ "rs"%></h3>
+price :<%=cost.getStrandardCost()+ "rs"%></h3>
 
 
 Total Quantity:

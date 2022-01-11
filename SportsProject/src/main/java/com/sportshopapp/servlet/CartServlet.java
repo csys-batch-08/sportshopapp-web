@@ -37,7 +37,7 @@ public class CartServlet  extends HttpServlet {
 		cart.setUser(currentUser);
 		cart.setProduct(currentproduct);
 		cart.setQuantity(quantity);
-//		cart.setStandardCost(unitPrice);
+	//	cart.setStandardCost(unitPrice);
 		cart.setTotalPrice(totalprice);
 		int prodquant = 0;
 		

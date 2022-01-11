@@ -24,15 +24,16 @@ public class CartDAOImpl implements CartDAO {
 		System.out.println(cart.getProduct().getProductId());
 		System.out.println(cart.getTotalPrice());
 		try {
-			String insertProduct = " insert into cart (user_name, products_id, product_name, quantity, total_prize ) values (?,?,?,?,?)";
+			String insertProduct = " insert into cart (user_name, products_id, product_name,standard_cost, quantity, total_prize ) values (?,?,?,?,?)";
 			PreparedStatement pstm;
 			try {
 				pstm = con.prepareStatement(insertProduct);
 				pstm.setString(1, cart.getUser().getUserName());
 				pstm.setInt(2, cart.getProduct().getProductId());
 				pstm.setString(3, cart.getProduct().getProductName());
-				pstm.setInt(4, cart.getQuantity());
-				pstm.setDouble(5, cart.getTotalPrice());
+				pstm.setDouble(4, cart.getStandardCost());
+				pstm.setInt(5, cart.getQuantity());
+				pstm.setDouble(6, cart.getTotalPrice());
 				
 				int result = pstm.executeUpdate();
 				System.out.println(result + "product added to cart");	
@@ -128,7 +129,7 @@ public class CartDAOImpl implements CartDAO {
 				System.out.println("8");
 				System.out.println(rs.getInt(3));
 				Product product=proDao.findProductById(rs.getInt(3));
-				Cart cart=new Cart(currentUser,product, rs.getInt(5),rs.getDouble(6));
+				Cart cart=new Cart(currentUser,product, rs.getInt(6),rs.getDouble(7));
 				System.out.println(rs.getDouble(6));
 				allCartItems.add(cart);
 				System.out.println("8");

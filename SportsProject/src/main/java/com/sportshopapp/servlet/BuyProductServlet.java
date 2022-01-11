@@ -39,6 +39,8 @@ public class BuyProductServlet extends HttpServlet{
 		
 		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
 		Product currentproduct = (Product)session.getAttribute("currentproduct");
+		System.out.println(currentproduct.getProductName());
+		System.out.println(currentproduct.getProductId() + "getprodid");
 		
 		int qty = Integer.parseInt(req.getParameter("quantity"));
 		double price= Double.parseDouble(req.getParameter("totalPrice"));
@@ -55,7 +57,7 @@ public class BuyProductServlet extends HttpServlet{
 			if(currentproduct.getQuantity()>=qty) {
 				
 		    
-		    order.getProducts().setProductId(currentproduct.getProductId()-qty);
+		    //order.getProducts().setProductId(currentproduct.getProductId()-qty);
 		    
 		    try {
 		    	int updateQty = currentproduct.getQuantity() - qty;
@@ -63,7 +65,6 @@ public class BuyProductServlet extends HttpServlet{
 		    	System.out.println(currentproduct.getQuantity());
 		    	System.out.println(qty);
 		    	System.out.println(currentproduct.getQuantity() - qty);
-				orderDao.orders(order,currentUser);
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -74,11 +75,23 @@ public class BuyProductServlet extends HttpServlet{
 		    order.setUser(currentUser);
 		    orderItems.setUser(currentUser);
 		    order.setPrice(price);
+		    order.setProducts(currentproduct);
 //		    order.getUser().setPoints(order.getUser().getPoints() + (currentproduct.getPoints() * qty));
 		    order.getUser().setMyWallet(order.getUser().getMyWallet() - price);
+			try {
+				orderDao.orders(order,currentUser);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		   
 		    try {
 				user.updateWalletMoney(order);
+				//orderDao.orders(order, currentUser);
 			} catch (ClassNotFoundException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
@@ -86,21 +99,14 @@ public class BuyProductServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
-		    try {
-				orderDao.orders(order, currentUser);
-			} catch (ClassNotFoundException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			} catch (SQLException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}
+		   
 //		    int orderId = 0;
 			
 		   
 			
 		    int orderId = 0;
 			try {
+				System.out.println(orderDao.getByOrderId() +"orderdao");
 				orderId = orderDao.getByOrderId();
 			} catch (ClassNotFoundException e3) {
 				// TODO Auto-generated catch block

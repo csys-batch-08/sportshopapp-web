@@ -14,9 +14,9 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	public void orders(OderDetails order ,UserReg currentUser) throws ClassNotFoundException, SQLException {
 		String orderQuery = "insert into order_detail (user_name,products_id, price) values(?,?,?)";
 		Connection con =ConnectionUtil.getDbConnection();
-		System.out.println(order.getUser().getUserName());
-		System.out.println(order.getProducts().getProductId());
-		System.out.println (order.getPrice());
+		System.out.println("order name"+order.getUser().getUserName());
+		System.out.println("order pId"+order.getProducts().getProductId());
+		System.out.println ("order price"+order.getPrice());
 		try {
 			PreparedStatement pstm = con.prepareStatement(orderQuery);
 			//System.out.println(totalPrice);
@@ -24,8 +24,9 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 			pstm.setInt(2, order.getProducts().getProductId());
 			pstm.setDouble(3, order.getPrice());
 			System.out.println("insert");
-			pstm.executeUpdate();
-			
+			int i=pstm.executeUpdate();
+			System.out.println(i+"row insertrd");
+			pstm.executeUpdate("commit");
 		}catch(SQLException e) {
 			e.getMessage();
 		}

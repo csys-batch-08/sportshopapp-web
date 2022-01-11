@@ -22,6 +22,7 @@ padding: 0;
 box-sizing: border-box;
 font-family: Arial, Helvetica, sans-serif;
 }
+
 .list ul li {
 list-style: none;
 display: inline-block;
@@ -31,6 +32,7 @@ display: inline-block;
 float: right;
 padding: 20px;
 }
+
 
 .list ul {
 /* background-color: #10847E;*/
@@ -127,9 +129,10 @@ left: -30px;
 }
 
 .buyProduct td p{
-padding-top: 20px;
+padding-top: 10px;
 position: relative;
-left:-100px;
+left: 190px;
+top: 10px
 }
 #addToCart a{
 background-color: green;
@@ -148,12 +151,18 @@ cursor: pointer;
 }
 #price{
 position: relative;
-left: -100px;
-top:8px;
+left: 190px;
+top:15px;
 outline: none;
 border: none;
 background-color: rgba(158, 202, 207,0.1);
 color: black;
+font-size: 16px;
+}
+#pDesc{
+position: relative;
+left: 200px;
+top: 270px;
 }
 /* #pImg{
 position: relative;
@@ -161,10 +170,7 @@ height: 200px;
 width: 170px;
 left:10px;
 } */
-#pDesc{
-position: relative;
-left: 40px;
-}
+
 #totalprice{
 position: relative;
 top:-190px;
@@ -175,6 +181,7 @@ position: relative;
 top:-170px;
 right: 50px;
 }
+
 
 #offer{
 position: relative;
@@ -230,7 +237,7 @@ session.setAttribute("currentproduct", currentProduct);
 <div id="pDesc">
 <p>
 <b>Product category:</b>
-</p>
+</p><br>
 <p>
 <b>Product Name:</b>
 </p>
@@ -245,7 +252,6 @@ session.setAttribute("currentproduct", currentProduct);
 <td>
 <p name="pCategory"><%=currentProduct.getCategory()%></p>
 <p name="pName"><%=currentProduct.getProductName() %></p>
-
 <input name="pUnitPrice" id="price" value="<%=currentProduct.getStrandardCost()%>" disabled>
 <p name="pQuantity"><%=currentProduct.getQuantity() %></p>
 
