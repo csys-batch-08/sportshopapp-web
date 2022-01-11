@@ -4,12 +4,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login page</title>
+<script >
+
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
+}
+</script>
 </head>
+
 <body>
 <form action="loginweb1">
     <fieldset class="login">
-       <center><h3>Login in</h3></center>
+       <center><h3>Login </h3></center>
 
         <table id="signuptable" style="border-spacing: 5px;">
              <tr>

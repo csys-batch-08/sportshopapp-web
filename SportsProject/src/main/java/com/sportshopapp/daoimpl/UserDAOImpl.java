@@ -104,6 +104,46 @@ public class UserDAOImpl implements UserDaoDAO{
 		return true;
 	}
 	
+	public void updateWalletMoney(OderDetails order) throws ClassNotFoundException, SQLException
+	{
+		
+		String query="update customers_detail set my_wallet='"+order.getUser().getMyWallet()+"' where user_name = '"+order.getUser().getUserName()+"'";
+		Connection con = ConnectionUtil.getDbConnection();
+		try {
+			PreparedStatement ps  = con.prepareStatement(query);
+			int result = ps.executeUpdate();
+			ps.executeUpdate("commit");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+public int addMoneyInWallet(double walletAmount,UserReg currentUser) throws ClassNotFoundException, SQLException {
+		
+		String walletQuery="update customers_detail set my_wallet ="+walletAmount+" where user_name ='"+currentUser.getUserName()+"'";
+		int result=0;
+		UserReg user = new UserReg();
+		Connection con = ConnectionUtil.getDbConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement(walletQuery);
+			 result=ps.executeUpdate();
+			ps.executeUpdate("commit");
+			if(result>0)
+			{
+				UserDAOImpl userDao = new UserDAOImpl();
+				currentUser.setMyWallet(walletAmount);
+				user.setMyWallet(walletAmount);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		}
+		
+	return result;
+		}
+
 		
 	public void addMoneyWallet (OderDetails order) throws ClassNotFoundException, SQLException   {
 	//	System.out.println("add money in wallet");

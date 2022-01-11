@@ -48,6 +48,14 @@ public class Cart {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Cart(UserReg user, Product product,int quantity, double totalPrice ) {
+		super();
+		this.user = user;
+		this.product = product;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+	
+	}
 	@Override
 	public String toString() {
 		return "product= " + product + "standardCost= " + standardCost + "totalPrice= "

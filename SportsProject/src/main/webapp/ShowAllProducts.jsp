@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>All products</title>
 </head>
 <style>
 body {font-family: "Lato", sans-serif;}
@@ -23,6 +23,15 @@ body {font-family: "Lato", sans-serif;}
   background-color: lightgreen;
   overflow-x: hidden;
   padding-top: 16px;
+}
+
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
 
 .sidebar a {

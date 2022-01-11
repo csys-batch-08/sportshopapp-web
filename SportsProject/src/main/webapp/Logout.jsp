@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Log out page</title>
+<script>
+
+   
+</script>
+
 </head>
 <body>
 <h1>Logout successfully</h1>

@@ -49,6 +49,14 @@ width: 1372px;
 .list ul {
 padding-right: 0px;
 }
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
+}
 
 .list ul, .list li, .list a {
 text-decoration: none;
@@ -192,8 +200,8 @@ font-size: 17px;
 </head>
 <body>
 <%
- 
-int pId=Integer.parseInt(request.getParameter("pid").toString());
+ System.out.println(request.getParameter("pid"));
+int pId=Integer.parseInt(request.getParameter("pid"));
 ProductDAOImpl productDao = new ProductDAOImpl();
 Product currentProduct = productDao.findProductById(pId);
 /* UserReg currentUser =new UserReg();
@@ -205,10 +213,12 @@ session.setAttribute("currentproduct", currentProduct);
 
 <nav class="list">
 <ul>
-<li><a>Cart</a></li>
+
+<li><a href="Cart.jsp">Cart</a></li>
 <li><a href ="Login.jsp">SignOut</a></li>
 <li><a href ="UserProfile.jsp">MyProfile</a></li>
-<li><a href= "MyOrders.jsp">MyOrders</a></li>
+<li><a href= "MyOrder.jsp">MyOrders</a></li>
+<li><a href="UserView.jsp">Home</a></li>
 </ul>
 
 <table class="buyProduct">
@@ -252,6 +262,11 @@ session.setAttribute("currentproduct", currentProduct);
 <p name="message" id="message"></p>
 <button type="submit" >Paynow</button>
 </form>
+<form action = "cartserv" id="cartForm">
+<input name="cartQuanity" type = "text" id = "cartQuantity">
+<input name="cartTotalPrice" type = "text" id = "cartTotalPrice">
+<button type="submit" id="addToCart">Add To Cart</button>
+</form>
 </div>
 </td>
 </tr>
@@ -278,6 +293,17 @@ let totalAmt = price  * quanty;
 
 document.getElementById("totalprice").value=totalAmt;
 console.log(totalAmt);
+cartfn();
+
+}
+function cartfn(){
+	
+	let quant = document.getElementById("quantity").value;
+	let totprice = document.getElementById("totalprice").value;
+	let cartquant = document.getElementById("cartQuantity");
+	let carttot = document.getElementById("cartTotalPrice");
+	cartquant.value = quant;
+	carttot.value = totprice;
 }
 </script>
 

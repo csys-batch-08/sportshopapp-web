@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>User profile</title>
 </head>
 <style>
 body {font-family: "Lato", sans-serif;}
@@ -19,6 +19,14 @@ body {font-family: "Lato", sans-serif;}
   background-color: lightgreen;
   overflow-x: hidden;
   padding-top: 16px;
+}
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
 .sidebar a {
   padding: 20px 2px 8px 16px;
@@ -61,6 +69,7 @@ body {font-family: "Lato", sans-serif;}
 	
  
   <a href="ChangePassword.jsp"><i class="fa fa-fw fa-user"></i> Change Password</a>
+  <a href="addmoney.jsp"><i class="fa fa-fw fa-user"></i> Add money to wallet</a>
   <a href="Logout.jsp"><i class="fa fa-fw fa-envelope"></i> Logout</a>
 </div>
 

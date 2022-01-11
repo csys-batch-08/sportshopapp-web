@@ -126,6 +126,32 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 			return product;
 			}
+		public Product cartProductById (int id) throws ClassNotFoundException, SQLException {
+			int productId = 0;
+			System.out.println("findProductById called");
+			String query="select * from product_items where products_id= '" + id+ "'";
+			System.out.println("1");
+			Connection con = ConnectionUtil.getDbConnection();
+			System.out.println("2");
+
+			PreparedStatement pstm = con.prepareStatement(query);
+			System.out.println("3");
+
+			Product product = null;
+			System.out.println("4");
+
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()) {
+				System.out.println("5");
+
+				product = new Product(rs.getString(2),rs.getInt(3),rs.getDouble(6),rs.getString(4),rs.getInt(5));
+				System.out.println("8");
+
+			}
+			System.out.println("5");
+
+			return product;
+			}
 
 		@Override
 		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize,

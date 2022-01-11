@@ -30,6 +30,54 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 			e.getMessage();
 		}
 	}
+	
+
+	public boolean checkStatus(int orderId)
+	{
+	try {
+	String status;
+	String qwery="select status from order_detail where order_id='"+orderId+"'";
+	Connection con = ConnectionUtil.getDbConnection();
+	Statement stmt = con.createStatement();
+	ResultSet rs = stmt.executeQuery(qwery);
+	if(rs.next())
+	{
+
+	status=rs.getString(1).toLowerCase();
+	System.out.println(status);
+	if(!status.equals("canceled"))
+	{
+	return true;
+
+	}
+
+	}
+	}
+	catch(Exception e)
+	{
+	System.out.println(e.getStackTrace());
+	}
+	return false;
+	}
+	public void deleteProduct(int orderId) throws SQLException, ClassNotFoundException
+	{
+		String qwery="update order_detail set order_status='canceled' where order_id =?";
+		Connection con = ConnectionUtil.getDbConnection();
+		PreparedStatement pst=con.prepareStatement(qwery);
+		pst.setInt(1, orderId);
+		int res=pst.executeUpdate();
+		if(res>0)
+		{
+			System.out.println(res+"Product deleted");
+			
+		}
+		else {
+			System.out.println("product not deleted");
+		}
+		con.close();
+		pst.close();
+		
+	}
     public int getByOrderId() throws ClassNotFoundException, SQLException
     {
     	String query = "select max(order_id) from order_detail";

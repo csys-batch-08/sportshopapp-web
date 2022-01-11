@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin view</title>
 </head>
 <style>
 body {font-family: "Lato", sans-serif;}
@@ -26,6 +26,14 @@ body {font-family: "Lato", sans-serif;}
   color: black;
   display: block;
   font-family:Arial Black;
+}
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
 .sidebar a:hover {
   color: #f1f1f1;

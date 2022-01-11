@@ -13,7 +13,7 @@ pageEncoding="ISO-8859-1"%>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuyProduct</title>
+<title>Home</title>
 <style>
 * {
 margin: 0;
@@ -55,7 +55,7 @@ color: black;
 font-family: monospace;
 font-size: 25px;
 font-weight: 500;
-/* margin-right: 20px; */
+ margin-right: 20px; 
 }
 
 .list li:hover, .list a:hover {
@@ -65,18 +65,26 @@ border-radius: 5px;
 cursor: pointer;
 }
 
-/* body {
-/* background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); */
+/*  body {
+background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); 
 background-image: url(Images/homepage_img.jpg);
 background-repeat: no-repeat;
 background-size: cover;
-} */
+}  */
 
-/* .logo img {
+.logo img {
 height: 60px;
 width: 60px;
 margin-left: 20px;
-} */
+} 
+body {
+	
+	background-image: url(Assests/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
+}
 
 .buyProduct {
 position: absolute;
@@ -90,12 +98,12 @@ height: 300px;
 border-radius: 5px;
 }
 
-/* .buyProduct img {
+.buyProduct img {
 position:relative;
 left:-30px;
 height: 220px;
 width: 220px;
-} */
+} 
 
 #qty {
 position: relative;
@@ -147,12 +155,12 @@ border: none;
 background-color: rgba(158, 202, 207,0.1);
 color: black;
 }
-/* #pImg{
+ #pImg{
 position: relative;
 height: 200px;
 width: 170px;
 left:10px;
-} */
+} 
 #pDesc{
 position: relative;
 left: 40px;
@@ -189,10 +197,11 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
 
 <nav class="list">
 <ul>
-<li><a>Cart</a></li>
+<li><a href= "Cart.jsp">Cart</a></li>
 <li><a href ="Login.jsp">SignOut</a></li>
 <li><a href ="UserProfile.jsp">MyProfile</a></li>
-<li><a href= "MyOrders.jsp	">MyOrders</a></li>
+<li><a href= "MyOrder.jsp?orderId=0">MyOrders</a></li>
+<li><a href="UserView.jsp">Home</a></li>
 </ul>
 <br><br><br><br>
 <div id="serachbar">
@@ -227,16 +236,16 @@ List<Product> productList = product.viewAllProducts();
 <h3>
 price : <%=products.getStrandardCost()+ " rs"%></h3>
 
-
+<%=products.getProductId()%>
 </div>
 <div id="btn">
 <button>
 <a id="btn1" href="BuyProduct.jsp?pid=<%=products.getProductId()%>">Buy Now</a>
 </button>
 <br>
-<button>
-<a id="btn1" href="">Add To Cart</a>
-</button>
+<%-- <button>
+<a id="btn1" href="Cart.jsp?cartpId<%=products.getProductId()%>">Add To Cart</a>
+</button> --%>
 </button>
 </div>
 </div>

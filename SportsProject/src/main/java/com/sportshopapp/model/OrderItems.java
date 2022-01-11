@@ -1,5 +1,7 @@
 package com.sportshopapp.model;
 
+import java.sql.Date;
+
 public class OrderItems extends OderDetails {
 	private int itemId;
 	private UserReg user;
@@ -8,7 +10,45 @@ public class OrderItems extends OderDetails {
 	private int quantity;
 	private double unitPrice;
 	private double totalPrice;
+	private String userName;
+	private int productId;
+	private int orderId;
 	
+	public OrderItems(String userName,int quantity,double unitPrice,  
+			double totalPrice,  int productId, int orderId) {
+		
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.totalPrice = totalPrice;
+		this.userName = userName;
+		this.productId = productId;
+		this.orderId = orderId;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
 	public int getItemId() {
 		return itemId;
 	}
@@ -82,9 +122,23 @@ public class OrderItems extends OderDetails {
 		this.totalPrice = totalPrice;
 	}
 
+	public OrderItems(UserReg user, Product product, OderDetails oderModel,
+			int quantity, double unitPrice, double totalPrice) {
+//		super(orderDate, price, orderStatus);
+		this.user = user;
+		this.product = product;
+		this.oderModel = oderModel;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.totalPrice = totalPrice;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "order id " + getOrderId() + "\nuser " + user + "\nproduct " + product + "\nquantity " + quantity + "\nunitPrice " + unitPrice + "\ntotalPrice " + totalPrice+"\n";
+		return "OrderItems [quantity=" + quantity + ", unitPrice=" + unitPrice + ", totalPrice=" + totalPrice
+				+ ", userName=" + userName + ", productId=" + productId + ", orderId=" + orderId + "]";
 	}
 	
 

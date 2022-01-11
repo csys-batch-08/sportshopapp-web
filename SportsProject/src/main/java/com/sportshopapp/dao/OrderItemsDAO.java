@@ -7,6 +7,6 @@ import com.sportshopapp.model.UserReg;
 
 public interface OrderItemsDAO {
 
-	public void insertOrders(OrderItems oi) throws ClassNotFoundException, SQLException ;
+	public int insertOrders(OrderItems oi) throws ClassNotFoundException, SQLException ;
 	public void ViewMyOrders(UserReg currentUser) throws ClassNotFoundException, SQLException ;
 }

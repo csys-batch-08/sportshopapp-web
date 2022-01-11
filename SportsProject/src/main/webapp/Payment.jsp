@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Payment</title>
 </head>
 <style>
-
 * {
 	margin: 0;
 	padding: 0;
@@ -52,24 +51,23 @@
 }
 
 .list li:hover, .list a:hover {
-	color: white;
-	background-color: orange;
+	color: orange;
 	border-radius: 5px;
 	cursor: pointer;
 }
 
-/* body {
+body {
 	/* background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); */
 	background-image: url(Images/homepage_img.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
-} */
+}
 
-/* .logo img {
+.logo img {
 	height: 60px;
 	width: 60px;
 	margin-left: 20px;
-} */
+}
 
 .buyProduct {
 	position: absolute;
@@ -83,13 +81,13 @@ height: 300px;
 border-radius: 5px;
 }
 
-/* .buyProduct img {
+.buyProduct img {
 	position:relative;
 	left:-30px;
 	height: 220px;
 	width: 220px;
 }
- */
+
 #qty {
 	position: relative;
 	left: 20px;
@@ -140,22 +138,24 @@ padding: 10px;
 background-color: green;
 }
 
-
 </style>
 <body>
-
 <div class="nav">
 
 		<nav class="list">
 			<ul>
-				<li><a>Cart</a></li>
-				<li><a>SignOut</a></li>
-				<li><a>MyProfile</a></li>
-				<li><a>MyOrders</a></li>
+					<li><a href="Cart.jsp">Cart</a></li>
+					<li><a href="Login.jsp">SignOut</a></li>
+					<li><a href="UserProfile.jsp">MyProfile</a></li>
+					<li><a href="MyOrder.jsp?orderId=0">MyOrders</a></li>
+					<!-- <li><a href="MyOrders.jsp?orderId=0">About-Us</a></li> -->
 			</ul>
-			
-			<p>Payment Sucessfully Completed</p>
+			<div class="logo">
+				
+		</nav>
+				<p>Payment Sucessfully Completed </p>
 				<a href="UserView.jsp">BAck To Home</a>
+				
 
 </body>
 </html>

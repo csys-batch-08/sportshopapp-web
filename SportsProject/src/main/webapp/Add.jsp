@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add product</title>
 </head>
 <body>
 <h1><a href="Logout.jsp">logout</a></h1>
@@ -14,7 +14,7 @@
 <label>Enter the product ID</label>
 <input type="text" name="pid" required><br><br>
 <label>Enter the Price</label>
-<input type="text" name="price" required><br><br>
+<input type="text" name="price" pattern = "[1-9][0-9]+"required><br><br>
 <label>Enter the product category</label>
 <input type="text" name="pcat" required><br><br>
 <label>Enter the product quantity</label>
