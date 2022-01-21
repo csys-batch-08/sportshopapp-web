@@ -12,6 +12,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cart</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 </head>
 <style>
 * {
@@ -69,12 +70,7 @@ border-radius: 5px;
 cursor: pointer;
 }
 
-body {
-/* background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); */
-background-image: url(Images/homepage_img.jpg);
-background-repeat: no-repeat;
-background-size: cover;
-}
+
 
 .logo img {
 height: 60px;
@@ -101,19 +97,8 @@ box-shadow: 0 0 10px black;
 padding-left: 220px;
 }
 
-img {
-box-shadow: 0 0 10px black;
-}
 
-.logo img {
-box-shadow: none;
-}
 
-#copyrights {
-text-align: center;
-color: yellow;
-margin-bottom: 0%;
-}
 
 #allproducts a {
 text-decoration: none;
@@ -136,7 +121,7 @@ left: 50px;
 }
 body {
 	
-	background-image: url(Assests/background.jpg);
+	background-image: url(Assests/bcg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -151,6 +136,7 @@ border-radius: 5px;
 width: 1200px;
 top:150px;
 }
+
 
 #product img {
 height: 100px;
@@ -176,6 +162,11 @@ position: relative;
 left: 900px;
 top:-130px;
 }
+#product #btn {
+position: relative;
+left: 900px;
+top:-130px;
+}
 
 #product #btn button {
 height: 30px;
@@ -184,13 +175,26 @@ background-color: orange;
 border: none;
 border-radius: 5px;
 }
-
-
-#btn1 {
-position: relative;
-left: 120px;
-top: -40px;
+#product #btn button:hover {
+background-color: white;
+box-shadow: 0 0 5px black;
+color: green;
+color: orange;
 }
+#btn  {
+position: relative;
+top: 35px;
+left: 1000px;
+}
+
+#product #btn button {
+height: 50px;
+width: 90px;
+background-color: orange;
+border: none;
+border-radius: 5px;
+}
+
 
 #product #btn button:hover {
 background-color: white;
@@ -205,10 +209,7 @@ left: 40px;
 top:20px;
 }
 
-#btn  {
-position: relative;
-top: -40px;
-}
+
 
 a {
 text-decoration: none;
@@ -218,7 +219,35 @@ color: black;
 position: relative;
 left: 1100px;
 }
-
+#name{
+position: absolute;
+left: -140px;
+top: -160px;
+width: 550px;
+}
+#pname{
+position: absolute;
+left: 300px;
+}
+#quan{
+position: absolute;
+left: 300px;
+top: 240px;
+}
+#price{
+position: absolute;
+left: 300px;
+top: 270px;
+}
+#prodname{
+position: absolute;
+top: 70px;
+left: 50px;
+}
+/* #idButton{
+position: relative;
+top: 160px;
+} */
 </style>
 <body>
 
@@ -231,10 +260,11 @@ left: 1100px;
 
 <nav class="list">
 <ul>
-<li><a>Cart</a></li>
-<li><a href="Index.jsp">SignOut</a></li>
+
+<li><a href="Login.jsp">SignOut</a></li>
 <li><a href="UserProfile.jsp">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
+<li><a href="UserView.jsp">Home</a></li>
 
 </ul>
 <div class="logo">
@@ -246,10 +276,10 @@ alt="logo">
 <!-- slideshow -->
 
 <%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
-<!-- </div> -->
+ </div> 
 <% OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
 CartDAOImpl cartDao = new CartDAOImpl();
-Product cost = new Product();
+/* Product cost = new Product(); */
 /* orderDao.deleteProduct(myAllOrders.getOrderModel().getOrderId()); */
 List<Cart> cartItems = cartDao.viewCart(currentUser);
 %>
@@ -258,34 +288,35 @@ List<Cart> cartItems = cartDao.viewCart(currentUser);
 %>
 
 <div id="product">
-<div id="img">
 
-<h3><%=cartList.getProduct().getProductName() %></h3>
+
+<h3 id="prodname"><%=cartList.getProduct().getProductName() %></h3>
 </div>
-<div id="details">
+<div id="pname">
+<h3  name="unitPrice">
+price :<%=cartList.getStandardCost()+ "rs"%></h3>
+</div>
 
-price :<%=cost.getStrandardCost()+ "rs"%></h3>
-
-
-Total Quantity:
+<h3 id="quan" name="cartQuantity">Total Quantity:
 <%=cartList.getQuantity() %></h3>
-<h3>
-Total Amt :
+<h3 id="price" name="totalPrice">
+Total Amount :
 <%=cartList.getTotalPrice() %></h3>
-
-
 </div>
 <div id="btn">
-<button>
-<a id="BuyNow" href="cartorder?CartproductId=<%=cartList.getProduct().getProductId()%>">Buy Now</a>
-</button>
-<a id="Remove" href="removeCartItem?CartproductId=<%=cartList.getProduct().getProductId()%>">Remove</a>
-					</button>
+<button id="idButton">
+<a id="BuyNow" href="cartorder?CartproductId=<%=cartList.getProduct().getProductId()%>&unitPrice=<%=cartList.getStandardCost()%>&cartQuantity=<%=cartList.getQuantity()%>&totalPrice=<%=cartList.getTotalPrice() %>">Buy Now</a>
+
+</button id="idButton">
 <br>
-</button>
-</div>
+<%-- <button>
+<a id="Remove" href="removeCartItem?CartproductId=<%=cartList.getProduct().getProductId()%>">Remove</a>
+					</button> --%>
+<br>
 
 </div>
+
+
 
 <br>
 <br>
@@ -294,11 +325,7 @@ Total Amt :
 
 
 
-</div>
 
-</div>
-<div id="footer"></div>
-
-
+<img id="name" alt="webName" src="Assests/name.png">
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <%@page import="com.sportshopapp.daoimpl.UserDAOImpl"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sportshopapp.model.UserReg"%>
@@ -15,12 +16,18 @@ pageEncoding="ISO-8859-1"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BuyProduct</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 <style>
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: Arial, Helvetica, sans-serif;
+}
+#pDesc{
+position: relative;
+left: 200px;
+top: 270px;
 }
 
 .list ul li {
@@ -53,7 +60,7 @@ padding-right: 0px;
 }
 body {
 	
-	background-image: url(Assests/background.jpg);
+	background-image: url(Assests/bcg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -137,11 +144,19 @@ top: 10px
 #addToCart a{
 background-color: green;
 text-decoration: none;
+position: relative;
+left: 50px;
 }
 #buyNow a{
 background-color: green;
 color: white;
 text-decoration: none;
+}
+#message {
+padding-left: 10px;
+padding-right: 10px;
+
+
 }
 #addToCart:hover{
 cursor: pointer;
@@ -159,10 +174,11 @@ background-color: rgba(158, 202, 207,0.1);
 color: black;
 font-size: 16px;
 }
-#pDesc{
+#name{
 position: relative;
-left: 200px;
-top: 270px;
+left: -135px;
+top: -250px;
+width: 550px;
 }
 /* #pImg{
 position: relative;
@@ -178,8 +194,9 @@ left:90px;
 }
 #TotalPriceLabel{
 position: relative;
-top:-170px;
-right: 50px;
+top:-50px;
+right: 60px;
+padding: 
 }
 
 
@@ -194,18 +211,24 @@ color: black;
 }
 #totalprice{
 position: relative;
-top:-190px;
-left:100px;
+top:-71px;
+left:90px;
 outline: none;
 border: none;
 background-color: rgba(158, 202, 207,0.1);
-color: black;
+color: white;
 font-weight: 700;
 font-size: 17px;
+}z
+#paybut{
+padding: 5px;
+position: relative;
+left: 60px;
 }
 </style>
 </head>
 <body>
+
 <%
  System.out.println(request.getParameter("pid"));
 int pId=Integer.parseInt(request.getParameter("pid"));
@@ -221,12 +244,15 @@ session.setAttribute("currentproduct", currentProduct);
 <nav class="list">
 <ul>
 
-<li><a href="Cart.jsp">Cart</a></li>
+
 <li><a href ="Login.jsp">SignOut</a></li>
+<li><a href="Cart.jsp">Cart</a></li>
 <li><a href ="UserProfile.jsp">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
 <li><a href="UserView.jsp">Home</a></li>
 </ul>
+
+
 
 <table class="buyProduct">
 <tbody>
@@ -260,26 +286,27 @@ session.setAttribute("currentproduct", currentProduct);
 <div id="qty">
 <div id="qtyBox">
 <form action="prod1">
-<label for="">Quantity</label>
-<input type="number" id="quantity" name="quantity" min="0"  max="<%=currentProduct.getQuantity()%>" onclick="calculateAmt()">
+<label for="">Quantity :</label>
+<input type="number" id="quantity" name="quantity" min="1"  max="<%=currentProduct.getQuantity()%>" onclick="calculateAmt()" >
 </div>
 <h3 id="TotalPriceLabel">Total price : Rs </h3>
-<input name="totalPrice" id="totalprice">
+<input name="totalPrice" id="totalprice" required>
 <p name="message" id="message"></p>
-<button type="submit" >Paynow</button>
+<button type="submit" id="paybut">Paynow</button><br>
 </form>
 <form action = "cartserv" id="cartForm">
-<input name="cartQuanity" type = "text" id = "cartQuantity">
-<input name="cartTotalPrice" type = "text" id = "cartTotalPrice">
+<input name="cartQuanity" type = "text" id = "cartQuantity" required  readonly hidden>
+<input name="cartTotalPrice" type = "text" id = "cartTotalPrice" readonly hidden>
 <button type="submit" id="addToCart">Add To Cart</button>
 </form>
 </div>
 </td>
 </tr>
-</div>
+
 </tbody>
 </table>
 <tr>
+<img id="name" alt="webName" src="Assests/name.png">
 <script>
 function calculateAmt() {
 let price=document.getElementById("price").value;

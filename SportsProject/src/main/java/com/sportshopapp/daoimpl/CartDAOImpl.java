@@ -24,7 +24,7 @@ public class CartDAOImpl implements CartDAO {
 		System.out.println(cart.getProduct().getProductId());
 		System.out.println(cart.getTotalPrice());
 		try {
-			String insertProduct = " insert into cart (user_name, products_id, product_name,standard_cost, quantity, total_prize ) values (?,?,?,?,?)";
+			String insertProduct = " insert into cart (user_name, products_id, product_name,standard_cost, quantity, total_prize ) values (?,?,?,?,?,?)";
 			PreparedStatement pstm;
 			try {
 				pstm = con.prepareStatement(insertProduct);

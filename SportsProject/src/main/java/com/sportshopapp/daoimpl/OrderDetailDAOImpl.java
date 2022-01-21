@@ -26,7 +26,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 			System.out.println("insert");
 			int i=pstm.executeUpdate();
 			System.out.println(i+"row insertrd");
-			pstm.executeUpdate("commit");
+			//pstm.executeUpdate("commit");
 		}catch(SQLException e) {
 			e.getMessage();
 		}
@@ -62,7 +62,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	}
 	public void deleteProduct(int orderId) throws SQLException, ClassNotFoundException
 	{
-		String qwery="update order_detail set order_status='canceled' where order_id =?";
+		String qwery="update order_detail set status='canceled' where order_id =?";
 		Connection con = ConnectionUtil.getDbConnection();
 		PreparedStatement pst=con.prepareStatement(qwery);
 		pst.setInt(1, orderId);

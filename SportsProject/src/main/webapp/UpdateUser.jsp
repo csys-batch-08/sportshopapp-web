@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>User details update</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 </head>
 <body>
 <h1><a href="Logout.jsp">logout</a></h1>

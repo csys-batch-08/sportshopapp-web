@@ -8,40 +8,146 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login page</title>
-<script >
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
+</head>
+<style>
 
+
+
+.list ul li {
+	list-style: none;
+	display: inline-block;
+}
+#tab{
+width: 100%;
+}
+
+.list li {
+	float: right;
+	padding: 20px;
+}
+.list li{
+list-style: none;
+}
+
+.list ul {
+	/* background-color: #10847E;*/
+	height: 70px;
+	position: absolute;
+	margin-right: 0%;
+	position: absolute;
+	top: -25px;
+	background-color: rgba(255, 255, 255, 0.603);
+	box-shadow: 0 5 black;
+	/* margin-top: 0%; */
+	right: 0px;
+	width: 1372px;
+}
+
+.list ul {
+	padding-right: 0px;
+}
+
+.list ul, .list li, .list a {
+	text-decoration: none;
+	color: black;
+	font-family: monospace;
+	font-size: 25px;
+	font-weight: 500;
+	/* margin-right: 20px; */
+}
+
+.list li:hover, .list a:hover {
+	color: orange;
+	border-radius: 5px;
+	cursor: pointer;
+}
+signuptable{
+border-spacing: 5px;
+
+}
 body {
 	
-	background-image: url(Assests/background.jpg);
+	background-image: url(Assests/bcg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	/* background-static: */
+	}
+reg {
+     
 }
-</script>
-</head>
-
+.button a{
+  background-color: #e6f2ff;
+  border: none;
+  color: black;
+  /* padding: 10px 15px; */
+  text-align: center;
+  text-decoration: none;
+ /*  display: inline-block; */
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.button {
+  background-color: #e6f2ff;
+  border: none;
+  color: black;
+  /* padding: 10px 15px; */
+  text-align: center;
+  text-decoration: none;
+ /*  display: inline-block; */
+  font-size: 15px;he
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.login{
+        width:380px;
+        height:300px;
+        position:relative;
+        margin:6% auto; 
+        background: transparent;
+        padding:20px;
+        top: -30px;
+}
+#names{
+position: relative;
+left: -30px;
+top: -607px;
+width: 550px;
+}
+</style>
 <body>
+
+<br><br><br><br><br><br><br><br>
+<div class="nav">
+
+		<nav class="list">
+			<ul>
+					<li><a href="Register.jsp">Register</a></li>
+					<li><a href="About.jsp">About us</a></li>
+					
+					<!-- <li><a href="MyOrders.jsp?orderId=0">About-Us</a></li> -->
+			</ul>
 <form action="loginweb1">
     <fieldset class="login">
-       <center><h3>Login </h3></center>
+       <center><h2 style="color: white;">Login </h2></center>
 
-        <table id="signuptable" style="border-spacing: 5px;">
+        <!-- <table id="signuptable" >
              <tr>
-                <th><label for="name">User Name:</label></th>
-                <th><input type="text" name="userName" id="name" placeholder="Enter user name" required autofocus></th>
+                <th> --><label for="name" style="color: white;padding-left:50px; " >User Name:  </label><!-- </th>
+                <th> --><input type="text" name="userName" id="name" placeholder="Enter user name" required autofocus ><br><br><br><!-- </th>
             </tr>
          <tr>
-                <th><label for="password">Password:</label></th>
-                <th><input type="password" name="password" id="password" placeholder="********" required ></th>
-            </tr>
-            
-        </table>
-        
-                              
-           
-        <table id="buttontable">
-            <tr>
-                <td><button type="submit"> Login</button></td>  
+                <th> --><label for="password" style="color: white;padding-left:50px; ">Password:  &nbsp; </label><!-- </th>
+                <th> --><input type="password" name="password" id="password" placeholder="********" required >&nbsp;&nbsp;&nbsp;
+      <br><br><div style="padding-top: 10px; padding-left:150px">
+      
+         <button class="button" type="submit"> Login</button></div>
+          
+               <div style="padding-top: 10px; padding-left:120px"> <button class="button"  ><a id="reg" href= "Register.jsp">Registration</a></button></div>
+               <img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>

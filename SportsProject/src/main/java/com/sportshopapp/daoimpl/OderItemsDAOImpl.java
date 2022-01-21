@@ -28,8 +28,9 @@ public class OderItemsDAOImpl implements OrderItemsDAO {
 		pstm.setInt(4, oi.getQuantity());
 		pstm.setDouble(5, oi.getUnitPrice());
 		pstm.setDouble(6,oi.getTotalPrice());
-		System.out.println(pstm.executeUpdate()+"rows updated");
+		//System.out.println(pstm.executeUpdate()+"rows updated order Batman");
 		res =pstm.executeUpdate();
+		System.out.println("Batman");
 		pstm.executeUpdate("commit");
 	}catch(SQLException e){
 		System.out.println(e.getMessage());

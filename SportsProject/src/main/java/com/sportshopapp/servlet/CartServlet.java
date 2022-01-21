@@ -21,10 +21,12 @@ public class CartServlet  extends HttpServlet {
 		HttpSession session = req.getSession();
 		System.out.println(req.getParameter("cartTotalPrice"));
 		
+	//	double unitPrice=Double.parseDouble(req.getParameter("cartUnitPrice"));
+		
 		double totalprice=Double.parseDouble(req.getParameter("cartTotalPrice"));
 		System.out.println(totalprice);
 		
-	//	double unitPrice=Double.parseDouble(req.getParameter("cartUnitPrice"));
+		
 		
 
 		int quantity = Integer.parseInt(req.getParameter("cartQuanity"));
@@ -34,12 +36,14 @@ public class CartServlet  extends HttpServlet {
 		Product currentproduct = (Product) session.getAttribute("currentproduct");
 		CartDAOImpl cartDao = new CartDAOImpl();
 		Cart cart = new Cart();
+		System.out.println("currentUser"+currentUser);
 		cart.setUser(currentUser);
+		System.out.println("currentProduct"+currentproduct);
 		cart.setProduct(currentproduct);
 		cart.setQuantity(quantity);
 	//	cart.setStandardCost(unitPrice);
 		cart.setTotalPrice(totalprice);
-		int prodquant = 0;
+		int prodquant ;
 		
 			prodquant = cartDao.productexist(cart);
 		
@@ -50,22 +54,24 @@ public class CartServlet  extends HttpServlet {
 			cartDao.insertProduct(cart);
 		
 		}else {
-		int oldprice = 0;
+//		int oldprice ;
 		
-			oldprice = cartDao.productexist(cart);
+		int	oldprice = cartDao.productexist1(cart);
 		
 		
 		cart.setQuantity(quantity + prodquant);
 		cart.setTotalPrice(oldprice + totalprice);
 	
 			cartDao.updatequantity(cart);
-		
-		
+			System.out.println("cghjhghjklkjbjbjkjhj");
 		}
-		res.sendRedirect("Payment.jsp");
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		res.sendRedirect("Cart.jsp");
+	
 }
 }

@@ -10,6 +10,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>My orders</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 </head>
 
 <style>
@@ -21,7 +22,7 @@ font-family: Arial, Helvetica, sans-serif;
 }
 body {
 	
-	background-image: url(Assests/background.jpg);
+	background-image: url(Assests/bcg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -42,8 +43,9 @@ float: right;
 padding: 20px;
 }
 
+
 .list ul {
- background-color: #10847E;
+/* background-color: #10847E;*/
 height: 70px;
 position: absolute;
 margin-right: 0%;
@@ -51,13 +53,21 @@ position: absolute;
 top: 0;
 background-color: rgba(255, 255, 255, 0.603);
 box-shadow: 0 5 black;
- margin-top: 0%; 
+margin-top: 0%; 
 right: 0px;
 width: 1372px;
 }
 
 .list ul {
 padding-right: 0px;
+}
+body {
+	
+	background-image: url(Assests/bcg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
 }
 
 .list ul, .list li, .list a {
@@ -66,7 +76,7 @@ color: black;
 font-family: monospace;
 font-size: 25px;
 font-weight: 500;
- margin-right: 20px; 
+/* margin-right: 20px; */
 }
 
 .list li:hover, .list a:hover {
@@ -89,27 +99,12 @@ margin-left: 20px;
 position: absolute;
 top: 120px;
 }
-progress 
+/* progress 
 .products {
 margin-top: 5500px;
 border-spacing: 0 200px;
-}
+} */
 
-.slide img {
-box-shadow: 0 0 10px black;
-}
-
-.products tr td {
-padding-left: 220px;
-}
-
-img {
-box-shadow: 0 0 10px black;
-}
-
-.logo img {
-box-shadow: none;
-}
 
 #copyrights {
 text-align: center;
@@ -135,7 +130,6 @@ text-align: center;
 #product {
 position: relative;
 left: 50px;
-
 background-color: rgba(158, 202, 207, 0.5);
 height: 220px;
 border-radius: 5px;
@@ -208,14 +202,34 @@ a {
 text-decoration: none;
 color: black;
 }
-#userName{
+/* #userName{
 position: relative;
 left: 1100px;
-}
+} */
 #idButton{
 position: relative;
 top: 160px;
 }
+/*  #names{
+position: relative;
+left: -135px;
+top: -13px;
+width: 550px;
+}  */
+#details{
+position: absolute;
+
+}
+#tag{
+position: absolute;
+height: 
+}
+ #names{
+position: relative;
+left: -150px;
+top: -2208px;
+width: 550px;
+} 
 </style>
 </head>
 <body>
@@ -234,10 +248,13 @@ OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
 
 <nav class="list">
 <ul>
-<li><a href="Cart.jsp">Cart</a></li>
+
 <li><a href="Login.jsp">SignOut</a></li>
+<li><a href="Cart.jsp">Cart</a></li>
 <li><a href="UserProfile.jsp">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
+<li><a href="UserView.jsp">Home</a></li>
+
 
 </ul>
 
@@ -266,7 +283,7 @@ boolean flag;
 <div id="product">
 
 
-<h3><%=order.getUserName() %></h3>
+<h3 ><%=order.getUserName() %></h3>
 
 <div id="details">
 
@@ -302,6 +319,6 @@ Total Amt :
 </div>
 <div id="footer"></div>
 
-
+<img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>

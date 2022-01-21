@@ -9,6 +9,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>All products</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 </head>
 <style>
 body {font-family: "Lato", sans-serif;}
@@ -24,10 +25,58 @@ body {font-family: "Lato", sans-serif;}
   overflow-x: hidden;
   padding-top: 16px;
 }
+.list ul li {
+	list-style: none;
+	display: inline-block;
+}
+#tab{
+width: 100%;
+}
+
+.list li {
+	float: right;
+	padding: 20px;
+}
+.list li{
+list-style: none;
+}
+
+.list ul {
+	/* background-color: #10847E;*/
+	height: 70px;
+	position: absolute;
+	margin-right: 0%;
+	position: absolute;
+	top: -25px;
+	background-color: rgba(255, 255, 255, 0.603);
+	box-shadow: 0 5 black;
+	/* margin-top: 0%; */
+	right: 0px;
+	width: 1372px;
+}
+
+.list ul {
+	padding-right: 0px;
+}
+
+.list ul, .list li, .list a {
+	text-decoration: none;
+	color: black;
+	font-family: monospace;
+	font-size: 25px;
+	font-weight: 500;
+	/* margin-right: 20px; */
+}
+
+.list li:hover, .list a:hover {
+	color: orange;
+	border-radius: 5px;
+	cursor: pointer;
+}
 
 body {
 	
-	background-image: url(Assests/background.jpg);
+	background-image: url(Assests/bcg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -68,16 +117,39 @@ body {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
 }
+#table{
+background-color: grey;
+top: 50px;
+}
+#names{
+position: relative;
+left: 395px;
+top: -168px;
+width: 550px;
+}
+#allusers{
+position: absolute;
+       top:150px;
+       left:370px;
+
+}
+#products{
+
+position: absolute;
+       top:80px;
+       left:590px;
+color: white;
+}
 </style>
 <body>
+<h2 id="products"> All products</h2>
+<nav class="list">
+<ul>
+<li> <a href="Login.jsp"><i class="fa fa-fw fa-home"></i> Sign out</a></li>
+</ul>
 
-
-<!-- <div class="sidebar">
- <a href="AddProduct.jsp"><i class="fa fa-fw fa-home"></i> ADD PROUCTS</a>
-  <a href="InActiveProducts.jsp"><i class="fa fa-fw fa-wrench"></i> INACTIVE PRODUCTS</a>
-  <a href="Orders.jsp"><i class="fa fa-fw fa-user"></i> CHANGE PRICE OF PRODUCTS</a>
-  <a href="Product.jsp"><i class="fa fa-fw fa-envelope"></i> MODIFIY PRODUCT NAME</a>
-</div> -->
+  
+</div> 
 
 <div class="main"></div>
   <%
@@ -85,7 +157,7 @@ body {
   List<Product> viewProducts =obj.viewAllProducts();
   %>
 <div id="allusers">
-<table>
+<table id="table">
 <thead>
 <tr>
 <th>ProductName</th>
@@ -113,6 +185,7 @@ for(Product product:viewProducts){
 </div>
  
 </div>
+<img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>
 

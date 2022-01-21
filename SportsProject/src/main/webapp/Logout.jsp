@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Log out page</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 <script>
 
    

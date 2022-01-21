@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				 HttpSession session=req.getSession();  
 				     customer=userDao.viewCurrentUsers(userName);
-				     System.out.println(customer);
+				 //    System.out.println(customer);
 			        session.setAttribute("logincustomer", customer); 
 				currentUser = userDao.login(userName, password);
 				

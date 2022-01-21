@@ -45,7 +45,7 @@ public class BuyProductServlet extends HttpServlet{
 		int qty = Integer.parseInt(req.getParameter("quantity"));
 		double price= Double.parseDouble(req.getParameter("totalPrice"));
 		
-		System.out.println("customer wallet"+currentUser.getMyWallet());
+//		System.out.println("customer wallet"+currentUser.getMyWallet());
 //		if(currentUser.getMyWallet()>=price) {
 //
 //		}	
@@ -164,12 +164,12 @@ public class BuyProductServlet extends HttpServlet{
 //			}
 			
 			
-			res.sendRedirect("Payment.jsp");
+			res.sendRedirect("Cart.jsp");
 
 		}
 			
 			else {
-				res.sendRedirect("UserProfile.jsp");
+				res.sendRedirect("UserView.jsp");
 				System.out.println("Current  product is out of stock");
 			}
 			
