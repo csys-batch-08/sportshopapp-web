@@ -4,6 +4,7 @@
 <%@page import="com.sportshopapp.daoimpl.ProductDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,10 +153,7 @@ color: white;
 </div> 
 
 <div class="main"></div>
-  <%
-  ProductDAOImpl obj = new ProductDAOImpl();
-  List<Product> viewProducts =obj.viewAllProducts();
-  %>
+  
 <div id="allusers">
 <table id="table">
 <thead>
@@ -168,23 +166,25 @@ color: white;
 </tr>
 </thead>
 <tbody>
-<%
-for(Product product:viewProducts){
-%>
+<c:forEach items="${viewProduct}" var="current">
+				 <c:set var="i" value="${i+1 }"/>
+			
 <tr>
-<td><%=product.getProductName()%></td>
-<td><%=product.getProductId()%></td>
-<td><%=product.getStrandardCost()%></td>
-<td><%=product.getCategory()%></td>
-<td><%=product.getQuantity() %></td>
+<td> <c:out value="${current.getProductName()}" /></td>
+<td> <c:out value="${current.getProductId()}" /></td>
+<td> <c:out value="${current.getStrandardCost()}" /></td>
+<td> <c:out value="${current.getCategory()}" /></td>
+<td> <c:out value="${current.getQuantity()}" /></td>
 
 </tr>
-<%} %>
+</c:forEach>
 </tbody>
+
 </table>
 </div>
  
-</div>
+
+
 <img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>

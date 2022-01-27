@@ -108,11 +108,11 @@ top: 18px;
 
 </ul>
 <div class="sidebar">
-  <a href="ViewAllUsers.jsp"><i class="fa fa-fw fa-home"></i> ALLUSER</a>
-  <a href="ShowAllProducts.jsp"><i class="fa fa-fw fa-wrench"></i> Show all products</a>
- <!--  <a href="Orders.jsp"><i class="fa fa-fw fa-user"></i> ORDERS</a> -->
+  <a href="ViewAllUsers"><i class="fa fa-fw fa-home"></i> ALLUSER</a>
+  <a href="ShowAllProduct"><i class="fa fa-fw fa-wrench"></i> Show all products</a>
+ <!--  <a href="Orders"><i class="fa fa-fw fa-user"></i> ORDERS</a> -->
   <a href="UpdateProduct.jsp"><i class="fa fa-fw fa-envelope"></i> Update products</a>
-  <a href="Add.jsp"><i class="fa fa-fw fa-envelope"></i> Add products</a>
+  <a href="Add"><i class="fa fa-fw fa-envelope"></i> Add products</a>
 </div>
 
 <div class="main">

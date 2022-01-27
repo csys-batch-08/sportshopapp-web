@@ -16,9 +16,7 @@ public class AdminDAOImpl implements AdminDAO{
 		Connection con = ConnectionUtil.getDbConnection();
 		String query = "select * from admin where user_name='"+userName+"' and password='"+password+"'";
 		PreparedStatement stmt = con.prepareStatement(query);
-//		stmt.setString(1, adminLog.getUserName() );
-//		stmt.setString(2, adminLog.getPassword());
-//		
+		
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			Admin adminLogin = new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));

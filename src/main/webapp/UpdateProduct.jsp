@@ -98,7 +98,7 @@ width: 550px;
 </ul>
 </nav>
 <form id = "change" action="UpdateProduct" method= "post">
-<label>Enter the product ID :</label><input type="text" name="pID" style="position: absolute;left: 700px;" required><br><br>
+<label>Enter the product ID :</label><input type="text" name="pID" style="position: absolute;left: 700px;" autofocus required><br><br>
 <label>Enter the New product Name :</label><input type="text" name="pName" style="position: absolute;left: 700px;" required><br><br>
 <label>Enter the product price :</label><input type="text" name="price" style="position: absolute;left: 700px;" required><br><br>
 <label>Enter the product category :</label><input type="text" name="pcat" style="position: absolute;left: 700px;" required><br><br>

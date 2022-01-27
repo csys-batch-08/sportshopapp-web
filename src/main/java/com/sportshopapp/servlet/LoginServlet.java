@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 				write.print("not a registered user");
 				flag1 = false;
 			}else {
-				res.sendRedirect("UserView.jsp");
+				res.sendRedirect("UserView");
 			}
 		
 	}

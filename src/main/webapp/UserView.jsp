@@ -6,6 +6,7 @@
 pageEncoding="ISO-8859-1"%>
 
 <%@page import="javax.servlet.http.HttpSession"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -400,43 +401,41 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
   </div>
 
 
-<% ProductDAOImpl product= new ProductDAOImpl();
-List<Product> productList = product.viewAllProducts();
-%>
-<% for(Product products : productList)
+<c:forEach items="${productList}" var="current">
+				 <c:set var="i" value="${i+1 }"/>
 
-{
-%>
+
 
 <div id="product" >
 
-<h3 class="font"> Product : <%=products.getProductName() %></h3>
+<h3 class="font"> Product :<c:out value="${current.getProductName()}" /></h3>
 </div>
 <div id="category" >
 
-<h3 class="font1">Category : <%=products.getCategory() %></h3>
+<h3 class="font1">Category : <c:out value="${current.getCategory()}"/></h3>
 </div>
 <div id="details" >
 
-<h3 class="font2">Available quantity : <%=products.getQuantity() %></h3>
+<h3 class="font2">Available quantity :<c:out value="${current.getQuantity()}" /> </h3>
 </div>
 <div id="details" >
 
 <h3 class="font3">
-Price : <%=products.getStrandardCost()+ " rs"%></h3>
+Price :<c:out value="${current.getStrandardCost()+  rs}" /></h3>
 <h3 class="font3">
-Product Id: <%=products.getProductId()%></h3>	
+Product Id:<c:out value="${current.getProductId()}" /></h3>	
 </div>
 <div id="btn">
 <button>
-<a  href="BuyProduct.jsp?pid=<%=products.getProductId()%>">Buy Now</a>
+<a  href="BuyServlet?pid=<c:out value="${current.getProductId()}" />">Buy Now</a>
 </button>
 
 </div>
 
 <br>
 <br>
-<%} %>
+</c:forEach>
+
 
 </body>
 <script>

@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.sportshopapp.daoimpl.ProductDAOImpl;
 import com.sportshopapp.model.Product;
 @WebServlet("/UpdateProduct")
-public class UpdateProduct extends HttpServlet{
+public class UpdateProductServlet extends HttpServlet{
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// TODO Auto-generated method stub 
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
 		int Pid= Integer.parseInt(req.getParameter("pID"));
 		String product= req.getParameter("pName");	
 		double updateUnitPrice = Double.parseDouble(req.getParameter("price"));

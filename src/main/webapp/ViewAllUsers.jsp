@@ -4,6 +4,7 @@
 <%@page import="com.sportshopapp.dao.UserDaoDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,10 +119,7 @@ background-color: grey;
 <li><a href="Login.jsp">SignOut</a></li>
 </ul>
 </nav>
-<%
-UserDAOImpl obj=new UserDAOImpl();
-List<UserReg> userList= obj.viewAllUsers();
-%>
+
 <div id="allusers">
 <table id="table">
 <thead>
@@ -130,27 +128,29 @@ List<UserReg> userList= obj.viewAllUsers();
 <th>Address</th>
 <th>First Name</th>
 <th>Last Name</th>
-<th>MailId</th>
+<th>Mail Id</th>
 <th>mobile</th>
 <th>Wallet</th>
 
 </tr>
 </thead>
 <tbody>
-<%
-for(UserReg customer:userList){
-%>
+<c:forEach items="${userList}" var="current">
+
+				 <c:set var="i" value="${i+1 }"/>
+				 
 <tr>
-<td><%=customer.getUserName() %></td>
-<td><%=customer.getAddress() %></td>
-<td><%=customer.getFirstName()%></td>
-<td><%=customer.getLastName() %></td>
-<td><%=customer.getEmail()%></td>
-<td><%=customer.getPhone() %></td>
-<td><%=customer.getMyWallet()%></td>
+<td> <c:out value="${current.getUserName()}" /></td>
+<td> <c:out value="${current.getAddress()}" /></td>
+<td> <c:out value="${current.getFirstName()}" /></td>
+<td> <c:out value="${current.getLastName()}" /></td>
+<td> <c:out value="${current.getEmail()}" /></td>
+<td> <c:out value="${current.getPhone()}" /></td>
+<td> <c:out value="${current.getMyWallet()}" /></td>
 
 </tr>
-<%} %>
+
+</c:forEach>
 <img id="name" alt="webName" src="Assests/name.png">
 </tbody>
 </table>

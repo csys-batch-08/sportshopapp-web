@@ -8,7 +8,7 @@
 pageEncoding="ISO-8859-1"%>
 
 <%@page import="javax.servlet.http.HttpSession"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -229,16 +229,7 @@ left: 60px;
 </head>
 <body>
 
-<%
- System.out.println(request.getParameter("pid"));
-int pId=Integer.parseInt(request.getParameter("pid"));
-ProductDAOImpl productDao = new ProductDAOImpl();
-Product currentProduct = productDao.findProductById(pId);
-/* UserReg currentUser =new UserReg();
-UserDAOImpl userRegDAOImpl = new UserDAOImpl(); */
-session.setAttribute("currentproduct", currentProduct);
 
-%>
 <div class="nav">
 
 <nav class="list">
@@ -276,10 +267,10 @@ session.setAttribute("currentproduct", currentProduct);
 </p>
 </td>
 <td>
-<p name="pCategory"><%=currentProduct.getCategory()%></p>
-<p name="pName"><%=currentProduct.getProductName() %></p>
-<input name="pUnitPrice" id="price" value="<%=currentProduct.getStrandardCost()%>" disabled>
-<p name="pQuantity"><%=currentProduct.getQuantity() %></p>
+<p name="pCategory"><c:out value="${currentproduct.getCategory()}" /></p>
+<p name="pName"><c:out value="${currentproduct.getProductName()}" /></p>
+<input name="pUnitPrice" id="price" value=" <c:out value="${currentproduct.getStrandardCost()}" />" disabled>
+<p name="pQuantity"> <c:out value="${currentproduct.getQuantity()}" /></p>
 
 </td>
 <td>
@@ -287,7 +278,7 @@ session.setAttribute("currentproduct", currentProduct);
 <div id="qtyBox">
 <form action="prod1">
 <label for="">Quantity :</label>
-<input type="number" id="quantity" name="quantity" min="1"  max="<%=currentProduct.getQuantity()%>" onclick="calculateAmt()" >
+<input type="number" id="quantity" name="quantity" min="1"  max=" <c:out value="${currentproduct.getQuantity()}" />" onclick="calculateAmt()" >
 </div>
 <h3 id="TotalPriceLabel">Total price : Rs </h3>
 <input name="totalPrice" id="totalprice" required>
