@@ -7,6 +7,7 @@
 <%@page import="com.sportshopapp.daoimpl.OderItemsDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -251,9 +252,7 @@ top: 160px;
 </style>
 <body>
 
-<%UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
 
-%>
 <div id="container">
 
 <div class="nav">
@@ -277,35 +276,30 @@ alt="logo">
 
 <%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
  </div> 
-<% OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
-CartDAOImpl cartDao = new CartDAOImpl();
-/* Product cost = new Product(); */
-/* orderDao.deleteProduct(myAllOrders.getOrderModel().getOrderId()); */
-List<Cart> cartItems = cartDao.viewCart(currentUser);
-%>
-<% for(Cart cartList : cartItems)
-{
-%>
+
+<c:forEach items="${cartItems}" var="myOrder">
+
+				 <c:set var="i" value="${i+1 }"/>
 
 <div id="product">
 
 
-<h3 id="prodname"><%=cartList.getProduct().getProductName() %></h3>
+<h3 id="prodname"><c:out value="${myOrder.getProduct().getProductName()}" /></h3>
 </div>
 <div id="pname">
 <h3  name="unitPrice">
-price :<%=cartList.getStandardCost()+ "rs"%></h3>
+price :<c:out value="${myOrder.getStandardCost()}" /></h3>
 </div>
 
 <h3 id="quan" name="cartQuantity">Total Quantity:
-<%=cartList.getQuantity() %></h3>
+<c:out value="${myOrder.getQuantity()}" /></h3>
 <h3 id="price" name="totalPrice">
 Total Amount :
-<%=cartList.getTotalPrice() %></h3>
+<c:out value="${myOrder.getTotalPrice()}" /></h3>
 </div>
 <div id="btn">
 <button id="idButton">
-<a id="BuyNow" href="cartorder?CartproductId=<%=cartList.getProduct().getProductId()%>&unitPrice=<%=cartList.getStandardCost()%>&cartQuantity=<%=cartList.getQuantity()%>&totalPrice=<%=cartList.getTotalPrice() %>">Buy Now</a>
+<a id="BuyNow" href="cartorder?CartproductId=<c:out value="${myOrder.getProduct().getProductId()}" />&unitPrice=<c:out value="${myOrder.getStandardCost()}" />&cartQuantity=<c:out value="${myOrder.getQuantity()}" />&totalPrice=<c:out value="${myOrder.getTotalPrice()}" />">Buy Now</a>
 
 </button id="idButton">
 <br>
@@ -315,17 +309,10 @@ Total Amount :
 <br>
 
 </div>
-
-
-
 <br>
 <br>
-<%}%>
 
-
-
-
-
+</c:forEach>
 <img id="name" alt="webName" src="Assests/name.png">
 </body>
 </html>

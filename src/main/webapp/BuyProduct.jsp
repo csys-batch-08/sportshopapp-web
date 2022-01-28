@@ -237,7 +237,7 @@ left: 60px;
 
 
 <li><a href ="Login.jsp">SignOut</a></li>
-<li><a href="Cart.jsp">Cart</a></li>
+<li><a href="CartJst">Cart</a></li>
 <li><a href ="UserProfile.jsp">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
 <li><a href="UserView.jsp">Home</a></li>
