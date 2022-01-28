@@ -342,8 +342,8 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
 
 <li><a href ="Login.jsp">SignOut</a></li>
 <li><a href= "Cart.jsp">Cart</a></li>
-<li><a href ="UserProfile.jsp">MyProfile</a></li>
-<li><a href= "MyOrder.jsp?orderId=0">MyOrders</a></li>
+<li><a href ="UserProfile">MyProfile</a></li>
+<li><a href= "Myorders?orderId=0">MyOrders</a></li>
 <img id="name" alt="webName" src="Assests/name.png">
 </ul>
 <br><br><br><br>

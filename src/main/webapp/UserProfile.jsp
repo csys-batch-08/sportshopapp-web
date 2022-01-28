@@ -1,6 +1,7 @@
 <%@page import="com.sportshopapp.model.UserReg"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,7 +129,7 @@ background-color: rgba(158, 202, 207,0.1);
 </ul>
 
 <div class="sidebar">
-<% UserReg customer = (UserReg) session.getAttribute("logincustomer");%>
+
 	
  
   <a href="ChangePassword.jsp"><i class="fa fa-fw fa-user"></i> Change Password</a>
@@ -143,25 +144,25 @@ background-color: rgba(158, 202, 207,0.1);
 <table id="allusers">
 <thead>
 <tr>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Address</th>
-<th>EmailId</th>
-<th>User Name</th>
-<th>Phone Number</th>
-<th>Wallet</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Address</th>
+  <th>EmailId</th>
+  <th>User Name</th>
+  <th>Phone Number</th>
+  <th>Wallet</th>
 </tr>
 </thead>
 <tbody>
 
 <tr>
-<td><%=customer.getFirstName() %></td>
-<td><%=customer.getLastName() %></td>
-<td><%=customer.getAddress() %></td>
-<td><%=customer.getEmail() %></td>
-<td><%=customer.getUserName() %></td>
-<td><%=customer.getPhone() %></td>
-<td><%=customer.getMyWallet() %></td>
+<td> <c:out value="${customer.getFirstName()}" /></td>
+<td> <c:out value="${customer.getLastName()}" /></td>
+<td> <c:out value="${customer.getAddress()}" /></td>
+<td> <c:out value="${customer.getEmail()}" /></td>
+<td> <c:out value="${customer.getUserName()}" /></td>
+<td> <c:out value="${customer.getPhone()}" /></td>
+<td> <c:out value="${customer.getMyWallet()}" /></td>
 
 </tr>
 

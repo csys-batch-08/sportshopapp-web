@@ -66,6 +66,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 		Connection con = ConnectionUtil.getDbConnection();
 		PreparedStatement pst=con.prepareStatement(qwery);
 		pst.setInt(1, orderId);
+		
 		int res=pst.executeUpdate();
 		if(res>0)
 		{

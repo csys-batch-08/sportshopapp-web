@@ -45,13 +45,15 @@ public class OderItemsDAOImpl implements OrderItemsDAO {
 		Product product= new Product();
 		OrderItems orderItems;
 		System.out.println(currentUser.getUserName());
-		String qwery="select p.products_name,oi.quantity,oi.standard_cost,oi.total_price,oi.order_id,p.products_id,oi.order_id \r\n"
+		String qwery="select p.products_name,oi.quantity,oi.standard_cost,oi.total_price,oi.order_id,p.products_id \r\n"
 				+ "				 from orders_item oi \r\n"
 				+ "				 inner join order_detail o on oi.order_id=o.order_id\r\n"
 				+ "				 inner join product_items p on oi.products_id=p.products_id where oi.user_name='"+currentUser.getUserName() +"' order by oi.total_price desc";
 						Connection con = ConnectionUtil.getDbConnection();
 						
 						System.out.println(qwery);
+						
+					
 		try {
 			PreparedStatement ps = con.prepareStatement(qwery);
 			ResultSet rs = ps.executeQuery();
@@ -59,14 +61,9 @@ public class OderItemsDAOImpl implements OrderItemsDAO {
 			int num=0;
 			while(rs.next())
 			{
-				System.out.println(rs.getString(1));
-				System.out.println(rs.getInt(2));
-				System.out.println(rs.getInt(3));
-				System.out.println(rs.getInt(4));
-				System.out.println(rs.getDouble(5));
-				System.out.println(rs.getDouble(6));
 				
-				orderItems = new OrderItems(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getInt(6));
+				
+				orderItems = new OrderItems(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(6),rs.getInt(5));
 				myOrderList.add(orderItems);
 				System.out.println(orderItems);
 			}

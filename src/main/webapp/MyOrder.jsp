@@ -5,6 +5,8 @@
 <%@page import="com.sportshopapp.model.UserReg"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,15 +235,10 @@ width: 550px;
 </style>
 </head>
 <body>
-<%
-if(session.getAttribute("cancelorder") != null){%>
-<h1>Order cancelled Successfully!!!</h1>
-<% 
-}
-%>
-<%UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
-%>
+<c:if test="${cancelorder}">
+   <h1>Order cancelled Successfully!!!</h1>
+</c:if>
+
 <div id="container">
 
 <div class="nav">
@@ -266,52 +263,42 @@ OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
 <%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
 </div>
 
-<% OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
-List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
-OderItemsDAOImpl cancelOrder= new OderItemsDAOImpl();
-/* int orderId=Integer.parseInt(request.getParameter("orderId")); */
-OrderDetailDAOImpl orderDao=new OrderDetailDAOImpl();
-/* currentCancelOrder.deleteProduct(orderId); */
-/* orderDao.deleteProduct(myAllOrders.getOrderModel().getOrderId()); */
-boolean flag;
 
-%>
-<% for(int i =0; i<myOrderList.size(); i++){
-     
-	OrderItems order = myOrderList.get(i);%>
+<c:forEach items="${myOrderList}" var="myOrder">
+
+				 <c:set var="i" value="${i+1 }"/>
 
 <div id="product">
 
 
-<h3 ><%=order.getUserName() %></h3>
+<h3 ><c:out value="${myOrder.getUserName()}" /></h3>
 
 <div id="details">
 
-price :<%=order.getUnitPrice()+ "rs"%><h3>
+price : <c:out value="${myOrder.getUnitPrice()}" /><h3>
 </h3>
 
 Total Quantity:
-<%=order.getQuantity() %><h3>
+<c:out value="${myOrder.getQuantity()}" /><h3>
 </h3>
-Total Amt :
-<%=order.getTotalPrice() %><h3>
+Total Amount :
+<c:out value="${myOrder.getTotalPrice()}" /><h3>
 </h3>
 
 </div>
-<%-- <% if(flag){%> --%>
 <div id="btn">
 <button id="idButton">
-<a id="cancel" name="cancelOrderPId" href="cancelorderserv?orderId=<%=order.getOrderId()%>">Cancel Order</a>
+<a id="cancel" name="cancelOrderPId" href="cancelorderserv?orderId=<c:out value="${myOrder.getOrderId()}" />">Cancel Order</a>
 </button>
-<br>
-</button>
-</div>
+
 
 </div>
+</c:forEach>
+
 
 <br>
 <br>
-<%}%>
+
 
 
 </div>

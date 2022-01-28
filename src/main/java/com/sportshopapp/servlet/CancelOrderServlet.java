@@ -1,6 +1,7 @@
 package com.sportshopapp.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -16,16 +17,21 @@ import com.sportshopapp.daoimpl.OrderDetailDAOImpl;
 public class CancelOrderServlet extends HttpServlet {
 @Override
 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	int orderid= Integer.parseInt(req.getParameter("orderId"));
+//	String orderid= req.getParameter("orderId");
+//	System.out.println(orderid);
+	int orderid = Integer.parseInt(req.getParameter("orderId"));
 	HttpSession session = req.getSession();
+	
 	System.out.println(orderid);
 	OrderDetailDAOImpl orderDetailDAOImpl = new OrderDetailDAOImpl();
 	try {
 		orderDetailDAOImpl.deleteProduct(orderid);
+//		System.out.println(order);
+		
 		session.setAttribute("cancelorder", true);
-		resp.sendRedirect("UserView.jsp");
-	} catch (ClassNotFoundException | SQLException e) {
-		// TODO Auto-generated catch block
+		resp.sendRedirect("MyOrder.jsp");
+	} catch (Exception e) {
+		System.out.println(e);
 		e.printStackTrace();
 	}
 }

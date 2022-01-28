@@ -21,7 +21,7 @@ import com.sportshopapp.model.UserReg;
 @WebServlet("/prod1")
 public class BuyProductServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-	//	System.out.println("updated");
+
 		
 		
 		HttpSession session = req.getSession();
@@ -45,10 +45,7 @@ public class BuyProductServlet extends HttpServlet{
 		int qty = Integer.parseInt(req.getParameter("quantity"));
 		double price= Double.parseDouble(req.getParameter("totalPrice"));
 		
-//		System.out.println("customer wallet"+currentUser.getMyWallet());
-//		if(currentUser.getMyWallet()>=price) {
-//
-//		}	
+
 		
 		if(currentUser.getMyWallet()>=price)
 		{   
@@ -57,7 +54,7 @@ public class BuyProductServlet extends HttpServlet{
 			if(currentproduct.getQuantity()>=qty) {
 				
 		    
-		    //order.getProducts().setProductId(currentproduct.getProductId()-qty);
+		  
 		    
 		    try {
 		    	int updateQty = currentproduct.getQuantity() - qty;
@@ -66,10 +63,10 @@ public class BuyProductServlet extends HttpServlet{
 		    	System.out.println(qty);
 		    	System.out.println(currentproduct.getQuantity() - qty);
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
+		
 				e1.printStackTrace();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+	
 				e1.printStackTrace();
 			}
 		    order.setUser(currentUser);
@@ -81,38 +78,35 @@ public class BuyProductServlet extends HttpServlet{
 			try {
 				orderDao.orders(order,currentUser);
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
+	
 				e1.printStackTrace();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 
 		   
 		    try {
 				user.updateWalletMoney(order);
-				//orderDao.orders(order, currentUser);
+
 			} catch (ClassNotFoundException e3) {
-				// TODO Auto-generated catch block
+
 				e3.printStackTrace();
 			} catch (SQLException e3) {
-				// TODO Auto-generated catch block
+
 				e3.printStackTrace();
 			}
-		   
-//		    int orderId = 0;
-			
-		   
+
 			
 		    int orderId = 0;
 			try {
 				System.out.println(orderDao.getByOrderId() +"orderdao");
 				orderId = orderDao.getByOrderId();
 			} catch (ClassNotFoundException e3) {
-				// TODO Auto-generated catch block
+
 				e3.printStackTrace();
 			} catch (SQLException e3) {
-				// TODO Auto-generated catch block
+
 				e3.printStackTrace();
 			}
 			order.setOrderId(orderId);
@@ -129,39 +123,17 @@ public class BuyProductServlet extends HttpServlet{
 				try {
 					orderItemsDaoImpl.insertOrders(orderItems);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 			
-			
-			//order.setPrice(price);
-			//order.getProducts().setProductId(currentproduct.getProductId());
-			//order.getUser().setUserName(currentUser.getUserName());
+
 			res.getWriter().println("order placed!!");
 			}
-//			 if(((order.getProducts().getQuantity())-(order.getProducts().getQuantity()))>0){
-//				 order.getProducts().setQuantity((order.getProducts().getQuantity()-qty));
-//			 }
-//		    price=currentproduct.getQuantity()*currentproduct.getStrandardCost();	
-			
-     	
-//			order.getUser().setMyWallet(order.getUser().getMyWallet()-price);
-//			
-//			try {
-//		
-//				user.addMoneyWallet(order);
-//				orderDao.orders(order, currentUser);
-				//int orderId = orderDao.getByOrderId();
-//			} catch (ClassNotFoundException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
+
 			
 			
 			res.sendRedirect("Cart.jsp");
@@ -175,9 +147,7 @@ public class BuyProductServlet extends HttpServlet{
 			
 		
 
-//			else {
-//			System.out.println("Low wallet balance");
-//			}
+
 	
 }
 }	
