@@ -275,15 +275,15 @@ width: 550px;
 
 <div id="details">
 
-price : <c:out value="${myOrder.getUnitPrice()}" /><h3>
+<h3>price : <c:out value="${myOrder.getUnitPrice()}" />
 </h3>
 
-Total Quantity:
-<c:out value="${myOrder.getQuantity()}" /><h3>
-</h3>
-Total Amount :
-<c:out value="${myOrder.getTotalPrice()}" /><h3>
-</h3>
+<h3>Total Quantity:
+<c:out value="${myOrder.getQuantity()}" /></h3>
+
+<h3>Total Amount :
+<c:out value="${myOrder.getTotalPrice()}" /></h3>
+
 
 </div>
 <div id="btn">
@@ -293,7 +293,7 @@ Total Amount :
 
 
 </div>
-</c:forEach>
+
 
 
 <br>
@@ -302,7 +302,8 @@ Total Amount :
 
 
 </div>
-
+<br>
+</c:forEach>
 </div>
 <div id="footer"></div>
 

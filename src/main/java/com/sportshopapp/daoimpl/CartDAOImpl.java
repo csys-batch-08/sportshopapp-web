@@ -97,51 +97,51 @@ public class CartDAOImpl implements CartDAO {
 		statement.executeUpdate("commit");
 		return res;
 		}
-	public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException {
-		System.out.println("first");
 
-		System.out.println("cart"+currentUser.getUserName());
-		System.out.println("first");
 
-		String query= "select * from cart where user_name='"+currentUser.getUserName()+"'";
-		Connection con=ConnectionUtil.getDbConnection();
-		System.out.println("1");
-		List<Cart> allCartItems=new ArrayList<Cart>();
-		System.out.println("2");
 
-		Statement smts = null;
-		System.out.println("3");
+public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException {
+	
 
-		ResultSet rs= null;
-		System.out.println("4");
+	
 
-		try {
-			System.out.println("5");
+	String query= "select * from cart where user_name='"+currentUser.getUserName()+"'";
+	Connection con=ConnectionUtil.getDbConnection();
 
-			smts = con.createStatement();
-			rs=smts.executeQuery(query);
-			System.out.println("6");
+	List<Cart> allCartItems=new ArrayList<Cart>();
 
-			ProductDAOImpl proDao=new ProductDAOImpl();
-			System.out.println("7");
-			int i=0;
-			while(rs.next()) {
-				System.out.println("8");
-				System.out.println(rs.getInt(3));
-				Product product=proDao.findProductById(rs.getInt(3));
-				Cart cart=new Cart(currentUser,product, rs.getInt(6),rs.getDouble(7));
-				System.out.println(rs.getDouble(6));
-				allCartItems.add(cart);
-				System.out.println("8");
-				System.out.println(allCartItems.get(i));
-				System.out.println("9");
-				}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
+
+	Statement smts = null;
+	
+
+	ResultSet rs= null;
+
+
+	try {
 		
-		return allCartItems;
-	}
-}
 
+		smts = con.createStatement();
+		rs=smts.executeQuery(query);
+		
+
+		ProductDAOImpl proDao=new ProductDAOImpl();
+	
+		int i=0;
+		while(rs.next()) {
+		
+			System.out.println(rs.getInt(3));
+			Product product=proDao.findProductById(rs.getInt(3));
+			Cart cart=new Cart(currentUser,product, rs.getInt(6),rs.getDouble(7));
+			System.out.println(rs.getDouble(6));
+			allCartItems.add(cart);
+	
+		
+			}
+	} catch (SQLException e) {
+	
+		e.getMessage();
+	}
+	
+	return allCartItems;
+}
+}

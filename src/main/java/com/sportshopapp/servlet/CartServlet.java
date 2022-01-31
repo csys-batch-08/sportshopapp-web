@@ -2,6 +2,7 @@ package com.sportshopapp.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sportshopapp.daoimpl.CartDAOImpl;
+import com.sportshopapp.daoimpl.OderItemsDAOImpl;
 import com.sportshopapp.model.Cart;
 import com.sportshopapp.model.Product;
 import com.sportshopapp.model.UserReg;
@@ -24,15 +26,8 @@ public class CartServlet  extends HttpServlet {
 	//	double unitPrice=Double.parseDouble(req.getParameter("cartUnitPrice"));
 		
 		double totalprice=Double.parseDouble(req.getParameter("cartTotalPrice"));
-		System.out.println(totalprice);
-		
-		
-		
-
 		int quantity = Integer.parseInt(req.getParameter("cartQuanity"));
-		System.out.println(quantity);
-		
-		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
+     	UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
 		Product currentproduct = (Product) session.getAttribute("currentproduct");
 		CartDAOImpl cartDao = new CartDAOImpl();
 		Cart cart = new Cart();
@@ -69,9 +64,25 @@ public class CartServlet  extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		HttpSession session=req.getSession();
+		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
+		OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
+		CartDAOImpl cartDao = new CartDAOImpl();
 	
-		res.sendRedirect("Cart.jsp");
+			try {
+				List<Cart> cartItems = cartDao.viewCart(currentUser);
+				session.setAttribute("cartItems", cartItems);
+				res.sendRedirect("Cart.jsp");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	
+		
 	
 }
 }

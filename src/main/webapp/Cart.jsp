@@ -166,7 +166,7 @@ top:-130px;
 #product #btn {
 position: relative;
 left: 900px;
-top:-130px;
+top:40px;
 }
 
 #product #btn button {
@@ -184,7 +184,7 @@ color: orange;
 }
 #btn  {
 position: relative;
-top: 35px;
+top: 100px;
 left: 1000px;
 }
 
@@ -228,8 +228,10 @@ width: 550px;
 }
 #pname{
 position: absolute;
-left: 300px;
+left: 200px;
+top: 60px;
 }
+
 #quan{
 position: absolute;
 left: 300px;
@@ -266,15 +268,14 @@ top: 160px;
 <li><a href="UserView.jsp">Home</a></li>
 
 </ul>
-<div class="logo">
+<!-- <div class="logo">
 <img
 src=""
-alt="logo">
+alt="logo"> -->
 </nav>
 </div>
 <!-- slideshow -->
 
-<%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
  </div> 
 
 <c:forEach items="${cartItems}" var="myOrder">
@@ -285,15 +286,16 @@ alt="logo">
 
 
 <h3 id="prodname"><c:out value="${myOrder.getProduct().getProductName()}" /></h3>
-</div>
+
 <div id="pname">
 <h3  name="unitPrice">
-price :<c:out value="${myOrder.getStandardCost()}" /></h3>
-</div>
+Price :<c:out value="${myOrder.getStandardCost()}" /></h3>
 
-<h3 id="quan" name="cartQuantity">Total Quantity:
+
+<h3  name="cartQuantity">Total Quantity:
 <c:out value="${myOrder.getQuantity()}" /></h3>
-<h3 id="price" name="totalPrice">
+
+<h3  name="totalPrice">
 Total Amount :
 <c:out value="${myOrder.getTotalPrice()}" /></h3>
 </div>
@@ -302,6 +304,8 @@ Total Amount :
 <a id="BuyNow" href="cartorder?CartproductId=<c:out value="${myOrder.getProduct().getProductId()}" />&unitPrice=<c:out value="${myOrder.getStandardCost()}" />&cartQuantity=<c:out value="${myOrder.getQuantity()}" />&totalPrice=<c:out value="${myOrder.getTotalPrice()}" />">Buy Now</a>
 
 </button id="idButton">
+</div>
+
 <br>
 <%-- <button>
 <a id="Remove" href="removeCartItem?CartproductId=<%=cartList.getProduct().getProductId()%>">Remove</a>
@@ -311,8 +315,13 @@ Total Amount :
 </div>
 <br>
 <br>
-
 </c:forEach>
+
+<br>
+
+<br>
+
+
 <img id="name" alt="webName" src="Assests/name.png">
 </body>
 </html>
