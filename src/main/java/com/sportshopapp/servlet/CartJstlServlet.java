@@ -23,12 +23,10 @@ import com.sportshopapp.model.UserReg;
 public class CartJstlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public CartJstlServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -43,7 +41,7 @@ public class CartJstlServlet extends HttpServlet {
 		try {
 			List<Cart> cartItems = cartDao.viewCart(currentUser);
 			session.setAttribute("cartItems", cartItems);
-			response.sendRedirect("Cart.jsp");
+			response.sendRedirect("cart.jsp");
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();

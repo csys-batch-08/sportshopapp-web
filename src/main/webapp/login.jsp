@@ -126,23 +126,19 @@ width: 550px;
 
 		<nav class="list">
 			<ul>
-					<li><a href="Register.jsp">Register</a></li>
+					<li><a href="register.jsp">Register</a></li>
 					<li><a href="About.jsp">About us</a></li>
 					
-					<!-- <li><a href="MyOrders.jsp?orderId=0">About-Us</a></li> -->
+				
 			</ul>
 <form action="loginweb1">
     <fieldset class="login">
        <center><h2 style="color: white;">Login </h2></center>
 
-        <!-- <table id="signuptable" >
-             <tr>
-                <th> --><label for="name" style="color: white;padding-left:50px; " >User Name:  </label><!-- </th>
-                <th> --><input type="text" name="userName" id="name" placeholder="Enter user name" required autofocus ><br><br><br><!-- </th>
-            </tr>
-         <tr>
-                <th> --><label for="password" style="color: white;padding-left:50px; ">Password:  &nbsp; </label><!-- </th>
-                <th> --><input type="password" name="password" id="password" placeholder="********" required >&nbsp;&nbsp;&nbsp;
+        <label for="name" style="color: white;padding-left:50px; " >User Name:  </label>
+        <input type="text" name="userName" id="name" placeholder="Enter user name" required autofocus ><br><br><br>
+        <label for="password" style="color: white;padding-left:50px; ">Password:  &nbsp; </label>
+        <input type="password" name="password" id="password" placeholder="********" required >&nbsp;&nbsp;&nbsp;
       <br><br><div style="padding-top: 10px; padding-left:150px">
       
          <button class="button" type="submit"> Login</button></div>

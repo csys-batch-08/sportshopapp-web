@@ -144,12 +144,12 @@ background-color: green;
 <div class="nav">
 
 		<nav class="list">
-			<ul>
-					<li><a href="Cart.jsp">Cart</a></li>
-					<li><a href="Login.jsp">SignOut</a></li>
-					<li><a href="UserProfile.jsp">MyProfile</a></li>
+			<ul>		
+					<li><a href="index.jsp">SignOut</a></li>
+					<li><a href="cartserv">Cart</a></li>
+					<li><a href="UserProfile">MyProfile</a></li>
 					<li><a href="MyOrder.jsp?orderId=0">MyOrders</a></li>
-					<!-- <li><a href="MyOrders.jsp?orderId=0">About-Us</a></li> -->
+
 			</ul>
 			<div class="logo">
 				

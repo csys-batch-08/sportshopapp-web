@@ -19,17 +19,19 @@ public class AddProductServlet  extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String product= req.getParameter("pname");
-		int id = Integer.parseInt(req.getParameter("pid"));
+		int id = Integer.parseInt(req.getParameter("prodid"));
 		double price= Double.parseDouble(req.getParameter("price"));
 		String category= req.getParameter("pcat");
 		int qty = Integer.parseInt(req.getParameter("pqty"));
+		String img = req.getParameter("pimg");
 		
-		Product products = new Product(product,id,price,category,qty);
+		Product products = new Product(product,id,price,category,qty,img);
 		products.setProductName(product);
 		products.setProductId(id);
 		products.setStrandardCost(price);
 		products.setCategory(category);
 		products.setQuantity(qty);
+		products.setImg(img);
 		ProductDAOImpl obj =new ProductDAOImpl();
 
 		Product currentProduct=null;
@@ -47,13 +49,13 @@ public class AddProductServlet  extends HttpServlet {
 		  if(currentProduct!=null)
 			{
 				 out.print("Product added"); 
-				 res.sendRedirect("AdminView.jsp");
+				 res.sendRedirect("adminView.jsp");
 					
 			}
 			else
 			{
 				 out.print("Failed to add product"); 	
-				 res.sendRedirect("AdminView.jsp");
+				 res.sendRedirect("adminView.jsp");
 	}
 }		
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -32,14 +32,14 @@ public class UserProfileServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		UserReg customers = (UserReg) session.getAttribute("logincustomer");
 		session.setAttribute("customer", customers);
-		response.sendRedirect("UserProfile.jsp");
+		response.sendRedirect("userProfile.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

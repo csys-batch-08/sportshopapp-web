@@ -104,15 +104,15 @@ top: 18px;
 <ul>
 
 
-<li><a id = "sign" href ="Login.jsp">SignOut</a></li>
+<li><a id = "sign" href ="index.jsp">SignOut</a></li>
 
 </ul>
 <div class="sidebar">
   <a href="ViewAllUsers"><i class="fa fa-fw fa-home"></i> ALLUSER</a>
   <a href="ShowAllProduct"><i class="fa fa-fw fa-wrench"></i> Show all products</a>
- <!--  <a href="Orders"><i class="fa fa-fw fa-user"></i> ORDERS</a> -->
-  <a href="UpdateProduct.jsp"><i class="fa fa-fw fa-envelope"></i> Update products</a>
-  <a href="Add"><i class="fa fa-fw fa-envelope"></i> Add products</a>
+
+  <a href="updateProduct.jsp"><i class="fa fa-fw fa-envelope"></i> Update products</a>
+  <a href="add.jsp"><i class="fa fa-fw fa-envelope"></i> Add products</a>
 </div>
 
 <div class="main">

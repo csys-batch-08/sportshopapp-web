@@ -65,15 +65,15 @@ public void service(HttpServletRequest req, HttpServletResponse res) throws IOEx
 		try {
 			result = userDao.addMoneyInWallet(wallet, currentUser);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		if(result>0)
 		{
-			res.sendRedirect("UserProfile.jsp");
+			res.sendRedirect("userProfile.jsp");
 		}
 		
 	}

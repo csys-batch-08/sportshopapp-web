@@ -20,24 +20,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public Product insert(Product product) throws ClassNotFoundException, SQLException {
 	char check;
-//	System.out.println("Do You Want Enter Product \n Y /N");
-	//check = sc.nextLine().charAt(0);
-	//if (check == 'y' || check == 'Y') {
-////	System.out.println("Enter the Product Name");
-//	//String pName = sc.nextLine();
-////	System.out.println("Enter the Product ID");
-//	int prodId = Integer.parseInt(sc.nextLine());
-////	System.out.println("Enter the price");
-//	Double price = Double.parseDouble(sc.nextLine());
-////	System.out.println("Enter the product category");
-//	String prodCategory = sc.nextLine();
-//	//System.out.println("enter the product quantity");
-//	int prodQuantity = sc.nextInt();
-	
-	
-//	Product str = new Product( pName, prodId, price,prodCategory,prodQuantity);
+
 	Connection con= ConnectionUtil.getDbConnection();
-	String query = "insert into product_items values(?,?,?,?,?)";
+	String query = "insert into product_items values(?,?,?,?,?,?)";
 	PreparedStatement stmt = con.prepareStatement(query);
 	
 	stmt.setString(1, product.getProductName());
@@ -45,6 +30,7 @@ public class ProductDAOImpl implements ProductDAO {
 	stmt.setDouble(3, product.getStrandardCost());
 	stmt.setString(4, product.getCategory());
 	stmt.setInt(5, product.getQuantity());
+	stmt.setString(6, product.getImg());
 	int result =stmt.executeUpdate();
 	if(result>0)
 	{
@@ -84,11 +70,13 @@ public class ProductDAOImpl implements ProductDAO {
 			String view = " SELECT * FROM product_items";
 			ResultSet rs = stmt.executeQuery(view);
 			while (rs.next()) {
-				// System.out.println(rs.getInt(2) + " " + rs.getString(1)+" "+ rs.getInt(3));
-				Product product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
+				
+				Product product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5),rs.getString(6));
 				productList.add(product);
+				System.out.println(rs.getString(6));
 			}
 			return productList;
+			
 		}
 		
 	
@@ -183,18 +171,7 @@ public class ProductDAOImpl implements ProductDAO {
 				}
 
 		
-//		public List<ProductModel> filterByPrice(int min,int max){   
-//			ProductModel product = new ProductModel();
-//		    List<ProductModel> listofproducts = product.getStrandardCost();
-//  	    System.out.println(listofproducts +" size: " +listofproducts.size());
-//
-//		    for (ProductModel productsVar : listofproducts) {
-//		        if(productsVar.getPrice()>= min && productsVar.getPrice()<= max){
-//		            return  listofproducts; //here how do i print the reduced listOfProducts
-//		        }
-//		    }       
-//		    return null;
-//		}
+
 		}
 		}
 	

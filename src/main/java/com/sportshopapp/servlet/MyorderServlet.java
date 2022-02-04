@@ -28,7 +28,7 @@ public class MyorderServlet extends HttpServlet {
      */
     public MyorderServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
@@ -51,17 +51,15 @@ public class MyorderServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		OderItemsDAOImpl cancelOrder= new OderItemsDAOImpl();
-		/* int orderId=Integer.parseInt(request.getParameter("orderId")); */
+		
 		OrderDetailDAOImpl orderDao=new OrderDetailDAOImpl();
 		
-		response.sendRedirect("MyOrder.jsp");
+		response.sendRedirect("myOrder.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

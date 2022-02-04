@@ -96,20 +96,22 @@ position: absolute;
 <h2  id="header" style="color: white;">Add products</h2>
 <nav class="list">
 <ul>
-<li><a href="Login.jsp">Sign Out</a></li>
+<li><a href="login.jsp">Sign Out</a></li>
 </ul>
 </nav>
 <form id = "change"  action="Add">
 <label>Enter the product name :</label>
 <input type="text" name="pname" style="position: absolute;left: 670px;" autofocus required><br><br>
 <label>Enter the product Id :</label>
-<input type="text" name="pid" style="position: absolute;left: 670px;" required><br><br>
+<input type="text" name="prodid" style="position: absolute;left: 670px;" required><br><br>
 <label>Enter the Price :</label>
 <input type="text" name="price" pattern = "[1-9][0-9]+" style="position: absolute;left: 670px;" required><br><br>
 <label>Enter the product category :</label>
 <input type="text" name="pcat" style="position: absolute;left: 670px;" required><br><br>
 <label>Enter the product quantity :</label>
 <input type="text" name="pqty" style="position: absolute;left: 670px;" required><br><br>
+<label>Enter the product image :</label>
+<input type="file" name="pimg" style="position: absolute;left: 670px;" required><br><br>
 <input type="submit" style="border-radius: 5px; padding: 3px">
 </form>
 <img id="name" alt="webName" src="Assests/name.png">

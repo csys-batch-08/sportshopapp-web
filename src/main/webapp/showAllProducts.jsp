@@ -146,7 +146,7 @@ color: white;
 <h2 id="products"> All products</h2>
 <nav class="list">
 <ul>
-<li> <a href="Login.jsp"><i class="fa fa-fw fa-home"></i> Sign out</a></li>
+<li> <a href="index.jsp"><i class="fa fa-fw fa-home"></i> Sign out</a></li>
 </ul>
 
   

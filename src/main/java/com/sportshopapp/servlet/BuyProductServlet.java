@@ -136,12 +136,12 @@ public class BuyProductServlet extends HttpServlet{
 
 			
 			
-			res.sendRedirect("Cart.jsp");
+			res.sendRedirect("cart.jsp");
 
 		}
 			
 			else {
-				res.sendRedirect("UserView.jsp");
+				res.sendRedirect("userView.jsp");
 				System.out.println("Current  product is out of stock");
 			}
 			

@@ -330,9 +330,7 @@ font-size: 5px;
 </style>
 </head>
 <body>
-<%
- 
-UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
+
 <div id="container">
 
 <div class="nav">
@@ -340,7 +338,7 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
 <nav class="list">
 <ul>
 
-<li><a href ="Login.jsp">SignOut</a></li>
+<li><a href ="index.jsp">SignOut</a></li>
 <li><a href= "cartserv">Cart</a></li>
 <li><a href ="UserProfile">MyProfile</a></li>
 <li><a href= "Myorders?orderId=0">MyOrders</a></li>
@@ -350,9 +348,6 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
 
 <div id="serachbar">
 
-<!-- <input type="text" id="searchProduct"  name="searchProduct" required>
-<a href="AllProducts.jsp"><button>search</button></a> -->
-<%-- <h2 id="userName">welcome <%=currentUser.getUserName() %></h2> --%>
 </div>
 <br><br><br>
 <div class="slideshow-container">
@@ -404,12 +399,13 @@ UserReg currentUser = (UserReg)session.getAttribute("logincustomer");%>
 <c:forEach items="${productList}" var="current">
 				 <c:set var="i" value="${i+1 }"/>
 
-
+<img alt="" src="Assests/<c:out value="${current.getImg()}" />" width="120px" height="120px" style="right: 30px">
 
 <div id="product" >
 
 <h3 class="font"> Product :<c:out value="${current.getProductName()}" /></h3>
 </div>
+
 <div id="category" >
 
 <h3 class="font1">Category : <c:out value="${current.getCategory()}"/></h3>

@@ -158,7 +158,7 @@ box-shadow: 0 5 black;
 
 position: relative;
 left: 220px;
-top:70px;
+top:-120px;
 }
 
 #product #btn {
@@ -233,7 +233,7 @@ top: -2208px;
 width: 550px;
 } 
 </style>
-</head>
+
 <body>
 <c:if test="${cancelorder}">
    <h1>Order cancelled Successfully!!!</h1>
@@ -246,11 +246,11 @@ width: 550px;
 <nav class="list">
 <ul>
 
-<li><a href="Login.jsp">SignOut</a></li>
-<li><a href="Cart.jsp">Cart</a></li>
-<li><a href="UserProfile.jsp">MyProfile</a></li>
-<li><a href= "MyOrder.jsp">MyOrders</a></li>
-<li><a href="UserView.jsp">Home</a></li>
+<li><a href="index.jsp">SignOut</a></li>
+<li><a href="cartserv">Cart</a></li>
+<li><a href="UserProfile">MyProfile</a></li>
+<li><a href= "myOrder.jsp">MyOrders</a></li>
+<li><a href="userView.jsp">Home</a></li>
 
 
 </ul>

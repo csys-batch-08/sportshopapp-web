@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>orders</title>
+<title>Log out page</title>
+<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
+<script>
+
+   
+</script>
+
 </head>
 <body>
+<h1>Logout successfully</h1>
+<a href="index.jsp">Login</a>
 
 </body>
 </html>

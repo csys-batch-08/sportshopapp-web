@@ -36,22 +36,22 @@ public class UpdateProductServlet extends HttpServlet{
 		try {
 			flag = obj.updateProducts(prod);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(flag)
 		{
 		
-			 res.sendRedirect("AdminView.jsp");
+			 res.sendRedirect("adminView.jsp");
 				
 		}
 		else
 		{
 			
-			 res.sendRedirect("AdminView.jsp");
+			 res.sendRedirect("adminView.jsp");
 		}
 	}
 }

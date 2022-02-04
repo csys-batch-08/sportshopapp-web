@@ -34,14 +34,14 @@ public class ShowAllProductsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAOImpl obj = new ProductDAOImpl();
-		System.out.println("Current  product is out of stock 1");
+		
 		  try {
 			List<Product> viewProducts =obj.viewAllProducts();
 		
 			HttpSession session=request.getSession();
 			session.setAttribute("viewProduct",viewProducts );
 		
-			response.sendRedirect("ShowAllProducts.jsp");
+			response.sendRedirect("showAllProducts.jsp");
 			
 		} catch (ClassNotFoundException e) {
 			

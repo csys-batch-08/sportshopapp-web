@@ -94,7 +94,7 @@ width: 550px;
 <h2  id="header" style="color: white;">Update products</h2>
 <nav class="list">
 <ul>
-<li><a href="Login.jsp">SignOut</a></li>
+<li><a href="index.jsp">SignOut</a></li>
 </ul>
 </nav>
 <form id = "change" action="UpdateProduct" method= "post">

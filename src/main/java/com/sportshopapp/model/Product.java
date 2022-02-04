@@ -6,6 +6,22 @@ public class Product {
 	private double strandardCost;
 	private String category;
 	private int quantity;
+	private String img;
+	public Product(String productName, int productId, double strandardCost, String category, int quantity, String img) {
+		super();
+		this.productName = productName;
+		this.productId = productId;
+		this.strandardCost = strandardCost;
+		this.category = category;
+		this.quantity = quantity;
+		this.img = img;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
@@ -51,16 +67,10 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-//	public ProductModel(String productName, int productId, double strandardCost, String category) {
-//		super();
-//		this.productName = productName;
-//		this.productId = productId;
-//		this.strandardCost = strandardCost;
-//		this.category = category;
-//	}
+
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	@Override
 	public String toString() {

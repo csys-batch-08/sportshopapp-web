@@ -32,10 +32,10 @@ public class RemovecartItem extends HttpServlet {
 		try {
 			currentProduct = productDao.findProductById(CartproductId);
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		cart.setProduct(currentProduct);
@@ -44,16 +44,16 @@ public class RemovecartItem extends HttpServlet {
 			 try {
 				removeStatus=cartdao.removecartItems(cart);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			if(removeStatus>0)
 			{
 				System.out.println("cartItems deleted");
-				res.sendRedirect("UserView");
+				res.sendRedirect("userView");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		

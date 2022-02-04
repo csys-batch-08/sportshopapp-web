@@ -13,10 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import com.sportshopapp.daoimpl.ProductDAOImpl;
 import com.sportshopapp.model.Product;
+import com.sportshopapp.model.UserReg;
 
-/**
- * Servlet implementation class UserViewServlet
- */
+
 @WebServlet("/UserView")
 public class UserViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,7 @@ public class UserViewServlet extends HttpServlet {
      */
     public UserViewServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -34,18 +33,21 @@ public class UserViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAOImpl product= new ProductDAOImpl();
+		HttpSession session=request.getSession();
+		
+		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
 		try {
 			
 			List<Product> productList = product.viewAllProducts();
-			HttpSession session=request.getSession();
+			
 			session.setAttribute("productList",productList );
 
-			 response.sendRedirect("UserView.jsp");
+			 response.sendRedirect("userView.jsp");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
        

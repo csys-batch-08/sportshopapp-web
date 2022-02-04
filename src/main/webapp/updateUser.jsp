@@ -8,7 +8,7 @@
 <link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
 </head>
 <body>
-<h1><a href="Logout.jsp">logout</a></h1>
+<h1><a href="index.jsp">logout</a></h1>
 <form action="UpdateUser">
 <label>Enter user name</label>
 <input type="text" name="pID" required>

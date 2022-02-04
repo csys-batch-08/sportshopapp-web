@@ -16,21 +16,9 @@ import com.sportshopapp.model.UserReg;
 public class ChangePasswordServlet extends HttpServlet {
 
 
-//		private static final long serialVersionUID = 1L;
-//	       
-//	    /**
-//	     * @see HttpServlet#HttpServlet()
-//	     */
-//	    public ChangePassword() {
-//	        super();
-//	        // TODO Auto-generated constructor stub
-//	    }
-//
-//		/**
-//		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-//		 */
+
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			// TODO Auto-generated method stub
+
 		    	  String uName=req.getParameter("uname");
 				 String Password=req.getParameter("pword");
 				 UserReg customer =new UserReg();
@@ -46,28 +34,26 @@ public class ChangePasswordServlet extends HttpServlet {
 					{
 						out.print("Password Change sucessfully");  
 						
-						 resp.sendRedirect("Login.jsp");
+						 resp.sendRedirect("login.jsp");
 					
 					}
 					else {
 						 out.print("Sorry, username or password error!");  
 						
-						 resp.sendRedirect("ChangePassword.jsp");
+						 resp.sendRedirect("changePassword.jsp");
 						
 					}
 					
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 				
 		}
 
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-		 */
+		
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
+
 		}
 
 	}

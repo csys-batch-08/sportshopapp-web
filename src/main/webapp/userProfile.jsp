@@ -120,9 +120,9 @@ background-color: rgba(158, 202, 207,0.1);
 <nav class="list">
 <ul>
 
-<li><a href="Login.jsp">SignOut</a></li>
-<li><a href="Cart.jsp">Cart</a></li>
-<li><a href="UserProfile.jsp">MyProfile</a></li>
+<li><a href="index.jsp">SignOut</a></li>
+<li><a href="cartserv">Cart</a></li>
+<li><a href="UserProfile">MyProfile</a></li>
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
 <li><a href="UserView.jsp">Home</a></li>
 

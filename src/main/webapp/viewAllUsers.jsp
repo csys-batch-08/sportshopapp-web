@@ -116,7 +116,7 @@ background-color: grey;
 <h2 id ="users" style="color: white;">All users</h2>
 <nav class="list">
 <ul>
-<li><a href="Login.jsp">SignOut</a></li>
+<li><a href="index.jsp">SignOut</a></li>
 </ul>
 </nav>
 

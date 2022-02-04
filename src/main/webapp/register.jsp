@@ -78,7 +78,7 @@ left: -500px;
                 <input type="password" name="UserPassword" id="password" placeholder="********" style="position: absolute;left: 130px;" required ><br><br>
 
           <center><button type="submit" id="regis">Click to Register</button></center><br><br>
-      <p style="color: white;"> Already registered user?</p> <button><a id="reg" href= "Login.jsp">Login</button>
+      <p style="color: white;"> Already registered user?</p> <button><a id="reg" href= "index.jsp">Login</button>
           
     </fieldset>
     </form>
