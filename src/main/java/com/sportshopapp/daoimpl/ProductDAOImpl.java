@@ -42,10 +42,10 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public void delete() throws ClassNotFoundException, SQLException {
 	char check;
-	System.out.println("Do You Want delete Product \n Y /N");
+	
 	check = sc.nextLine().charAt(0);
 	if (check == 'y' || check == 'Y') {
-	System.out.println("Enter the Product id");
+	
 	int prodId = Integer.parseInt(sc.nextLine());
 
 	Connection con= ConnectionUtil.getDbConnection();
@@ -56,7 +56,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	stmt.setInt(1, str.getProductId());
 	stmt.executeUpdate();
-	System.out.println("Product deleted");
+	
 	}
      
 	}
@@ -67,13 +67,13 @@ public class ProductDAOImpl implements ProductDAO {
 			Statement stmt = con.createStatement();
 			
 			List<Product> productList = new ArrayList<Product>();
-			String view = " SELECT * FROM product_items";
+			String view = " SELECT products_name, products_id, standard_cost, category, quantity, img FROM product_items";
 			ResultSet rs = stmt.executeQuery(view);
 			while (rs.next()) {
 				
 				Product product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5),rs.getString(6));
 				productList.add(product);
-				System.out.println(rs.getString(6));
+			
 			}
 			return productList;
 			
@@ -98,13 +98,14 @@ public class ProductDAOImpl implements ProductDAO {
 				return b;
 			}
 			else {
-				System.out.println("Product not updated, Something went wrong");
+				
 			}
 			return b;
 		}
 		public Product findProductById (int id) throws ClassNotFoundException, SQLException {
 			int productId = 0;
-			String query="select * from product_items where products_id= '" + id+ "'";
+		//	String query="select * from product_items where products_id= '" + id+ "'";
+			String query="select products_name, products_id, standard_cost, category, quantity, img from product_items where products_id= '" + id+ "'";
 			Connection con = ConnectionUtil.getDbConnection();
 			PreparedStatement pstm = con.prepareStatement(query);
 			Product product = null;
@@ -116,41 +117,31 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 		public Product cartProductById (int id) throws ClassNotFoundException, SQLException {
 			int productId = 0;
-			System.out.println("findProductById called");
-			String query="select * from product_items where products_id= '" + id+ "'";
-			System.out.println("1");
+			
+	//		String query="select * from product_items where products_id= '" + id+ "'";
+			String query="select products_name, products_id, standard_cost, category, quantity, img from product_items where products_id= '" + id+ "'";
 			Connection con = ConnectionUtil.getDbConnection();
-			System.out.println("2");
-
 			PreparedStatement pstm = con.prepareStatement(query);
-			System.out.println("3");
-
 			Product product = null;
-			System.out.println("4");
 
 			ResultSet rs = pstm.executeQuery();
 			if(rs.next()) {
-				System.out.println("5");
-
 				product = new Product(rs.getString(2),rs.getInt(3),rs.getDouble(6),rs.getString(4),rs.getInt(5));
-				System.out.println("8");
-
+				
 			}
-			System.out.println("5");
-
 			return product;
 			}
 
 		@Override
 		public void updateProducts(int updateProductId, String updateProductName, double updateStandardPrize,
 				String updateProductCategory, int updateProductQuantity) throws SQLException, ClassNotFoundException {
-			// TODO Auto-generated method stub
+		
 			
 		}
 
 		@Override
 		public boolean insert() throws ClassNotFoundException, SQLException {
-			// TODO Auto-generated method stub
+
 			return false;
 		}
 		public void updateProductQuantity(Product currentProduct, int qty) throws SQLException, ClassNotFoundException
@@ -167,7 +158,7 @@ public class ProductDAOImpl implements ProductDAO {
 				int res2=pst.executeUpdate();
 				if(res>0)
 				{
-				System.out.println("Order Placed Sucessfully");	
+				
 				}
 
 		

@@ -122,9 +122,9 @@ background-color: rgba(158, 202, 207,0.1);
 
 <li><a href="index.jsp">SignOut</a></li>
 <li><a href="cartserv">Cart</a></li>
-<li><a href="UserProfile">MyProfile</a></li>
-<li><a href= "MyOrder.jsp">MyOrders</a></li>
-<li><a href="UserView.jsp">Home</a></li>
+<li><a href="userProfile">MyProfile</a></li>
+<li><a href= "myOrder.jsp">MyOrders</a></li>
+<li><a href="userView.jsp">Home</a></li>
 
 </ul>
 
@@ -132,8 +132,8 @@ background-color: rgba(158, 202, 207,0.1);
 
 	
  
-  <a href="ChangePassword.jsp"><i class="fa fa-fw fa-user"></i> Change Password</a>
-  <a href="Addmoney.jsp"><i class="fa fa-fw fa-user"></i> Add money to wallet</a>
+  <a href="changePassword.jsp"><i class="fa fa-fw fa-user"></i> Change Password</a>
+  <a href="addMoney.jsp"><i class="fa fa-fw fa-user"></i> Add money to wallet</a>
 
 </div>
 

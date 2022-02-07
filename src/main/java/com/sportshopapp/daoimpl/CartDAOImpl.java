@@ -17,12 +17,7 @@ import com.sportshopapp.util.ConnectionUtil;
 public class CartDAOImpl implements CartDAO {
 	public void insertProduct (Cart cart) throws ClassNotFoundException, SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
-		System.out.println("cart qty"+cart.getQuantity());
-		System.out.println(cart.getProduct().getProductName());
-		System.out.println(cart.getStandardCost());
-		System.out.println(cart.getUser().getUserName());
-		System.out.println(cart.getProduct().getProductId());
-		System.out.println(cart.getTotalPrice());
+	
 		try {
 			String insertProduct = " insert into cart (user_name, products_id, product_name,standard_cost, quantity, total_prize ) values (?,?,?,?,?,?)";
 			PreparedStatement pstm;
@@ -36,7 +31,7 @@ public class CartDAOImpl implements CartDAO {
 				pstm.setDouble(6, cart.getTotalPrice());
 				
 				int result = pstm.executeUpdate();
-				System.out.println(result + "product added to cart");	
+					
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -44,7 +39,7 @@ public class CartDAOImpl implements CartDAO {
              catch (Exception e)
 		{
             	 e.getMessage();
-            	 System.out.println("Something went wrong");
+            	 
 		}
 	}
 	public int productexist(Cart cart) throws SQLException, ClassNotFoundException {
@@ -101,42 +96,21 @@ public class CartDAOImpl implements CartDAO {
 
 
 public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException {
-	
-
-	
-
 	String query= "select * from cart where user_name='"+currentUser.getUserName()+"'";
 	Connection con=ConnectionUtil.getDbConnection();
-
 	List<Cart> allCartItems=new ArrayList<Cart>();
-
-
 	Statement smts = null;
-	
-
 	ResultSet rs= null;
-
-
 	try {
-		
-
 		smts = con.createStatement();
 		rs=smts.executeQuery(query);
-		
-
 		ProductDAOImpl proDao=new ProductDAOImpl();
-	
 		int i=0;
 		while(rs.next()) {
-		
-			System.out.println(rs.getInt(3));
 			Product product=proDao.findProductById(rs.getInt(3));
 			Cart cart=new Cart(currentUser,product, rs.getInt(6),rs.getDouble(7));
-			System.out.println(rs.getDouble(6));
 			allCartItems.add(cart);
-	
-		
-			}
+	  }
 	} catch (SQLException e) {
 	
 		e.getMessage();

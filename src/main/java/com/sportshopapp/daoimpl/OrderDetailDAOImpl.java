@@ -14,19 +14,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	public void orders(OderDetails order ,UserReg currentUser) throws ClassNotFoundException, SQLException {
 		String orderQuery = "insert into order_detail (user_name,products_id, price) values(?,?,?)";
 		Connection con =ConnectionUtil.getDbConnection();
-		System.out.println("order name"+order.getUser().getUserName());
-		System.out.println("order pId"+order.getProducts().getProductId());
-		System.out.println ("order price"+order.getPrice());
+		
 		try {
 			PreparedStatement pstm = con.prepareStatement(orderQuery);
-			//System.out.println(totalPrice);
 			pstm.setString(1, order.getUser().getUserName());
 			pstm.setInt(2, order.getProducts().getProductId());
 			pstm.setDouble(3, order.getPrice());
-			System.out.println("insert");
 			int i=pstm.executeUpdate();
-			System.out.println(i+"row insertrd");
-			//pstm.executeUpdate("commit");
 		}catch(SQLException e) {
 			e.getMessage();
 		}
@@ -45,18 +39,16 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	{
 
 	status=rs.getString(1).toLowerCase();
-	System.out.println(status);
 	if(!status.equals("canceled"))
 	{
 	return true;
-
 	}
 
 	}
 	}
 	catch(Exception e)
 	{
-	System.out.println(e.getStackTrace());
+	
 	}
 	return false;
 	}
@@ -99,7 +91,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
     	}
 	@Override
 	public void orders(int userId, double totalPrice) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+
 		
 	}
     	

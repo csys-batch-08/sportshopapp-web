@@ -32,32 +32,26 @@ public class UserDAOImpl implements UserDaoDAO{
 		stmt.setString(5, reg.getEmail());
 		stmt.setLong(6, reg.getPhone());
 		stmt.setString(7, reg.getPassword());
-		stmt.executeUpdate();
-		
+		stmt.executeUpdate();		
 		PreparedStatement com= con.prepareStatement(commit);
 		com.execute();
-		
-		System.out.println("Register successfull");
 	}
-	//String username ;
+	
 	public UserReg login( String userName, String password) throws ClassNotFoundException, SQLException {
 		
-		String query = "select * from  customers_detail where user_name = '"+userName+"' and password='"+password +"'" ;
-//		String query = "select user_name from customers_detail where user_name= ? and password= ? ";
+		String query = "select user_name, address, first_name, last_name, phone, password,email, my_wallet from  customers_detail where user_name = '"+userName+"' and password='"+password +"'" ;
+
 		Connection con = ConnectionUtil.getDbConnection();
 		ConnectionUtil conn = new ConnectionUtil();
 		PreparedStatement pstm = con.prepareStatement(query);
 		ResultSet rs = pstm.executeQuery(query);
 		UserReg user = null;
-	
-		
-//		int i = -1;
 		if (rs.next()) {
 			user =new  UserReg ();
         return user;
 		} 
 		else {
-			System.out.println("Incorrect user credential");
+			
 			
 		}
 	return null;
@@ -68,7 +62,7 @@ public class UserDAOImpl implements UserDaoDAO{
 		Statement stmt = con.createStatement();
 		
 		List<UserReg> userList = new ArrayList<UserReg>();
-		String view = " SELECT * FROM customers_detail";
+		String view = " SELECT user_name, address, first_name, last_name, phone, password,email, my_wallet FROM customers_detail";
 		ResultSet rs = stmt.executeQuery(view);
 		while (rs.next()) {
 			
@@ -82,7 +76,7 @@ public class UserDAOImpl implements UserDaoDAO{
 		Connection con = ConnectionUtil.getDbConnection();
 		Statement stmt = con.createStatement();
 		UserReg users =new UserReg();
-		String view = " SELECT * FROM customers_detail where user_name='"+username+"'";
+		String view = " SELECT user_name, address, first_name, last_name, phone, password,email, my_wallet FROM customers_detail where user_name='"+username+"'";
 		ResultSet rs = stmt.executeQuery(view);
 		while (rs.next()) {
 			
@@ -96,11 +90,10 @@ public class UserDAOImpl implements UserDaoDAO{
 		Connection con = ConnectionUtil.getDbConnection();
 		String query = "update  customers_detail set password = ? where user_name=?";
 		PreparedStatement stmt = con.prepareStatement(query);
-		// System.out.println(str3.getCustomerid());
 		stmt.setString(1, customer.getPassword());
 		stmt.setString(2, customer.getUserName());
 		stmt.executeUpdate();
-		System.out.println("password update successful ");
+
 		return true;
 	}
 	
@@ -114,7 +107,7 @@ public class UserDAOImpl implements UserDaoDAO{
 			int result = ps.executeUpdate();
 			ps.executeUpdate("commit");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -138,7 +131,6 @@ public int addMoneyInWallet(double walletAmount,UserReg currentUser) throws Clas
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 		}
 		
 	return result;
@@ -146,19 +138,16 @@ public int addMoneyInWallet(double walletAmount,UserReg currentUser) throws Clas
 
 		
 	public void addMoneyWallet (OderDetails order) throws ClassNotFoundException, SQLException   {
-	//	System.out.println("add money in wallet");
-	//	double addMoney = currentUser.getMyWallet()+walletAmount;
 		String walletQuery= "update customers_detail set my_wallet ="+ order.getUser().getMyWallet() + "where user_name ='" + order.getUser().getUserName()+"'";
 		Connection con = ConnectionUtil.getDbConnection();
 	
 		PreparedStatement pstm = con.prepareStatement(walletQuery);
 		pstm.executeUpdate();
-	//	System.out.println("Money added to the wallet");
+
 	}
 	@Override
 	public void addMoneyWallet(double walletAmount, UserReg currentUser) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+
 	}
 	
 }

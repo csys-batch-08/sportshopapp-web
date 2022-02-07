@@ -17,6 +17,7 @@ import com.sportshopapp.model.UserReg;
 @WebServlet("/loginweb2")
 public class LoginServlet extends HttpServlet {
 	public void service ( HttpServletRequest req, HttpServletResponse res) throws IOException{
+		System.out.println("welcome");
 		String userName=req.getParameter("userName");
 		String password=req.getParameter("password");
 		AdminDAOImpl adminDao = new AdminDAOImpl ();
@@ -26,22 +27,14 @@ public class LoginServlet extends HttpServlet {
 		UserDAOImpl userDao=new UserDAOImpl();
 		UserReg customer = new UserReg();
 		boolean b1 = false;
-	
+	   
 
 		PrintWriter write=res.getWriter();
 		if (userName.contains("adminolympus")) {
 		do {
-		Admin admin = null;
-		try {
-			admin = adminDao.adlogin(userName, password);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-	
+		Admin admin ;
+		admin = adminDao.adlogin(userName, password);
+	System.out.println(adminDao.adlogin(userName, password));
 		if (admin == null) {
 			write.print("Please enter valid username");
 		b1 = true;

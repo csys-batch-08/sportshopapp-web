@@ -10,20 +10,34 @@ import com.sportshopapp.model.Admin;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class AdminDAOImpl implements AdminDAO{
-	public  Admin adlogin (String userName, String password ) throws ClassNotFoundException, SQLException
+	public  Admin adlogin (String userName, String password ) 
 	{	
 		
-		Connection con = ConnectionUtil.getDbConnection();
-		String query = "select * from admin where user_name='"+userName+"' and password='"+password+"'";
-		PreparedStatement stmt = con.prepareStatement(query);
+		Connection con = null;
+        PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
-		ResultSet rs = stmt.executeQuery();
-		if(rs.next()) {
-			Admin adminLogin = new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));
-			System.out.println(rs.getString(1));
+		try {
 			
-   		return adminLogin;
+		
+		String query = "select user_name,password,email,mobile from admin where user_name='"+userName+"' and password='"+password+"'";
+		
+		con = ConnectionUtil.getDbConnection();
+	   	stmt = con.prepareStatement(query);
+		rs = stmt.executeQuery();
+			if(rs.next()) {
+				Admin	adminLogin = new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));
+				System.out.println(rs.getString(1));
+				return adminLogin;	
+			
+			}
+		} catch (Exception e) {
+
+		}
+		finally {
+			ConnectionUtil.close(con, stmt, rs);		
 		}
 		return null;
 	}
+		
 }

@@ -28,19 +28,20 @@ list-style: none;
 display: inline-block;
 }
 #product{
-padding-left: 50px;
+padding-left: 350px;
+padding-bottom: -150px;
 }
 #category{
-padding-left: 50px;
+padding-left: 350px;
 }
 #btn{
-padding-left: 50px;
+padding-left: 350px;
 }
 #detail{
-padding-left: 50px;
+padding-left: 350px;
 }
 #details{
-padding-left: 50px;
+padding-left: 350px;
 }
 .list li {
 float: right;
@@ -352,24 +353,24 @@ font-size: 5px;
 <br><br><br>
 <div class="slideshow-container">
 
-    <!-- Full-width images with number and caption text -->
+    
 
     
     <div class="mySlides fade" style="display: none;">
       <div class="numbertext"></div>
-      <img src="Assests/5.jpg" style="width:100%;height: 350px;">
+      <img src="Assests/5.jpg" style="width:100%; height: 370px;">
       <div class="text"></div>
     </div>
   
     <div class="mySlides fade" style="display: none;">
       <div class="numbertext"></div>
-      <img src="Assests/2.png" style="width:100%" height: 350px;>
+      <img src="Assests/2.png" style="width:100%; height: 350px; ">
       <div class="text"></div>
     </div>
     
     <div class="mySlides fade" style="display: none;">
       <div class="numbertext"></div>
-      <img src="Assests/3.jpg" style="width:100%" height: 350px;>
+      <img src="Assests/3.jpg" style="width:100% height: 350px;">
       <div class="text"></div>
     </div>
     
@@ -399,7 +400,7 @@ font-size: 5px;
 <c:forEach items="${productList}" var="current">
 				 <c:set var="i" value="${i+1 }"/>
 
-<img alt="" src="Assests/<c:out value="${current.getImg()}" />" width="120px" height="120px" style="right: 30px">
+<img alt="" src="Assests/<c:out value="${current.getImg()}" />" width="170px" height="170px" style="position:relative; left:80px;top: 175px;" >
 
 <div id="product" >
 
@@ -417,13 +418,13 @@ font-size: 5px;
 <div id="details" >
 
 <h3 class="font3">
-Price :<c:out value="${current.getStrandardCost()+  rs}" /></h3>
+Price : Rs &nbsp;<c:out value="${current.getStrandardCost()+  rs}" /></h3>
 <h3 class="font3">
 Product Id:<c:out value="${current.getProductId()}" /></h3>	
 </div>
 <div id="btn">
 <button>
-<a  href="BuyServlet?pid=<c:out value="${current.getProductId()}" />">Buy Now</a>
+<a href="BuyServlet?pid=<c:out value="${current.getProductId()}" />">Buy Now</a>
 </button>
 
 </div>
@@ -447,9 +448,8 @@ function showSlides() {
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1} 
   slides[slideIndex-1].style.display = "block"; 
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
+  setTimeout(showSlides, 2000);
 }
 
 </script>
-</html>
 </html>

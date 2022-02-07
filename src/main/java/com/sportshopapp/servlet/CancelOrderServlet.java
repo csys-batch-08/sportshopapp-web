@@ -30,7 +30,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 		session.setAttribute("cancelorder", true);
 		resp.sendRedirect("myOrder.jsp");
 	} catch (Exception e) {
-		System.out.println(e);
+		
 		e.printStackTrace();
 	}
 }
