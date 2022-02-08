@@ -22,45 +22,41 @@ import com.sportshopapp.model.UserReg;
 @WebServlet("/Myorders")
 public class MyorderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MyorderServlet() {
-        super();
-       
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
+	public MyorderServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
 		OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
-		OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
-		
+		OderItemsDAOImpl myOrder = new OderItemsDAOImpl();
 		try {
 			List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
 			System.out.println(myOrderList.get(0).getOrderId() + "5");
 			session.setAttribute("myOrderList", myOrderList);
 		} catch (ClassNotFoundException e) {
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
-		OderItemsDAOImpl cancelOrder= new OderItemsDAOImpl();
-		
-		OrderDetailDAOImpl orderDao=new OrderDetailDAOImpl();
-		
+		OderItemsDAOImpl cancelOrder = new OderItemsDAOImpl();
+		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
 		response.sendRedirect("myOrder.jsp");
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -213,9 +213,9 @@ left: -135px;
 top: -13px;
 width: 550px;
 }  */
-#details {
+/* #details {
 	position: absolute;
-}
+} */
 
 #tag {
 	position: absolute;
@@ -225,7 +225,7 @@ width: 550px;
 #names {
 	position: relative;
 	left: -150px;
-	top: -7894px;
+	top: -8394px;
 	width: 550px;
 }
 </style>
@@ -234,48 +234,29 @@ width: 550px;
 	<c:if test="${cancelorder}">
 		<h1>Order cancelled Successfully!!!</h1>
 	</c:if>
-
 	<div id="container">
-
 		<div class="nav">
-
 			<nav class="list">
 				<ul>
-
 					<li><a href="index.jsp">SignOut</a></li>
 					<li><a href="cartserv">Cart</a></li>
 					<li><a href="UserProfile">MyProfile</a></li>
 					<li><a href="myOrder.jsp">MyOrders</a></li>
 					<li><a href="userView.jsp">Home</a></li>
-
-
 				</ul>
-
-
 			</nav>
 		</div>
-
-
-		<%-- <h2 id="userName">welcome <%=currentUser.getUserName()%></h2> --%>
 	</div>
-
-
 	<c:forEach items="${myOrderList}" var="myOrder">
-
 		<c:set var="i" value="${i+1 }" />
-
-        <img id="jpg" alt=""
-						src="Assests/<c:out value="${myOrder.getImg()}" />" width="170px"
-						height="170px" style="position: relative; left: 80px; top: 175px;">
-
+		
+			
 		<div id="product">
 
 			<h3>
 				<c:out value="${myOrder.getUserName()}" />
 			</h3>
-
 			<div id="details">
-
 				<h3>
 					Price :Rs &nbsp;
 					<c:out value="${myOrder.getUnitPrice()}" />
@@ -290,11 +271,8 @@ width: 550px;
 					Total Amount :
 					<c:out value="${myOrder.getTotalPrice()}" />
 				</h3>
-
-
 			</div>
-			<c:if
-				test="${orderDao.checkStatus(myOrder.getOrderId())}">
+			<c:if test="${orderDao.checkStatus(myOrder.getOrderId())}">
 				<div id="btn">
 					<button id="idButton">
 						<a id="cancel" name="cancelOrderPId"
@@ -302,23 +280,14 @@ width: 550px;
 							Order</a>
 					</button>
 			</c:if>
-
-
 		</div>
-
-
-
 		<br>
 		<br>
-
-
-
 		</div>
 		<br>
 	</c:forEach>
 	</div>
 	<div id="footer"></div>
-
 	<img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>

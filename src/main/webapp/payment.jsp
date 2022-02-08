@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Payment</title>
-<link id ="tab" rel = "icon" type = "" href = "Assests/tab.png">
+<link id="tab" rel="icon" type="" href="Assests/tab.png">
 </head>
 <style>
 * {
@@ -14,6 +14,7 @@
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 .list ul li {
 	list-style: none;
 	display: inline-block;
@@ -75,16 +76,17 @@ body {
 	top: 150px;
 	left: 210px;
 }
-.buyProduct{
-background-color: rgba(158, 202, 207,0.5);
-width: 900px;
-height: 300px;
-border-radius: 5px;
+
+.buyProduct {
+	background-color: rgba(158, 202, 207, 0.5);
+	width: 900px;
+	height: 300px;
+	border-radius: 5px;
 }
 
 .buyProduct img {
-	position:relative;
-	left:-30px;
+	position: relative;
+	left: -30px;
 	height: 220px;
 	width: 220px;
 }
@@ -110,53 +112,54 @@ border-radius: 5px;
 	left: 10px;
 }
 
-.buyProduct td p{
-padding-top: 20px;
-position: relative;
-left:-100px;
-}
-#addToCart a{
-background-color: green;
-text-decoration: none;
-}
-#buyNow a{
-background-color: green;
-color: white;
-text-decoration: none;
-}
-#addToCart:hover{
-cursor: pointer;
-}
-#buyNow:hover{
-cursor: pointer;
-}
-.buyProduct #productDetails{
-position: relative;
-left: 80px;
-}
-#qty #qtyBox p a{
-padding: 10px;
-background-color: green;
+.buyProduct td p {
+	padding-top: 20px;
+	position: relative;
+	left: -100px;
 }
 
+#addToCart a {
+	background-color: green;
+	text-decoration: none;
+}
+
+#buyNow a {
+	background-color: green;
+	color: white;
+	text-decoration: none;
+}
+
+#addToCart:hover {
+	cursor: pointer;
+}
+
+#buyNow:hover {
+	cursor: pointer;
+}
+
+.buyProduct #productDetails {
+	position: relative;
+	left: 80px;
+}
+
+#qty #qtyBox p a {
+	padding: 10px;
+	background-color: green;
+}
 </style>
 <body>
-<div class="nav">
+	<div class="nav">
 
 		<nav class="list">
-			<ul>		
-					<li><a href="index.jsp">SignOut</a></li>
-					<li><a href="cartserv">Cart</a></li>
-					<li><a href="UserProfile">MyProfile</a></li>
-					<li><a href="MyOrder.jsp?orderId=0">MyOrders</a></li>
-
+			<ul>
+				<li><a href="index.jsp">SignOut</a></li>
+				<li><a href="cartserv">Cart</a></li>
+				<li><a href="UserProfile">MyProfile</a></li>
+				<li><a href="MyOrder.jsp?orderId=0">MyOrders</a></li>
 			</ul>
 			<div class="logo">
-				
 		</nav>
-				<p>Payment Sucessfully Completed </p>
-				<a href="UserView.jsp">BAck To Home</a>
-				
-
+		<p>Payment Sucessfully Completed</p>
+		<a href="UserView.jsp">BAck To Home</a>
 </body>
 </html>

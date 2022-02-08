@@ -257,7 +257,6 @@ body {
 #dis {
 	background: #ebebe0;
 	width: -670px;
-	
 }
 
 #btn {
@@ -370,32 +369,19 @@ to {
 <body>
 
 	<div id="container">
-
 		<div class="nav">
-
 			<nav class="list">
 				<ul>
-
 					<li><a href="index.jsp">SignOut</a></li>
 					<li><a href="cartserv">Cart</a></li>
 					<li><a href="UserProfile">MyProfile</a></li>
 					<li><a href="Myorders?orderId=0">MyOrders</a></li>
 					<img id="name" alt="webName" src="Assests/name.png">
 				</ul>
-				<br>
-				<br>
-				<br>
-				<br>
-
+				<br> <br> <br> 
 				<div id="serachbar"></div>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br>
 				<div class="slideshow-container">
-
-
-
-
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
 						<img src="Assests/5.jpg" style="width: 100%; height: 370px;">
@@ -420,54 +406,41 @@ to {
 						<div class="text"></div>
 					</div>
 
-
-
-					<!-- Next and previous buttons -->
 					<a class="prev" onclick="plusSlides(-1)"></a> <a class="next"
 						onclick="plusSlides(1)"></a>
 				</div>
 				<br>
-
-				<!-- The dots/circles -->
 				<div style="text-align: center">
 					<span class="dot" onclick="currentSlide(1)"></span> <span
 						class="dot" onclick="currentSlide(2)"></span> <span class="dot"
 						onclick="currentSlide(3)"></span> <span class="dot"
 						onclick="currentSlide(4)"></span>
 				</div>
-
-
 				<c:forEach items="${productList}" var="current">
 					<c:set var="i" value="${i+1 }" />
-
 					<img id="jpg" alt=""
 						src="Assests/<c:out value="${current.getImg()}" />" width="170px"
 						height="170px" style="position: relative; left: 80px; top: 175px;">
 					<div id="dis">
 						<div id="product">
-
 							<h3 class="font">
 								Product :
 								<c:out value="${current.getProductName()}" />
 							</h3>
 						</div>
-
 						<div id="category">
-
 							<h3 class="font1">
 								Category :
 								<c:out value="${current.getCategory()}" />
 							</h3>
 						</div>
 						<div id="details">
-
 							<h3 class="font2">
 								Available quantity :
 								<c:out value="${current.getQuantity()}" />
 							</h3>
 						</div>
 						<div id="details">
-
 							<h3 class="font3">
 								Price : Rs &nbsp;
 								<c:out value="${current.getStrandardCost()+  rs}" />
@@ -485,9 +458,6 @@ to {
 							</button>
 						</div>
 					</div>
-
-					<br>
-					<br>
 				</c:forEach>
 </body>
 <script>

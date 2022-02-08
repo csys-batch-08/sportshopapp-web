@@ -19,107 +19,78 @@ import com.sportshopapp.model.Product;
 import com.sportshopapp.model.UserReg;
 
 @WebServlet("/prod1")
-public class BuyProductServlet extends HttpServlet{
+public class BuyProductServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-		
-		
 		HttpSession session = req.getSession();
 		UserDAOImpl user = new UserDAOImpl();
-		
 		Product product = new Product();
 		ProductDAOImpl productDao = new ProductDAOImpl();
-		
 		OderDetails order = new OderDetails();
 		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
-			
-	
 		OrderItems orderItems = new OrderItems();
 		OderItemsDAOImpl orderItemsDaoImpl = new OderItemsDAOImpl();
-		
-		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-		Product currentproduct = (Product)session.getAttribute("currentproduct");
-		System.out.println(currentproduct.getProductName());
-		System.out.println(currentproduct.getProductId() + "getprodid");
-		
+		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
+		Product currentproduct = (Product) session.getAttribute("currentproduct");
 		int qty = Integer.parseInt(req.getParameter("quantity"));
-		double price= Double.parseDouble(req.getParameter("totalPrice"));
-		
+		double price = Double.parseDouble(req.getParameter("totalPrice"));
+		if (currentUser.getMyWallet() >= price) {
+			if (currentproduct.getQuantity() >= qty) {
+				try {
+					int updateQty = currentproduct.getQuantity() - qty;
+					productDao.updateProductQuantity(currentproduct, updateQty);
+				} catch (ClassNotFoundException e1) {
 
-		
-		if(currentUser.getMyWallet()>=price)
-		{   
-			
-			
-			if(currentproduct.getQuantity()>=qty) {
-				
-		    
-		  
-		    
-		    try {
-		    	int updateQty = currentproduct.getQuantity() - qty;
-		    	productDao.updateProductQuantity(currentproduct, updateQty);
-		    	System.out.println(currentproduct.getQuantity());
-		    	System.out.println(qty);
-		    	System.out.println(currentproduct.getQuantity() - qty);
-			} catch (ClassNotFoundException e1) {
-		
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-	
-				e1.printStackTrace();
-			}
-		    order.setUser(currentUser);
-		    orderItems.setUser(currentUser);
-		    order.setPrice(price);
-		    order.setProducts(currentproduct);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+				order.setUser(currentUser);
+				orderItems.setUser(currentUser);
+				order.setPrice(price);
+				order.setProducts(currentproduct);
 //		    order.getUser().setPoints(order.getUser().getPoints() + (currentproduct.getPoints() * qty));
-		    order.getUser().setMyWallet(order.getUser().getMyWallet() - price);
-			try {
-				orderDao.orders(order,currentUser);
-			} catch (ClassNotFoundException e1) {
-	
-				e1.printStackTrace();
-			} catch (SQLException e1) {
+				order.getUser().setMyWallet(order.getUser().getMyWallet() - price);
+				try {
+					orderDao.orders(order, currentUser);
+				} catch (ClassNotFoundException e1) {
 
-				e1.printStackTrace();
-			}
+					e1.printStackTrace();
+				} catch (SQLException e1) {
 
-		   
-		    try {
-				user.updateWalletMoney(order);
+					e1.printStackTrace();
+				}
 
-			} catch (ClassNotFoundException e3) {
+				try {
+					user.updateWalletMoney(order);
 
-				e3.printStackTrace();
-			} catch (SQLException e3) {
+				} catch (ClassNotFoundException e3) {
 
-				e3.printStackTrace();
-			}
+					e3.printStackTrace();
+				} catch (SQLException e3) {
 
-			
-		    int orderId = 0;
-			try {
-				System.out.println(orderDao.getByOrderId() +"orderdao");
-				orderId = orderDao.getByOrderId();
-			} catch (ClassNotFoundException e3) {
+					e3.printStackTrace();
+				}
 
-				e3.printStackTrace();
-			} catch (SQLException e3) {
+				int orderId = 0;
+				try {
+					orderId = orderDao.getByOrderId();
+				} catch (ClassNotFoundException e3) {
 
-				e3.printStackTrace();
-			}
-			order.setOrderId(orderId);
-			orderItems.setOderModel(order);
-			orderItems.setProduct(currentproduct);
-			orderItems.setOrderId(orderId);
-			orderItems.getProduct().setProductId(currentproduct.getProductId());
-			orderItems.setQuantity(qty);
-			orderItems.setUnitPrice(currentproduct.getStrandardCost());
-			orderItems.setTotalPrice(price);
-			
-			
-			
+					e3.printStackTrace();
+				} catch (SQLException e3) {
+
+					e3.printStackTrace();
+				}
+				order.setOrderId(orderId);
+				orderItems.setOderModel(order);
+				orderItems.setProduct(currentproduct);
+				orderItems.setOrderId(orderId);
+				orderItems.getProduct().setProductId(currentproduct.getProductId());
+				orderItems.setQuantity(qty);
+				orderItems.setUnitPrice(currentproduct.getStrandardCost());
+				orderItems.setTotalPrice(price);
+
 				try {
 					orderItemsDaoImpl.insertOrders(orderItems);
 				} catch (ClassNotFoundException e) {
@@ -129,27 +100,15 @@ public class BuyProductServlet extends HttpServlet{
 
 					e.printStackTrace();
 				}
-			
 
-			res.getWriter().println("order placed!!");
+				res.getWriter().println("order placed!!");
 			}
-
-			
-			
-			res.sendRedirect("cart.jsp");
-
+			res.sendRedirect("userView.jsp");
 		}
-			
-			else {
-				res.sendRedirect("userView.jsp");
-				System.out.println("Current  product is out of stock");
-			}
-			
-		
 
+		else {
+			res.sendRedirect("userView.jsp");
+		}
 
-	
+	}
 }
-}	
-	
-

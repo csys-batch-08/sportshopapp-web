@@ -273,7 +273,7 @@ src=""
 alt="logo"> -->
 			</nav>
 		</div>
-		
+
 
 	</div>
 
@@ -292,15 +292,11 @@ alt="logo"> -->
 				<h3 name="unitPrice">
 					Price : Rs &nbsp;
 					<c:out value="${myOrder.getProduct().getStrandardCost()}" />
-
 				</h3>
-
-
 				<h3 name="cartQuantity">
 					Total Quantity:
 					<c:out value="${myOrder.getQuantity()}" />
 				</h3>
-
 				<h3 name="totalPrice">
 					Total Amount :
 					<c:out value="${myOrder.getTotalPrice()}" />
@@ -311,7 +307,6 @@ alt="logo"> -->
 					<a id="BuyNow"
 						href="cartorder?CartproductId=<c:out value="${myOrder.getProduct().getProductId()}" />&unitPrice=<c:out value="${myOrder.getStandardCost()}" />&cartQuantity=<c:out value="${myOrder.getQuantity()}" />&totalPrice=<c:out value="${myOrder.getTotalPrice()}" />">Buy
 						Now</a>
-
 				</button id="idButton">
 			</div>
 
