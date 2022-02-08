@@ -110,7 +110,8 @@ public class ProductDAOImpl implements ProductDAO {
 			PreparedStatement pstm = con.prepareStatement(query);
 			Product product = null;
 			ResultSet rs = pstm.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
+				System.out.println(rs.getDouble(3) + "1");
 				product = new Product(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 			}
 			return product;

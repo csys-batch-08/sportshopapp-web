@@ -42,6 +42,7 @@ public class MyorderServlet extends HttpServlet {
 		
 		try {
 			List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
+			System.out.println(myOrderList.get(0).getOrderId() + "5");
 			session.setAttribute("myOrderList", myOrderList);
 		} catch (ClassNotFoundException e) {
 

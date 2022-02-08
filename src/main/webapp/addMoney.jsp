@@ -119,7 +119,7 @@ height: 120pc;
 #name{
 position: relative;
 left: -135px;
-top: -250px;
+top: -160px;
 width: 550px;
 }
 
@@ -138,12 +138,13 @@ width: 550px;
 <li><a href= "MyOrder.jsp">MyOrders</a></li>
 <li><a href="UserView.jsp">Home</a></li>
 
-</ul>
+</ul></nav>
 <form class="text-block" action="addMoney"  >
         <label id="mon" for="money">Enter amount</label>
         <input class="table" 	type="text" name="wallet" min="100" pattern = "[1-9][0-9]+"required>   &nbsp; &nbsp;
     	<button >Add</button>
-   
+</form>
+</div>   
 </div>
 <img id="name" alt="webName" src="Assests/name.png">
 </body>

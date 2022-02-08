@@ -21,21 +21,20 @@ public class CartServlet  extends HttpServlet {
 	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
 		try {
 		HttpSession session = req.getSession();
-		System.out.println(req.getParameter("cartTotalPrice"));
 	
 		
 		double totalprice=Double.parseDouble(req.getParameter("cartTotalPrice"));
 		int quantity = Integer.parseInt(req.getParameter("cartQuanity"));
+	//	double price=Double.parseDouble(req.getParameter("cartPrice"));
+	
      	UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
 		Product currentproduct = (Product) session.getAttribute("currentproduct");
 		CartDAOImpl cartDao = new CartDAOImpl();
 		Cart cart = new Cart();
-		System.out.println("currentUser"+currentUser);
 		cart.setUser(currentUser);
-		System.out.println("currentProduct"+currentproduct);
 		cart.setProduct(currentproduct);
 		cart.setQuantity(quantity);
-
+    //    cart.setStandardCost(price);
 		cart.setTotalPrice(totalprice);
 		int prodquant ;
 		
@@ -70,6 +69,8 @@ public class CartServlet  extends HttpServlet {
 	
 			try {
 				List<Cart> cartItems = cartDao.viewCart(currentUser);
+				
+				System.out.println(cartItems.get(0).getProduct().getStrandardCost());
 				session.setAttribute("cartItems", cartItems);
 				res.sendRedirect("cart.jsp");
 			} catch (ClassNotFoundException e) {

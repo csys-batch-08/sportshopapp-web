@@ -107,8 +107,10 @@ public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, S
 		ProductDAOImpl proDao=new ProductDAOImpl();
 		int i=0;
 		while(rs.next()) {
+		
 			Product product=proDao.findProductById(rs.getInt(3));
 			Cart cart=new Cart(currentUser,product, rs.getInt(6),rs.getDouble(7));
+			System.out.println(product.getStrandardCost() + "2");
 			allCartItems.add(cart);
 	  }
 	} catch (SQLException e) {

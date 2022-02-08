@@ -27,31 +27,31 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	}
 	
 
-	public boolean checkStatus(int orderId)
-	{
-	try {
-	String status;
-	String qwery="select status from order_detail where order_id='"+orderId+"'";
-	Connection con = ConnectionUtil.getDbConnection();
-	Statement stmt = con.createStatement();
-	ResultSet rs = stmt.executeQuery(qwery);
-	if(rs.next())
-	{
-
-	status=rs.getString(1).toLowerCase();
-	if(!status.equals("canceled"))
-	{
-	return true;
-	}
-
-	}
-	}
-	catch(Exception e)
-	{
-	
-	}
-	return false;
-	}
+//	public boolean checkStatus(int orderId)
+//	{
+//	try {
+//	String status;
+//	String qwery="select status from order_detail where order_id='"+orderId+"'";
+//	Connection con = ConnectionUtil.getDbConnection();
+//	Statement stmt = con.createStatement();
+//	ResultSet rs = stmt.executeQuery(qwery);
+//	if(rs.next())
+//	{
+//
+//	status=rs.getString(1).toLowerCase();
+//	if(!status.equals("canceled"))
+//	{
+//	return true;
+//	}
+//
+//	}
+//	}
+//	catch(Exception e)
+//	{
+//	
+//	}
+//	return false;
+//	}
 	public void deleteProduct(int orderId) throws SQLException, ClassNotFoundException
 	{
 		String qwery="update order_detail set status='canceled' where order_id =?";
@@ -89,6 +89,33 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
     			e.getMessage();
     		}return orderId;
     	}
+    public boolean checkStatus(int orderId) throws SQLException
+	{	
+		String status;
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		try {
+		String qwery="select status from order_detail where order_id= ?";
+		con = ConnectionUtil.getDbConnection();
+		pstmt=con.prepareStatement(qwery);
+		pstmt.setInt(1, orderId);
+		rs = pstmt.executeQuery();
+		if(rs.next())
+		{
+			status=rs.getString("status").toLowerCase();
+			if(!status.equals("canceled"))
+			{
+				return true;
+			}
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
 	@Override
 	public void orders(int userId, double totalPrice) throws ClassNotFoundException, SQLException {
 

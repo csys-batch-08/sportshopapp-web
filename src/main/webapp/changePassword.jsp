@@ -79,15 +79,45 @@ background-color: orange;
 border-radius: 5px;
 cursor: pointer;
 }
+.text-block {
+  position: absolute;
+  bottom: 250px;
+  right: 500px;
+  background-color:#ebebe0;
+  border-radius: 15px;
+  color: black;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#name{
+position: relative;
+left: -135px;
+top: -160px;
+width: 550px;
+}
 </style>
 <body>
 
-<form action="ChangePassword">
+<nav class="list">
+<ul>
+
+<li><a href="index.jsp">SignOut</a></li>
+<li><a href="cartserv">Cart</a></li>
+<li><a href="UserProfile">MyProfile</a></li>
+<li><a href= "MyOrder.jsp">MyOrders</a></li>
+<li><a href="UserView.jsp">Home</a></li>
+
+</ul></nav>
+
+<form class="text-block" action="ChangePassword">
         <label for="userName">Enter User name</label>
         <input type="text" name="uname" >   <br><br>
         <label for="pword">New Password</label>
         <input type="password" name="pword" required min="8"> <br> <br>
         <input type="submit">
     </form>
+ <img id="name" alt="webName" src="Assests/name.png">
 </body>
 </html>
