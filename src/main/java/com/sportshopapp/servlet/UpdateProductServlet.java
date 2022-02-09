@@ -33,15 +33,7 @@ public class UpdateProductServlet extends HttpServlet{
 		PrintWriter out=res.getWriter();
 		
 		boolean flag = false;
-		try {
-			flag = obj.updateProducts(prod);
-		} catch (ClassNotFoundException e) {
-			
-			e.printStackTrace();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		flag = obj.updateProducts(prod);
 		if(flag)
 		{
 		

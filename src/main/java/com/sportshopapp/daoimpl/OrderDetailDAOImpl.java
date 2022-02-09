@@ -11,85 +11,69 @@ import com.sportshopapp.model.UserReg;
 import com.sportshopapp.util.ConnectionUtil;
 
 public class OrderDetailDAOImpl implements OrderDetailDAO{
-	public void orders(OderDetails order ,UserReg currentUser) throws ClassNotFoundException, SQLException {
-		String orderQuery = "insert into order_detail (user_name,products_id, price) values(?,?,?)";
-		Connection con =ConnectionUtil.getDbConnection();
-		
+	public void orders(OderDetails order ,UserReg currentUser) {
+		Connection con =null;
+		PreparedStatement pstm =null;
+		int i=0;
 		try {
-			PreparedStatement pstm = con.prepareStatement(orderQuery);
+		String orderQuery = "insert into order_detail (user_name,products_id, price) values(?,?,?)";
+	    	con =ConnectionUtil.getDbConnection();
+			pstm = con.prepareStatement(orderQuery);
 			pstm.setString(1, order.getUser().getUserName());
 			pstm.setInt(2, order.getProducts().getProductId());
 			pstm.setDouble(3, order.getPrice());
-			int i=pstm.executeUpdate();
-		}catch(SQLException e) {
-			e.getMessage();
+			i=pstm.executeUpdate();
+		}catch(Exception e) {
+		}finally {
+			ConnectionUtil.close(con, pstm);
 		}
 	}
 	
-
-//	public boolean checkStatus(int orderId)
-//	{
-//	try {
-//	String status;
-//	String qwery="select status from order_detail where order_id='"+orderId+"'";
-//	Connection con = ConnectionUtil.getDbConnection();
-//	Statement stmt = con.createStatement();
-//	ResultSet rs = stmt.executeQuery(qwery);
-//	if(rs.next())
-//	{
-//
-//	status=rs.getString(1).toLowerCase();
-//	if(!status.equals("canceled"))
-//	{
-//	return true;
-//	}
-//
-//	}
-//	}
-//	catch(Exception e)
-//	{
-//	
-//	}
-//	return false;
-//	}
-	public void deleteProduct(int orderId) throws SQLException, ClassNotFoundException
-	{
+	public void deleteProduct(int orderId){
+		Connection con =null;
+		PreparedStatement pst=null;
+		int res=0;
+		try {
 		String qwery="update order_detail set status='canceled' where order_id =?";
-		Connection con = ConnectionUtil.getDbConnection();
-		PreparedStatement pst=con.prepareStatement(qwery);
+		con = ConnectionUtil.getDbConnection();
+		pst=con.prepareStatement(qwery);
 		pst.setInt(1, orderId);
-		
-		int res=pst.executeUpdate();
+		res=pst.executeUpdate();
 		if(res>0)
-		{
-			System.out.println(res+"Product deleted");
-			
+		{	
 		}
 		else {
-			System.out.println("product not deleted");
 		}
 		con.close();
 		pst.close();
-		
+		}catch(Exception e) {
+		}finally {
+			ConnectionUtil.close(con, pst);
+		}
 	}
-    public int getByOrderId() throws ClassNotFoundException, SQLException
-    {
-    	String query = "select max(order_id) from order_detail";
-    	Connection con =ConnectionUtil.getDbConnection();
-    	OderDetails order = null;
-    	int orderId =0;
+    public int getByOrderId(){
+    //	Statement stms=null;
+    	PreparedStatement pstm=null;
+    	Connection con =null;
+    	ResultSet rs =null;
+    	int orderId =0;   
     	try {
-    		Statement stms = con.createStatement();
-    		ResultSet rs = stms.executeQuery(query);
+    	String query = "select max(order_id) from order_detail";
+    	    con =ConnectionUtil.getDbConnection();
+    //	    stms = con.createStatement();
+    	    pstm=con.prepareStatement(query);
+    		rs = pstm.executeQuery(query);
     		if(rs.next()) {
     			return orderId = rs.getInt(1);
     		}
+    	}catch(Exception e) {
+    	}finally {
+			ConnectionUtil.close(con, pstm, rs);
+			
+		}
+    		return orderId;
     	}
-    		catch (SQLException e) {
-    			e.getMessage();
-    		}return orderId;
-    	}
-    public boolean checkStatus(int orderId) throws SQLException
+    public boolean checkStatus(int orderId) 
 	{	
 		String status;
 		Connection con =null;
@@ -109,18 +93,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 				return true;
 			}
 		}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		}catch(Exception e) {
+		}finally {
+			ConnectionUtil.close(con, pstmt, rs);
 		}
 		return false;
 	}
-	@Override
-	public void orders(int userId, double totalPrice) throws ClassNotFoundException, SQLException {
-
-		
-	}
+    
     	
     }
 

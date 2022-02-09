@@ -6,5 +6,5 @@ import com.sportshopapp.model.Admin;
 
 public interface AdminDAO {
 
-	public  Admin adlogin (String userName, String password ) throws ClassNotFoundException, SQLException;
-}
+	public Admin adlogin(String userName, String password);
+	}

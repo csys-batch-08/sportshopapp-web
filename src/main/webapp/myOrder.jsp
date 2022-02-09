@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.sportshopapp.daoimpl.OderItemsDAOImpl"%>
+<%@page import="com.sportshopapp.daoimpl.OrderItemsDAOImpl"%>
 <%@page import="com.sportshopapp.daoimpl.OrderDetailDAOImpl"%>
 <%@page import="com.sportshopapp.model.OrderItems"%>
 <%@page import="com.sportshopapp.daoimpl.OrderDetailDAOImpl"%>
@@ -8,12 +8,12 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:useBean id="orderItem"
-	class="com.sportshopapp.daoimpl.OderItemsDAOImpl" />
+	class="com.sportshopapp.daoimpl.OrderItemsDAOImpl" />
 <jsp:useBean id="orderDao"
 	class="com.sportshopapp.daoimpl.OrderDetailDAOImpl" />
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>My orders</title>
@@ -216,7 +216,6 @@ width: 550px;
 /* #details {
 	position: absolute;
 } */
-
 #tag {
 	position: absolute;
 	height:
@@ -225,7 +224,7 @@ width: 550px;
 #names {
 	position: relative;
 	left: -150px;
-	top: -8394px;
+	top: -9200px;
 	width: 550px;
 }
 </style>
@@ -249,8 +248,8 @@ width: 550px;
 	</div>
 	<c:forEach items="${myOrderList}" var="myOrder">
 		<c:set var="i" value="${i+1 }" />
-		
-			
+
+
 		<div id="product">
 
 			<h3>
@@ -275,19 +274,19 @@ width: 550px;
 			<c:if test="${orderDao.checkStatus(myOrder.getOrderId())}">
 				<div id="btn">
 					<button id="idButton">
-						<a id="cancel" name="cancelOrderPId"
+						<a id="cancel"
 							href="cancelorderserv?orderId=<c:out value="${myOrder.getOrderId()}" />">Cancel
 							Order</a>
 					</button>
+				</div>
 			</c:if>
 		</div>
 		<br>
 		<br>
-		</div>
 		<br>
 	</c:forEach>
-	</div>
-	<div id="footer"></div>
+
+
 	<img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>

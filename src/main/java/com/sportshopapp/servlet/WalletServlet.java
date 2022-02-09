@@ -62,15 +62,7 @@ public void service(HttpServletRequest req, HttpServletResponse res) throws IOEx
 		wallet=wallet+currentUser.getMyWallet();
 		UserDAOImpl userDao = new UserDAOImpl();
 		int result = 0;
-		try {
-			result = userDao.addMoneyInWallet(wallet, currentUser);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		result = userDao.addMoneyInWallet(wallet, currentUser);
 		if(result>0)
 		{
 			res.sendRedirect("userProfile.jsp");

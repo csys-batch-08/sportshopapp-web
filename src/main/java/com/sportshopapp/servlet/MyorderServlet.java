@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sportshopapp.daoimpl.OderItemsDAOImpl;
+import com.sportshopapp.daoimpl.OrderItemsDAOImpl;
 import com.sportshopapp.daoimpl.OrderDetailDAOImpl;
 import com.sportshopapp.model.OrderItems;
 import com.sportshopapp.model.UserReg;
@@ -35,26 +35,21 @@ public class MyorderServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
 		OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
-		OderItemsDAOImpl myOrder = new OderItemsDAOImpl();
-		try {
-			List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
-			System.out.println(myOrderList.get(0).getOrderId() + "5");
-			session.setAttribute("myOrderList", myOrderList);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		OderItemsDAOImpl cancelOrder = new OderItemsDAOImpl();
+		OrderItemsDAOImpl myOrder = new OrderItemsDAOImpl();
+		List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
+		System.out.println(myOrderList.get(0).getOrderId() + "5");
+		session.setAttribute("myOrderList", myOrderList);
+		OrderItemsDAOImpl cancelOrder = new OrderItemsDAOImpl();
 		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
 		response.sendRedirect("myOrder.jsp");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

@@ -6,7 +6,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>All products</title>
@@ -158,7 +158,7 @@ body {
 	<h2 id="products">All products</h2>
 	<nav class="list">
 		<ul>
-			<li><a href="index.jsp"><i class="fa fa-fw fa-home"></i>
+			<li><a href="index.jsp"><em class="fa fa-fw fa-home"></em>>
 					Sign out</a></li>
 		</ul>
 		</div>

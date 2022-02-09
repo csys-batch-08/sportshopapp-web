@@ -8,7 +8,13 @@ import com.sportshopapp.model.UserReg;
 
 public interface CartDAO {
 
-	public void insertProduct (Cart cart) throws ClassNotFoundException, SQLException;
-	public List<Cart> viewCart(UserReg currentUser) throws ClassNotFoundException, SQLException;
+	public void insertProduct(Cart cart);
+	public int productexist(Cart cart) ;
+	public int productexist1(Cart cart);
+	public int updatequantity(Cart cart);
+	public int removecartItems(Cart cart);
+	public List<Cart> viewCart(UserReg currentUser);
+	
+	
 	
 }

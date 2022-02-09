@@ -15,49 +15,29 @@ import com.sportshopapp.daoimpl.UserDAOImpl;
 import com.sportshopapp.model.Cart;
 import com.sportshopapp.model.Product;
 import com.sportshopapp.model.UserReg;
+
 @WebServlet("/removeCartItem")
 public class RemovecartItem extends HttpServlet {
-	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		HttpSession session = req.getSession();
-		
+
 		UserDAOImpl user = new UserDAOImpl();
 		ProductDAOImpl productDao = new ProductDAOImpl();
 		Cart cart = new Cart();
 		CartDAOImpl cartdao = new CartDAOImpl();
 		Product product = new Product();
-		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
+		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
 		int removeStatus = 0;
 		int CartproductId = Integer.parseInt(req.getParameter("CartproductId"));
 		Product currentProduct = null;
-		try {
-			currentProduct = productDao.findProductById(CartproductId);
-		} catch (ClassNotFoundException e1) {
-
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
+		currentProduct = productDao.findProductById(CartproductId);
 		cart.setProduct(currentProduct);
 		cart.setUser(currentUser);
-		try {
-			 try {
-				removeStatus=cartdao.removecartItems(cart);
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			}
-			if(removeStatus>0)
-			{
-				System.out.println("cartItems deleted");
-				res.sendRedirect("userView");
-			}
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		removeStatus = cartdao.removecartItems(cart);
+		if (removeStatus > 0) {
+			res.sendRedirect("userView");
 		}
-		
-	}
 
+	}
 
 }

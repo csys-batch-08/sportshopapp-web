@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin view</title>
@@ -120,11 +120,11 @@ body {
 
 		</ul>
 		<div class="sidebar">
-			<a href="ViewAllUsers"><i class="fa fa-fw fa-home"></i> ALLUSER</a> <a
-				href="ShowAllProduct"><i class="fa fa-fw fa-wrench"></i> Show
-				all products</a> <a href="updateProduct.jsp"><i
-				class="fa fa-fw fa-envelope"></i> Update products</a> <a href="add.jsp"><i
-				class="fa fa-fw fa-envelope"></i> Add products</a>
+			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em>> ALLUSER</a> <a
+				href="ShowAllProduct"><em class="fa fa-fw fa-wrench"></em>> Show
+				all products</a> <a href="updateProduct.jsp"><em
+				class="fa fa-fw fa-envelope"></em>> Update products</a> <a href="add.jsp"><em
+				class="fa fa-fw fa-envelope"></em>> Add products</a>
 		</div>
 
 		<div class="main">

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sportshopapp.daoimpl.CartDAOImpl;
-import com.sportshopapp.daoimpl.OderItemsDAOImpl;
+import com.sportshopapp.daoimpl.OrderItemsDAOImpl;
 import com.sportshopapp.model.Cart;
 import com.sportshopapp.model.Product;
 import com.sportshopapp.model.UserReg;
@@ -64,25 +64,13 @@ public class CartServlet  extends HttpServlet {
 		}
 		HttpSession session=req.getSession();
 		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-		OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
+		OrderItemsDAOImpl myOrder= new OrderItemsDAOImpl();
 		CartDAOImpl cartDao = new CartDAOImpl();
 	
-			try {
-				List<Cart> cartItems = cartDao.viewCart(currentUser);
-				
-				System.out.println(cartItems.get(0).getProduct().getStrandardCost());
-				session.setAttribute("cartItems", cartItems);
-				res.sendRedirect("cart.jsp");
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
+			List<Cart> cartItems = cartDao.viewCart(currentUser);
 			
-	
-		
-	
+			System.out.println(cartItems.get(0).getProduct().getStrandardCost());
+			session.setAttribute("cartItems", cartItems);
+			res.sendRedirect("cart.jsp");
 }
 }

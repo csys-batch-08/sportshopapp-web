@@ -26,27 +26,20 @@ public class ChangePasswordServlet extends HttpServlet {
 				 customer.setPassword(Password);
 				 UserDAOImpl obj=new  UserDAOImpl();
 				 PrintWriter out=resp.getWriter();  
-				 try {
-					 
-					boolean flag= obj.changepassword(customer);
-				
-					if(flag)
-					{
-						out.print("Password Change sucessfully");  
-						
-						 resp.sendRedirect("login.jsp");
-					
-					}
-					else {
-						 out.print("Sorry, username or password error!");  
-						
-						 resp.sendRedirect("changePassword.jsp");
-						
-					}
-					
-				} catch (ClassNotFoundException | SQLException e) {
+				 boolean flag= obj.changepassword(customer);
 
-					e.printStackTrace();
+				if(flag)
+				{
+					out.print("Password Change sucessfully");  
+					
+					 resp.sendRedirect("login.jsp");
+				
+				}
+				else {
+					 out.print("Sorry, username or password error!");  
+					
+					 resp.sendRedirect("changePassword.jsp");
+					
 				}
 				
 		}

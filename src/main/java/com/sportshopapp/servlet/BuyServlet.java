@@ -13,9 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.sportshopapp.daoimpl.ProductDAOImpl;
 import com.sportshopapp.model.Product;
 
-/**
- * Servlet implementation class BuyServlet
- */
+
 @WebServlet("/BuyServlet")
 public class BuyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,25 +23,18 @@ public class BuyServlet extends HttpServlet {
      */
     public BuyServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pId=Integer.parseInt(request.getParameter("pid"));
 		ProductDAOImpl productDao = new ProductDAOImpl();
 		Product currentProduct = null;
-		try {
-			currentProduct = productDao.findProductById(pId);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		currentProduct = productDao.findProductById(pId);
 		HttpSession session=request.getSession();
 		session.setAttribute("currentproduct", currentProduct);
 		response.sendRedirect("buyProduct.jsp");
@@ -52,8 +43,9 @@ public class BuyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

@@ -35,13 +35,7 @@ public class AddProductServlet extends HttpServlet {
 		ProductDAOImpl obj = new ProductDAOImpl();
 
 		Product currentProduct = null;
-		try {
-			currentProduct = obj.insert(products);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		currentProduct = obj.insert(products);
 		PrintWriter out = res.getWriter();
 		boolean flag = true;
 		if (currentProduct != null) {

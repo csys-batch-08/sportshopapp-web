@@ -46,16 +46,10 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			boolean flag1 = true;
 			UserReg currentUser = null;
-			try {
-				HttpSession session = req.getSession();
-				customer = userDao.viewCurrentUsers(userName);
-				session.setAttribute("logincustomer", customer);
-				currentUser = userDao.login(userName, password);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			HttpSession session = req.getSession();
+			customer = userDao.viewCurrentUsers(userName);
+			session.setAttribute("logincustomer", customer);
+			currentUser = userDao.login(userName, password);
 			if (currentUser == null) {
 				write.print("not a registered user");
 				flag1 = false;

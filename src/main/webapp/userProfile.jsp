@@ -3,7 +3,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>User profile</title>
@@ -133,9 +133,9 @@ body {
 			<li><a href="userView.jsp">Home</a></li>
 		</ul>
 		<div class="sidebar">
-			<a href="changePassword.jsp"><i class="fa fa-fw fa-user"></i>
-				Change Password</a> <a href="addMoney.jsp"><i
-				class="fa fa-fw fa-user"></i> Add money to wallet</a>
+			<a href="changePassword.jsp"><em class="fa fa-fw fa-user"></em>>
+				Change Password</a> <a href="addMoney.jsp"><em
+				class="fa fa-fw fa-user"></em>> Add money to wallet</a>
 		</div>
 		<div class="main"></div>
 		<div>

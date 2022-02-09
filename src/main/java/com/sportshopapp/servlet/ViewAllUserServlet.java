@@ -31,19 +31,10 @@ public class ViewAllUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDAOImpl obj=new UserDAOImpl();
 		
-		try {
-			List<UserReg> userList= obj.viewAllUsers();
-			HttpSession session=request.getSession();
-			session.setAttribute("userList",userList );
-			response.sendRedirect("viewAllUsers.jsp");
-
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		List<UserReg> userList= obj.viewAllUsers();
+		HttpSession session=request.getSession();
+		session.setAttribute("userList",userList );
+		response.sendRedirect("viewAllUsers.jsp");
 		
 	}
 

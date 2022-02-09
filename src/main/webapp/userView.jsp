@@ -384,25 +384,25 @@ to {
 				<div class="slideshow-container">
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
-						<img src="Assests/5.jpg" style="width: 100%; height: 370px;">
+						<img alt="" src="Assests/5.jpg" style="width: 100%; height: 370px;">
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
-						<img src="Assests/2.png" style="width: 100%; height: 350px;">
+						<img alt="" src="Assests/2.png" style="width: 100%; height: 350px;">
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
-						<img src="Assests/3.jpg" style="width: 100% height: 350px;">
+						<img alt="" src="Assests/3.jpg" style="width: 100%; height: 350px;">
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
-						<img src="Assests/4.png" style="width: 100%"height: 350px;>
+						<img alt="" src="Assests/4.png" style="width: 100%; height: 350px;">
 						<div class="text"></div>
 					</div>
 

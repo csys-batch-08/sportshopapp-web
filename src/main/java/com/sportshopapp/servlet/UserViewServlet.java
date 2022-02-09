@@ -36,20 +36,9 @@ public class UserViewServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-		try {
-			
-			List<Product> productList = product.viewAllProducts();
-			
-			session.setAttribute("productList",productList );
-
-			 response.sendRedirect("userView.jsp");
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		List<Product> productList = product.viewAllProducts();
+		session.setAttribute("productList",productList );
+		 response.sendRedirect("userView.jsp");
        
 	}
 

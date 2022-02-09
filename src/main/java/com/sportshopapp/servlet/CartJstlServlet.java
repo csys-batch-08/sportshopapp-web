@@ -12,13 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sportshopapp.daoimpl.CartDAOImpl;
-import com.sportshopapp.daoimpl.OderItemsDAOImpl;
+import com.sportshopapp.daoimpl.OrderItemsDAOImpl;
 import com.sportshopapp.model.Cart;
 import com.sportshopapp.model.UserReg;
 
-/**
- * Servlet implementation class CartJstlServlet
- */
 @WebServlet("/CartJst")
 public class CartJstlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,34 +25,19 @@ public class CartJstlServlet extends HttpServlet {
         super();
 
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-		OderItemsDAOImpl myOrder= new OderItemsDAOImpl();
+		OrderItemsDAOImpl myOrder= new OrderItemsDAOImpl();
 		CartDAOImpl cartDao = new CartDAOImpl();
 		
-		try {
-			List<Cart> cartItems = cartDao.viewCart(currentUser);
-			session.setAttribute("cartItems", cartItems);
-			response.sendRedirect("cart.jsp");
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		List<Cart> cartItems = cartDao.viewCart(currentUser);
+		session.setAttribute("cartItems", cartItems);
+		response.sendRedirect("cart.jsp");
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

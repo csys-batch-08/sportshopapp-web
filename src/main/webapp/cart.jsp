@@ -4,12 +4,12 @@
 <%@page import="com.sportshopapp.model.Cart"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sportshopapp.daoimpl.CartDAOImpl"%>
-<%@page import="com.sportshopapp.daoimpl.OderItemsDAOImpl"%>
+<%@page import="com.sportshopapp.daoimpl.OrderItemsDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Cart</title>
@@ -267,10 +267,7 @@ top: 160px;
 					<li><a href="userView.jsp">Home</a></li>
 
 				</ul>
-				<!-- <div class="logo">
-<img
-src=""
-alt="logo"> -->
+
 			</nav>
 		</div>
 

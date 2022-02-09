@@ -86,32 +86,82 @@ body {
 /* body {
 /* background: linear-gradient(rgba(26,176,156,0.7),rgba(239,78,28,0.5)) ,url(Images/homepage_img.jpg); */
 background-image
+
+
+
+
 :
+
+
  
+
+
 url
+
+
+
+
 (
+
+
+
+
 Images
 /
+
+
+
+
 homepage_img
+
+
+
+
 .jpg
+
+
+
+
 )
+
+
+
+
 ;
-
-
 background-repeat
+
+
+
+
 :
+
+
  
+
+
 no-repeat
+
+
+
+
 ;
-
-
 background-size
+
+
+
+
 :
+
+
  
+
+
 cover
+
+
+
+
 ;
-
-
 }
 * /
  .logo img {
@@ -279,24 +329,28 @@ z
 
 
 			<table class="buyProduct">
+				<tr>
+					<th></th>
+				</tr>
 				<tbody>
 					<tr>
 						<div id="pDesc">
 							<p>
-								<b>Product category:</b>
+								<strong>Product category:</strong>
 							</p>
 							<br>
 							<p>
-								<b>Product Name:</b>
+								<strong>Product Name:</strong>
 							</p>
 							<p>
-								<b>Price:</b>
+								<strong>Price: Rs &nsbp;</strong>
 							</p>
 							<p>
-								<b>Available Quantity:</b>
+								<strong>Available Quantity:</strong>
 							</p>
 							</td>
-							<td>
+							
+                             <td>
 								<p name="pCategory">
 									<c:out value="${currentproduct.getCategory()}" />
 								</p>

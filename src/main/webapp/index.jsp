@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 
@@ -102,23 +102,32 @@ reg {
 	he margin: 4px 2px;
 	cursor: pointer;
 	border-radius: 4px;
+	position: relative;
+	right: -40px;
 }
 
 .login {
-	width: 380px;
+	width: 400px;
 	height: 300px;
 	position: relative;
 	margin: 6% auto;
-	background: transparent;
+	background-color: rgba(255, 255, 255, 0.603);
+	/* background: transparent; */
 	padding: 20px;
 	top: -30px;
-}
+} 
 
 #names {
 	position: relative;
 	left: -30px;
-	top: -607px;
+	top: -818px;
 	width: 550px;
+}
+
+#sty {
+	color: black;
+	position: relative;
+	right: -180px;
 }
 </style>
 <body>
@@ -138,31 +147,33 @@ reg {
 				<li><a href="register.jsp">Register</a></li>
 				<li><a href="about.jsp">About us</a></li>
 			</ul>
-			<form action="loginweb2">
-				<fieldset class="login">
-					<center>
-						<h2 style="color: white;">Login</h2>
-					</center>
+		</nav>
+	</div>
+	<form action="loginweb2">
+		<fieldset class="login">
+			<legend ></legend>
 
-					<label for="name" style="color: white; padding-left: 50px;">User
-						Name: </label> <input type="text" name="userName" id="name"
-						placeholder="Enter user name" required autofocus><br>
-					<br>
-					<br> <label for="password"
-						style="color: white; padding-left: 50px;">Password: &nbsp;
-					</label> <input type="password" name="password" id="password"
-						placeholder="********" required>&nbsp;&nbsp;&nbsp; <br>
-					<br>
-					<div style="padding-top: 10px; padding-left: 150px">
+			<h2 id="sty"> Login</h2>
+			<br> <label for="name" style="color: black; padding-left: 50px;">User
+				Name: </label> <input type="text" name="userName" id="name"
+				placeholder="Enter user name" required autofocus><br> <br>
+			<br> <label for="password"
+				style="color: black; padding-left: 50px;">Password: &nbsp; </label>
+			<input type="password" name="password" id="password"
+				placeholder="********" required>&nbsp;&nbsp;&nbsp; <br>
+			<br>
+			<div style="padding-top: 10px; padding-left: 150px">
 
-						<button class="button" type="submit">Login</button>
-					</div>
+				<button class="button" type="submit">Login</button>
+			</div>
 
-					<div style="padding-top: 10px; padding-left: 120px">
-						<button class="button">
-							<a id="reg" href="Register.jsp">Registration</a>
-						</button>
-					</div>
-					<img id="names" alt="webName" src="Assests/name.png">
+			<div style="padding-top: 10px; padding-left: 120px">
+				<button class="button">
+					<a id="reg" href="Register.jsp">Registration</a>
+				</button>
+			</div>
+		</fieldset>
+	</form>
+	<img id="names" alt="webName" src="Assests/name.png">
 </body>
 </html>
