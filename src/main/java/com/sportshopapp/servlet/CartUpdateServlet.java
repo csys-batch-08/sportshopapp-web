@@ -1,8 +1,6 @@
 package com.sportshopapp.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,67 +20,71 @@ import com.sportshopapp.model.UserReg;
 
 @WebServlet("/cartorder")
 public class CartUpdateServlet extends HttpServlet {
-	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		HttpSession session = req.getSession();
+	@Override
+	public void service(HttpServletRequest req, HttpServletResponse res)  {
+		try {
+			HttpSession session = req.getSession();
 
-		UserDAOImpl user = new UserDAOImpl();
+			UserDAOImpl user = new UserDAOImpl();
 
-		ProductDAOImpl productDao = new ProductDAOImpl();
-		Product product = new Product();
-		OrderItems orderItems = new OrderItems();
-		Cart cart = new Cart();
-		CartDAOImpl cartdao = new CartDAOImpl();
+			ProductDAOImpl productDao = new ProductDAOImpl();
+			OrderItems orderItems = new OrderItems();
+			Cart cart = new Cart();
+			CartDAOImpl cartdao = new CartDAOImpl();
 
-		OderDetails order = new OderDetails();
-		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
-		OrderItemsDAOImpl orderItemsDaoImpl = new OrderItemsDAOImpl();
+			OderDetails order = new OderDetails();
+			OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
+			OrderItemsDAOImpl orderItemsDaoImpl = new OrderItemsDAOImpl();
 
-		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
-		int CartproductId = Integer.parseInt(req.getParameter("CartproductId"));
-		int cartQuantity = Integer.parseInt(req.getParameter("cartQuantity"));
-		double unitPrice = Double.parseDouble(req.getParameter("unitPrice"));
-		double totalPrice = Double.parseDouble(req.getParameter("totalPrice"));
+			UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
+			int CartproductId = Integer.parseInt(req.getParameter("CartproductId"));
+			int cartQuantity = Integer.parseInt(req.getParameter("cartQuantity"));
+			double unitPrice = Double.parseDouble(req.getParameter("unitPrice"));
+			double totalPrice = Double.parseDouble(req.getParameter("totalPrice"));
+			int CartprodId = Integer.parseInt(req.getParameter("CartproductId"));
+			int removeStatus;
 
-		int CartprodId = Integer.parseInt(req.getParameter("CartproductId"));
-		int removeStatus;
+			Product currentProduct = null;
+			currentProduct = productDao.findProductById(CartprodId);
+			cart.setProduct(currentProduct);
+			cart.setUser(currentUser);
 
-		Product currentProduct = null;
-		currentProduct = productDao.findProductById(CartprodId);
-		cart.setProduct(currentProduct);
-		cart.setUser(currentUser);
+			if (currentProduct.getQuantity() != 0 && (currentProduct.getQuantity() - cartQuantity) > 0) {
 
-		if (currentProduct.getQuantity() != 0 && (currentProduct.getQuantity() - cartQuantity) > 0) {
+				if ((currentUser.getMyWallet() - totalPrice) >= 0) {
+					order.setProducts(currentProduct);
+					int updateQty = currentProduct.getQuantity() - cartQuantity;
 
-			if ((currentUser.getMyWallet() - totalPrice) >= 0) {
-				order.setProducts(currentProduct);
-				int updateQty = currentProduct.getQuantity() - cartQuantity;
+					productDao.updateProductQuantity(currentProduct, updateQty);
+					order.setPrice(totalPrice);
+					order.setUser(currentUser);
+					order.getUser().setMyWallet(currentUser.getMyWallet() - totalPrice);
 
-				productDao.updateProductQuantity(currentProduct, updateQty);
-				order.setPrice(totalPrice);
-				order.setUser(currentUser);
-				order.getUser().setMyWallet(currentUser.getMyWallet() - totalPrice);
+					orderDao.orders(order, currentUser);
+					user.updateWalletMoney(order);
+					int orderId = 0;
+					orderId = orderDao.getByOrderId();
 
-				orderDao.orders(order, currentUser);
-				user.updateWalletMoney(order);
-				int orderId = 0;
-				orderId = orderDao.getByOrderId();
+					orderItems.setProduct(currentProduct);
+					orderItems.setUser(currentUser);
+					orderItems.setOrderId(orderId);
+					orderItems.setQuantity(cartQuantity);
+					orderItems.setUnitPrice(unitPrice);
+					orderItems.setTotalPrice(totalPrice);
+					int result = orderItemsDaoImpl.insertOrders(orderItems);
+					removeStatus = cartdao.removecartItems(cart);
+					res.sendRedirect("cart.jsp");
 
-				orderItems.setProduct(currentProduct);
-				orderItems.setUser(currentUser);
-				orderItems.setOrderId(orderId);
-				orderItems.setQuantity(cartQuantity);
-				orderItems.setUnitPrice(unitPrice);
-				orderItems.setTotalPrice(totalPrice);
-				int result = orderItemsDaoImpl.insertOrders(orderItems);
-				removeStatus = cartdao.removecartItems(cart);
-				res.sendRedirect("cart.jsp");
-
+				} else {
+					
+				}
 			} else {
-				
-			}
-		} else {
-			res.sendRedirect("userProfile.jsp");
+				res.sendRedirect("userProfile.jsp");
 
+			}
+		} catch (NumberFormatException | IOException e) {
+
+			e.printStackTrace();
 		}
 
 	}

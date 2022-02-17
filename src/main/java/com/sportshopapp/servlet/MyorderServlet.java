@@ -36,19 +36,21 @@ public class MyorderServlet extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
-		OrderItemsDAOImpl myOrder = new OrderItemsDAOImpl();
-		List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
-		session.setAttribute("myOrderList", myOrderList);
-		response.sendRedirect("myOrder.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response){
+		try {
+			HttpSession session = request.getSession();
+			UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
+			OrderItemsDAOImpl myOrder = new OrderItemsDAOImpl();
+			List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
+			session.setAttribute("myOrderList", myOrderList);
+			response.sendRedirect("myOrder.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
 

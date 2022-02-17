@@ -20,52 +20,56 @@ import com.sportshopapp.model.UserReg;
 
 @WebServlet("/prod1")
 public class BuyProductServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		HttpSession session = req.getSession();
-		UserDAOImpl user = new UserDAOImpl();
-		Product product = new Product();
-		ProductDAOImpl productDao = new ProductDAOImpl();
-		OderDetails order = new OderDetails();
-		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
-		OrderItems orderItems = new OrderItems();
-		OrderItemsDAOImpl orderItemsDaoImpl = new OrderItemsDAOImpl();
-		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
-		Product currentproduct = (Product) session.getAttribute("currentproduct");
-		int qty = Integer.parseInt(req.getParameter("quantity"));
-		double price = Double.parseDouble(req.getParameter("totalPrice"));
-		if (currentUser.getMyWallet() >= price) {
-			if (currentproduct.getQuantity() >= qty) {
-				int updateQty = currentproduct.getQuantity() - qty;
-				productDao.updateProductQuantity(currentproduct, updateQty);
-				order.setUser(currentUser);
-				orderItems.setUser(currentUser);
-				order.setPrice(price);
-				order.setProducts(currentproduct);
-				order.getUser().setMyWallet(order.getUser().getMyWallet() - price);
-				orderDao.orders(order, currentUser);
+	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse res)  {
+		try {
+			HttpSession session = req.getSession();
+			UserDAOImpl user = new UserDAOImpl();
+			ProductDAOImpl productDao = new ProductDAOImpl();
+			OderDetails order = new OderDetails();
+			OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
+			OrderItems orderItems = new OrderItems();
+			OrderItemsDAOImpl orderItemsDaoImpl = new OrderItemsDAOImpl();
+			UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
+			Product currentproduct = (Product) session.getAttribute("currentproduct");
+			int qty = Integer.parseInt(req.getParameter("quantity"));
+			double price = Double.parseDouble(req.getParameter("totalPrice"));
+			if (currentUser.getMyWallet() >= price) {
+				if (currentproduct.getQuantity() >= qty) {
+					int updateQty = currentproduct.getQuantity() - qty;
+					productDao.updateProductQuantity(currentproduct, updateQty);
+					order.setUser(currentUser);
+					orderItems.setUser(currentUser);
+					order.setPrice(price);
+					order.setProducts(currentproduct);
+					order.getUser().setMyWallet(order.getUser().getMyWallet() - price);
+					orderDao.orders(order, currentUser);
 
-				user.updateWalletMoney(order);
+					user.updateWalletMoney(order);
 
-				int orderId = 0;
-				orderId = orderDao.getByOrderId();
-				order.setOrderId(orderId);
-				orderItems.setOderModel(order);
-				orderItems.setProduct(currentproduct);
-				orderItems.setOrderId(orderId);
-				orderItems.getProduct().setProductId(currentproduct.getProductId());
-				orderItems.setQuantity(qty);
-				orderItems.setUnitPrice(currentproduct.getStrandardCost());
-				orderItems.setTotalPrice(price);
+					int orderId = 0;
+					orderId = orderDao.getByOrderId();
+					order.setOrderId(orderId);
+					orderItems.setOderModel(order);
+					orderItems.setProduct(currentproduct);
+					orderItems.setOrderId(orderId);
+					orderItems.getProduct().setProductId(currentproduct.getProductId());
+					orderItems.setQuantity(qty);
+					orderItems.setUnitPrice(currentproduct.getStrandardCost());
+					orderItems.setTotalPrice(price);
 
-				orderItemsDaoImpl.insertOrders(orderItems);
+					orderItemsDaoImpl.insertOrders(orderItems);
 
-				res.getWriter().println("order placed!!");
+					res.getWriter().println("order placed!!");
+				}
+				res.sendRedirect("userView.jsp");
 			}
-			res.sendRedirect("userView.jsp");
-		}
 
-		else {
-			res.sendRedirect("userView.jsp");
+			else {
+				res.sendRedirect("userView.jsp");
+			}
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
 		}
 
 	}

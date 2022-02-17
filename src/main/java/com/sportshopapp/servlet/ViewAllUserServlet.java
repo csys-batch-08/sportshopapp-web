@@ -1,7 +1,6 @@
 package com.sportshopapp.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,21 +27,24 @@ public class ViewAllUserServlet extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserDAOImpl obj=new UserDAOImpl();
-		
-		List<UserReg> userList= obj.viewAllUsers();
-		HttpSession session=request.getSession();
-		session.setAttribute("userList",userList );
-		response.sendRedirect("viewAllUsers.jsp");
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			UserDAOImpl obj=new UserDAOImpl();
+			
+			List<UserReg> userList= obj.viewAllUsers();
+			HttpSession session=request.getSession();
+			session.setAttribute("userList",userList );
+			response.sendRedirect("viewAllUsers.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
 

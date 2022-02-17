@@ -67,7 +67,7 @@ body {
 		<br> <br>
 		<form action="registerweb">
 			<fieldset class="signup">
-				<label></label>
+				<legend></legend>
 					<h2 style="color: black;">Registration</h2>
 				<label for="name" style="color: black;">User Name:</label> <input
 					type="text" name="UserName" id="name" placeholder="Enter user name"

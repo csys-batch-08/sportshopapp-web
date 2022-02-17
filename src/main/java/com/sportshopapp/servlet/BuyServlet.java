@@ -30,14 +30,18 @@ public class BuyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pId=Integer.parseInt(request.getParameter("pid"));
-		ProductDAOImpl productDao = new ProductDAOImpl();
-		Product currentProduct = null;
-		currentProduct = productDao.findProductById(pId);
-		HttpSession session=request.getSession();
-		session.setAttribute("currentproduct", currentProduct);
-		response.sendRedirect("buyProduct.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+		try {
+			int pId=Integer.parseInt(request.getParameter("pid"));
+			ProductDAOImpl productDao = new ProductDAOImpl();
+			Product currentProduct = null;
+			currentProduct = productDao.findProductById(pId);
+			HttpSession session=request.getSession();
+			session.setAttribute("currentproduct", currentProduct);
+			response.sendRedirect("buyProduct.jsp");
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

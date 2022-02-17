@@ -20,31 +20,33 @@ import com.sportshopapp.model.UserReg;
 public class UserViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public UserViewServlet() {
         super();
 
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductDAOImpl product= new ProductDAOImpl();
-		HttpSession session=request.getSession();
-		
-		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
-		List<Product> productList = product.viewAllProducts();
-		session.setAttribute("productList",productList );
-		 response.sendRedirect("userView.jsp");
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ProductDAOImpl product= new ProductDAOImpl();
+			HttpSession session=request.getSession();
+			
+	//		UserReg currentUser = (UserReg)session.getAttribute("logincustomer");
+			List<Product> productList = product.viewAllProducts();
+			session.setAttribute("productList",productList );
+			 response.sendRedirect("userView.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
        
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);

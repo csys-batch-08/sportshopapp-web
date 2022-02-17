@@ -2,9 +2,6 @@ package com.sportshopapp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,25 +12,29 @@ import com.sportshopapp.model.Product;
 @WebServlet("/UpdateProduct")
 public class UpdateProductServlet extends HttpServlet{
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)  {
 		
-		int Pid= Integer.parseInt(req.getParameter("pID"));
-		String product= req.getParameter("pName");	
-		double updateUnitPrice = Double.parseDouble(req.getParameter("price"));
-		String category= req.getParameter("pcat");	
-		int qty = Integer.parseInt(req.getParameter("pqty"));
+		try {
+			int Pid= Integer.parseInt(req.getParameter("pID"));
+			String product= req.getParameter("pName");	
+			double updateUnitPrice = Double.parseDouble(req.getParameter("price"));
+			String category= req.getParameter("pcat");	
+			int qty = Integer.parseInt(req.getParameter("pqty"));
+			
+			Product prod = new Product();
+			prod.setProductName(product);
+			prod.setProductId(Pid);
+			prod.setStrandardCost(updateUnitPrice);
+			prod.setCategory(category);
+			prod.setQuantity(qty);
+			ProductDAOImpl obj =new ProductDAOImpl();
 		
-		Product prod = new Product();
-		prod.setProductName(product);
-		prod.setProductId(Pid);
-		prod.setStrandardCost(updateUnitPrice);
-		prod.setCategory(category);
-		prod.setQuantity(qty);
-		ProductDAOImpl obj =new ProductDAOImpl();
-		PrintWriter out=res.getWriter();
-		
-		boolean flag = false;
-		flag = obj.updateProducts(prod);
-			 res.sendRedirect("adminView.jsp");
+			
+			boolean flag = false;
+			flag = obj.updateProducts(prod);
+				 res.sendRedirect("adminView.jsp");
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
