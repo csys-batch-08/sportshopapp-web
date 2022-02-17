@@ -11,12 +11,21 @@
 body {
 	font-family: "Lato", sans-serif;
 }
+body {
+	background-image: url(Assests/bcg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
+}
+
 
 .sidebar {
 	height: 100%;
 	width: 160px;
 	position: fixed;
 	z-index: 1;
+	font-family: monospace;
 	top: 0;
 	left: 0;
 	background-color: #f0f0f5;
@@ -28,18 +37,21 @@ body {
 .sidebar a {
 	padding: 20px 2px 8px 16px;
 	text-decoration: none;
+	font-family: monospace;
 	font-size: 13px;
 	color: black;
 	display: block;
 	font-family: Arial Black;
 }
+.sidebar a:hover {
+	background-color: rgba(158, 202, 207, 0.1);
+}
 
-body {
-	background-image: url(Assests/bcg.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	/* background-static: */
+.main {
+	margin-left: 160px; /* Same as the width of the sidenav */
+	padding: 0px 50px;
+	top: 200px;
+	padding-top: 100px;
 }
 
 .list ul, .list li, .list a {
@@ -70,17 +82,6 @@ body {
 	/* background-color: orange; */
 	border-radius: 5px;
 	cursor: pointer;
-}
-
-.sidebar a:hover {
-	background-color: rgba(158, 202, 207, 0.1);
-}
-
-.main {
-	margin-left: 160px; /* Same as the width of the sidenav */
-	padding: 0px 50px;
-	top: 200px;
-	padding-top: 100px;
 }
 
 .slidebar {
@@ -120,11 +121,11 @@ body {
 
 		</ul>
 		<div class="sidebar">
-			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em>> ALLUSER</a> <a
-				href="ShowAllProduct"><em class="fa fa-fw fa-wrench"></em>> Show
+			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em> All users</a> <a
+				href="ShowAllProduct"><em class="fa fa-fw fa-wrench"></em> Show
 				all products</a> <a href="updateProduct.jsp"><em
-				class="fa fa-fw fa-envelope"></em>> Update products</a> <a href="add.jsp"><em
-				class="fa fa-fw fa-envelope"></em>> Add products</a>
+				class="fa fa-fw fa-envelope"></em> Update products</a> <a href="add.jsp"><em
+				class="fa fa-fw fa-envelope"></em> Add products</a>
 		</div>
 
 		<div class="main">

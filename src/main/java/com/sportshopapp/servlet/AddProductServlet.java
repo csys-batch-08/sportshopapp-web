@@ -17,41 +17,42 @@ import com.sportshopapp.model.Product;
 @WebServlet("/Add")
 public class AddProductServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String product = req.getParameter("pname");
-		int id = Integer.parseInt(req.getParameter("prodid"));
-		double price = Double.parseDouble(req.getParameter("price"));
-		String category = req.getParameter("pcat");
-		int qty = Integer.parseInt(req.getParameter("pqty"));
-		String img = req.getParameter("pimg");
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)  {
+		try {
+			String product = req.getParameter("pname");
+			int id = Integer.parseInt(req.getParameter("prodid"));
+			double price = Double.parseDouble(req.getParameter("price"));
+			String category = req.getParameter("pcat");
+			int qty = Integer.parseInt(req.getParameter("pqty"));
+			String img = req.getParameter("pimg");
 
-		Product products = new Product(product, id, price, category, qty, img);
-		products.setProductName(product);
-		products.setProductId(id);
-		products.setStrandardCost(price);
-		products.setCategory(category);
-		products.setQuantity(qty);
-		products.setImg(img);
-		ProductDAOImpl obj = new ProductDAOImpl();
+			Product products = new Product(product, id, price, category, qty, img);
+			products.setProductName(product);
+			products.setProductId(id);
+			products.setStrandardCost(price);
+			products.setCategory(category);
+			products.setQuantity(qty);
+			products.setImg(img);
+			ProductDAOImpl obj = new ProductDAOImpl();
 
-		Product currentProduct = null;
-		currentProduct = obj.insert(products);
-		PrintWriter out = res.getWriter();
-		boolean flag = true;
-		if (currentProduct != null) {
-			out.print("Product added");
-			res.sendRedirect("adminView.jsp");
-		} else {
-			out.print("Failed to add product");
-			res.sendRedirect("adminView.jsp");
+			Product currentProduct = null;
+			currentProduct = obj.insert(products);
+			PrintWriter out = res.getWriter();
+			boolean flag = true;
+			if (currentProduct != null) {
+				out.print("Product added");
+				res.sendRedirect("adminView.jsp");
+			} else {
+				out.print("Failed to add product");
+				res.sendRedirect("adminView.jsp");
+			}
+		} catch (NumberFormatException | IOException e) {
+
+			e.printStackTrace();
 		}
 	}
 protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		try {
-			doGet(req, res);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
+		
 
 	}
 }

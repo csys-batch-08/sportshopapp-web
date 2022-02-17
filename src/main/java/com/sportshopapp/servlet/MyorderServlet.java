@@ -40,15 +40,12 @@ public class MyorderServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserReg currentUser = (UserReg) session.getAttribute("logincustomer");
-		OrderDetailDAOImpl currentCancelOrder = new OrderDetailDAOImpl();
 		OrderItemsDAOImpl myOrder = new OrderItemsDAOImpl();
 		List<OrderItems> myOrderList = myOrder.ViewMyOrder(currentUser);
-		System.out.println(myOrderList.get(0).getOrderId() + "5");
 		session.setAttribute("myOrderList", myOrderList);
-		OrderItemsDAOImpl cancelOrder = new OrderItemsDAOImpl();
-		OrderDetailDAOImpl orderDao = new OrderDetailDAOImpl();
 		response.sendRedirect("myOrder.jsp");
 	}
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

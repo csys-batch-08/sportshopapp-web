@@ -1,6 +1,8 @@
 package com.sportshopapp.model;
 
-public class UserReg {
+import java.io.Serializable;
+
+public class UserReg implements Serializable{
 	private String userName;
 	private String address;
 	private String firstName;

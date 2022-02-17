@@ -1,8 +1,9 @@
 package com.sportshopapp.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class OrderItems extends OderDetails {
+public class OrderItems extends OderDetails implements Serializable{
 	private int itemId;
 	private UserReg user;
 	private Product product;

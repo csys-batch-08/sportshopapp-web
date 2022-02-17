@@ -1,6 +1,8 @@
 package com.sportshopapp.model;
 
-public class Cart {
+import java.io.Serializable;
+
+public class Cart implements Serializable{
 	private UserReg user;
 	private Product product;
 	private double standardCost;

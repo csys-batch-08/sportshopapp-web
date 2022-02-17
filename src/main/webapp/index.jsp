@@ -119,7 +119,7 @@ reg {
 
 #names {
 	position: relative;
-	left: -30px;
+	left: 400px;
 	top: -818px;
 	width: 550px;
 }
@@ -144,8 +144,7 @@ reg {
 
 		<nav class="list">
 			<ul>
-				<li><a href="register.jsp">Register</a></li>
-				<li><a href="about.jsp">About us</a></li>
+				
 			</ul>
 		</nav>
 	</div>
@@ -169,7 +168,7 @@ reg {
 
 			<div style="padding-top: 10px; padding-left: 120px">
 				<button class="button">
-					<a id="reg" href="Register.jsp">Registration</a>
+					<a id="reg" href="register.jsp">Registration</a>
 				</button>
 			</div>
 		</fieldset>

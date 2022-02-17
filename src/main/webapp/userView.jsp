@@ -116,7 +116,7 @@ body {
 }
 
 .buyProduct {
-	background-color: rgba(158, 202, 207, 0.5);
+	background-color: rgba(255, 255, 255, 0.603);
 	width: 900px;
 	height: 300px;
 	border-radius: 5px;
@@ -255,7 +255,7 @@ body {
 }
 
 #dis {
-	background: #ebebe0;
+	background-color: rgba(255, 255, 255, 0.603);
 	width: -670px;
 }
 
@@ -384,7 +384,7 @@ to {
 				<div class="slideshow-container">
 					<div class="mySlides fade" style="display: none;">
 						<div class="numbertext"></div>
-						<img alt="" src="Assests/5.jpg" style="width: 100%; height: 370px;">
+						<img alt="" src="Assests/5.jpg" style="width: 100%; height: 350px;">
 						<div class="text"></div>
 					</div>
 

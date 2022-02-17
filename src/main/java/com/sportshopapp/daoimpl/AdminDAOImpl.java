@@ -3,8 +3,6 @@ package com.sportshopapp.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.sportshopapp.dao.AdminDAO;
 import com.sportshopapp.model.Admin;
 import com.sportshopapp.util.ConnectionUtil;

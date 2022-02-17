@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet   {
 		userDao.registration(userModel);
 	
 		try {
-			res.sendRedirect("login.jsp");
+			res.sendRedirect("index.jsp");
 		} catch (IOException e) {
 
 			e.printStackTrace();

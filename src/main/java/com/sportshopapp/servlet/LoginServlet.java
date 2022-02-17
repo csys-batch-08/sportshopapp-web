@@ -17,45 +17,49 @@ import com.sportshopapp.model.UserReg;
 
 @WebServlet("/loginweb2")
 public class LoginServlet extends HttpServlet {
-	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		System.out.println("welcome");
-		String userName = req.getParameter("userName");
-		String password = req.getParameter("password");
-		AdminDAOImpl adminDao = new AdminDAOImpl();
+	public void service(HttpServletRequest req, HttpServletResponse res) {
+		
+		try {
+			String userName = req.getParameter("userName");
+			String password = req.getParameter("password");
+			AdminDAOImpl adminDao = new AdminDAOImpl();
 
-		UserReg userModel = new UserReg(userName, password);
+			UserReg userModel = new UserReg(userName, password);
 
-		UserDAOImpl userDao = new UserDAOImpl();
-		UserReg customer = new UserReg();
-		boolean b1 = false;
+			UserDAOImpl userDao = new UserDAOImpl();
+			UserReg customer = new UserReg();
+			boolean b1 = false;
 
-		PrintWriter write = res.getWriter();
-		if (userName.contains("adminolympus")) {
-			do {
-				Admin admin;
-				admin = adminDao.adlogin(userName, password);
-				System.out.println(adminDao.adlogin(userName, password));
-				if (admin == null) {
-					write.print("Please enter valid username");
-					b1 = true;
-				} else {
-					res.sendRedirect("adminView.jsp");
-					b1 = false;
-				}
-			} while (b1);
-		} else {
-			boolean flag1 = true;
-			UserReg currentUser = null;
-			HttpSession session = req.getSession();
-			customer = userDao.viewCurrentUsers(userName);
-			session.setAttribute("logincustomer", customer);
-			currentUser = userDao.login(userName, password);
-			if (currentUser == null) {
-				write.print("not a registered user");
-				flag1 = false;
+			PrintWriter write = res.getWriter();
+			if (userName.contains("adminolympus")) {
+				do {
+					Admin admin;
+					admin = adminDao.adlogin(userName, password);
+					if (admin == null) {
+						write.print("Please enter valid username");
+						b1 = true;
+					} else {
+						res.sendRedirect("adminView.jsp");
+						b1 = false;
+					}
+				} while (b1);
 			} else {
-				res.sendRedirect("UserView");
+				boolean flag1 = true;
+				UserReg currentUser = null;
+				HttpSession session = req.getSession();
+				customer = userDao.viewCurrentUsers(userName);
+				session.setAttribute("logincustomer", customer);
+				currentUser = userDao.login(userName, password);
+				if (currentUser == null) {
+					write.print("not a registered user");
+					flag1 = false;
+				} else {
+					res.sendRedirect("UserView");
+				}
 			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
 		}
 	}
 }

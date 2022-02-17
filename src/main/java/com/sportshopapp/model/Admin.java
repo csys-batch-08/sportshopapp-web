@@ -1,6 +1,8 @@
 package com.sportshopapp.model;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
 	private String userName;
 	private String password;
     private String email;

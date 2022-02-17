@@ -24,6 +24,82 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
+body {
+	background-image: url(Assests/bcg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	/* background-static: */
+}
+
+#name {
+	position: relative;
+	left: 70px;
+	top: 40px;
+	width: 550px;
+}
+
+#allusers {
+	position: absolute;
+	top: -200px;
+	left: 300px;
+	right: 200px;
+	bottom: 100px;
+	color: black;
+}
+
+#table {
+	background-color: rgba(255, 255, 255, 0.903);
+}
+
+body {
+	background-color: white;
+}
+
+#allusers table, th, tr, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+#users {
+	position: absolute;
+	top: 150px;
+	left: 600px;
+}
+.sidebar {
+	height: 100%;
+	width: 160px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #f0f0f5;
+	overflow-x: hidden;
+	padding-top: 16px;
+	font-size: 13px;
+}
+
+.sidebar a {
+	padding: 20px 2px 8px 16px;
+	text-decoration: none;
+	font-size: 13px;
+	color: black;
+	display: block;
+	font-family: Arial Black;
+}
+.sidebar a:hover {
+	background-color: rgba(158, 202, 207, 0.1);
+}
+
+.main {
+	margin-left: 160px; /* Same as the width of the sidenav */
+	padding: 0px 50px;
+	top: 200px;
+	padding-top: 100px;
+}
 .list ul li {
 	list-style: none;
 	display: inline-block;
@@ -68,48 +144,18 @@
 	cursor: pointer;
 }
 
-body {
-	background-image: url(Assests/bcg.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	/* background-static: */
+.slidebar {
+	top: 50px;
+	padding-top: 100px;
 }
 
-#name {
-	position: relative;
-	left: 70px;
-	top: 40px;
-	width: 550px;
-}
-
-#allusers {
-	position: absolute;
-	top: -200px;
-	left: 300px;
-	right: 200px;
-	bottom: 100px;
-	color: white;
-}
-
-#table {
-	background-color: grey;
-}
-
-body {
-	background-color: white;
-}
-
-#allusers table, th, tr, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 10px;
-}
-
-#users {
-	position: absolute;
-	top: 150px;
-	left: 600px;
+@media screen and (max-height: 450px) {
+	.sidebar {
+		padding-top: 15px;
+	}
+	.sidebar a {
+		font-size: 18px;
+	}
 }
 </style>
 </head>
@@ -120,6 +166,13 @@ body {
 		<ul>
 			<li><a href="index.jsp">SignOut</a></li>
 		</ul>
+		<div class="sidebar">
+			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em> All users</a> <a
+				href="ShowAllProduct"><em class="fa fa-fw fa-wrench"></em> Show
+				all products</a> <a href="updateProduct.jsp"><em
+				class="fa fa-fw fa-envelope"></em> Update products</a> <a href="add.jsp"><em
+				class="fa fa-fw fa-envelope"></em> Add products</a>
+		</div>
 	</nav>
 
 	<div id="allusers">
