@@ -34,16 +34,6 @@ public class UpdateProductServlet extends HttpServlet{
 		
 		boolean flag = false;
 		flag = obj.updateProducts(prod);
-		if(flag)
-		{
-		
 			 res.sendRedirect("adminView.jsp");
-				
-		}
-		else
-		{
-			
-			 res.sendRedirect("adminView.jsp");
-		}
 	}
 }

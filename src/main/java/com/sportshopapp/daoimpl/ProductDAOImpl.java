@@ -52,8 +52,6 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement stmt = null;
 		try {
 			check = sc.nextLine().charAt(0);
-			// if (check == 'y' || check == 'Y') {
-
 			int prodId = Integer.parseInt(sc.nextLine());
 			con = ConnectionUtil.getDbConnection();
 			Product str = new Product();
@@ -90,6 +88,7 @@ public class ProductDAOImpl implements ProductDAO {
 				productList.add(product);
 			}
 		} catch (Exception e) {
+			
 		} finally {
 			ConnectionUtil.close(con, pstm, rs);
 		}
@@ -104,7 +103,6 @@ public class ProductDAOImpl implements ProductDAO {
 			String updateQuery = "update product_items set products_name=?,standard_cost=?, category=?, quantity=? where products_id=? ";
 
 			con = ConnectionUtil.getDbConnection();
-			pstm = null;
 			pstm = con.prepareStatement(updateQuery);
 			pstm.setString(1, product.getProductName());
 			pstm.setInt(5, product.getProductId());
@@ -116,8 +114,6 @@ public class ProductDAOImpl implements ProductDAO {
 			if (result > 0) {
 				b = true;
 				return b;
-			} else {
-
 			}
 		} catch (Exception e) {
 		} finally {
@@ -183,8 +179,6 @@ public class ProductDAOImpl implements ProductDAO {
 		int res = pst.executeUpdate();
 		pst = con.prepareStatement("commit");
 		int res2 = pst.executeUpdate();
-		if (res > 0) {
-		}
         }catch(Exception e) {
         }finally {
 			ConnectionUtil.close(con, pst);

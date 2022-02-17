@@ -58,9 +58,7 @@ public class UserDAOImpl implements UserDaoDAO {
 		if (rs.next()) {
 			user = new UserReg();
 			return user;
-		} else {
-
-		}
+		} 
 	}catch(Exception e) {
 	}finally {
 		ConnectionUtil.close(con, pstm, rs);
@@ -70,21 +68,19 @@ public class UserDAOImpl implements UserDaoDAO {
 
 	public List<UserReg> viewAllUsers(){
 		Connection con = null;
-	//	Statement stmt = null;
 		PreparedStatement pstm=null;
 		List<UserReg> userList = null;
 		ResultSet rs = null;
 		
 	try {
 		con = ConnectionUtil.getDbConnection();
-//		stmt = con.createStatement();
 		userList = new ArrayList<UserReg>();
 		String view = " SELECT user_name, address, first_name, last_name, phone, password,email, my_wallet FROM customers_detail";
 		pstm=con.prepareStatement(view);
 		rs = pstm.executeQuery(view);
 		while (rs.next()) {
 			UserReg users = new UserReg(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-					rs.getString(6), rs.getLong(5), rs.getString(7), rs.getDouble(8));
+					rs.getString(7), rs.getLong(5), rs.getString(6), rs.getDouble(8));
 			userList.add(users);
 		}
 	}catch(Exception e) {
@@ -96,15 +92,11 @@ public class UserDAOImpl implements UserDaoDAO {
 
 	public UserReg viewCurrentUsers(String username) {
 		Connection con = null;
-	//	Statement stmt = null;
 		PreparedStatement pstm =null;
 		ResultSet rs =null;
 		UserReg users = new UserReg();
 		try {
 		con = ConnectionUtil.getDbConnection();
-//		stmt = con.createStatement();
-		
-		
 		String view = " SELECT user_name, address, first_name, last_name, phone, password,email, my_wallet FROM customers_detail where user_name='"
 				+ username + "'";
 		pstm = con.prepareStatement(view);

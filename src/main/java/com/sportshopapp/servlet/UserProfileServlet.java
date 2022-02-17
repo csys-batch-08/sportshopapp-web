@@ -10,9 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.sportshopapp.model.UserReg;
 
-/**
- * Servlet implementation class UserProfileServlet
- */
 @WebServlet("/UserProfile")
 public class UserProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,12 +19,12 @@ public class UserProfileServlet extends HttpServlet {
      */
     public UserProfileServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		UserReg customers = (UserReg) session.getAttribute("logincustomer");
@@ -38,6 +35,7 @@ public class UserProfileServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);

@@ -227,6 +227,10 @@ width: 550px;
 	top: -9200px;
 	width: 550px;
 }
+#prname{
+position: relative;
+top: 180px;
+}
 </style>
 
 <body>
@@ -252,11 +256,11 @@ width: 550px;
 
 		<div id="product">
 
-			<h3>
+			<h3 id="prname">
 				<c:out value="${myOrder.getUserName()}" />
 			</h3>
 			<div id="details">
-				<h3>
+				<h3 >
 					Price :Rs &nbsp;
 					<c:out value="${myOrder.getUnitPrice()}" />
 				</h3>

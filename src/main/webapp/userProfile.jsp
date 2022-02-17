@@ -145,7 +145,7 @@ body {
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Address</th>
-						<th>EmailId</th>
+						<th>Email Id</th>
 						<th>User Name</th>
 						<th>Phone Number</th>
 						<th>Wallet</th>

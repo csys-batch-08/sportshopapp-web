@@ -39,11 +39,6 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 		pst=con.prepareStatement(qwery);
 		pst.setInt(1, orderId);
 		res=pst.executeUpdate();
-		if(res>0)
-		{	
-		}
-		else {
-		}
 		con.close();
 		pst.close();
 		}catch(Exception e) {
@@ -52,7 +47,6 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 		}
 	}
     public int getByOrderId(){
-    //	Statement stms=null;
     	PreparedStatement pstm=null;
     	Connection con =null;
     	ResultSet rs =null;
@@ -60,7 +54,6 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
     	try {
     	String query = "select max(order_id) from order_detail";
     	    con =ConnectionUtil.getDbConnection();
-    //	    stms = con.createStatement();
     	    pstm=con.prepareStatement(query);
     		rs = pstm.executeQuery(query);
     		if(rs.next()) {
