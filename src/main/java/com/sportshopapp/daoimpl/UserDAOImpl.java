@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.tomcat.util.http.fileupload.util.Closeable;
+
 public class UserDAOImpl implements UserDaoDAO {
 
 	public void registration(UserReg reg){
@@ -39,7 +41,14 @@ public class UserDAOImpl implements UserDaoDAO {
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}finally {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
 				ConnectionUtil.close(con, stmt);
+				
 			}
 		
      
