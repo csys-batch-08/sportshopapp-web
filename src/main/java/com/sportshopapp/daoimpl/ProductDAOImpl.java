@@ -69,14 +69,11 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public List<Product> viewAllProducts() {
 		Connection con = null;
-		// Statement stmt =null;
 		PreparedStatement pstm = null;
 		List<Product> productList = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			// stmt = con.createStatement();
-
 			productList = new ArrayList<Product>();
 			String view = " SELECT products_name, products_id, standard_cost, category, quantity, img FROM product_items";
 			pstm = con.prepareStatement(view);
@@ -171,17 +168,20 @@ public class ProductDAOImpl implements ProductDAO {
 	public void updateProductQuantity(Product currentProduct, int qty) {
 		Connection con = null;
 		PreparedStatement pst = null;
-        try {
-		String updateQtyQuery = "update product_items set quantity =" + qty + " where products_id = "
-				+ currentProduct.getProductId() + "";
-		con = ConnectionUtil.getDbConnection();
-		pst = con.prepareStatement(updateQtyQuery);
-		int res = pst.executeUpdate();
-		pst = con.prepareStatement("commit");
-		int res2 = pst.executeUpdate();
-        }catch(Exception e) {
-        }finally {
+		try {
+			String updateQtyQuery = "update product_items set quantity =" + qty + " where products_id = "
+					+ currentProduct.getProductId() + "";
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(updateQtyQuery);
+			int res = pst.executeUpdate();
+			pst = con.prepareStatement("commit");
+			int res2 = pst.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
 			ConnectionUtil.close(con, pst);
 		}
+        
 	}
 }

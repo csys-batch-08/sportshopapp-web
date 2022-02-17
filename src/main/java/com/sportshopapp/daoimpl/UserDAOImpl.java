@@ -20,25 +20,28 @@ public class UserDAOImpl implements UserDaoDAO {
 	public void registration(UserReg reg){
 		Connection con = null;
 		PreparedStatement stmt = null;
-     try {
-		con = ConnectionUtil.getDbConnection();
-		String query = "insert into customers_detail(user_name,address, first_name, last_name, email, phone, password)values (?,?,?,?,?,?,?)";
-		String commit = "commit";
-		stmt = con.prepareStatement(query);
-		stmt.setString(1, reg.getUserName());
-		stmt.setString(2, reg.getAddress());
-		stmt.setString(3, reg.getFirstName());
-		stmt.setString(4, reg.getLastName());
-		stmt.setString(5, reg.getEmail());
-		stmt.setLong  (6, reg.getPhone());
-		stmt.setString(7, reg.getPassword());
-		stmt.executeUpdate();
-		stmt = con.prepareStatement(commit);
-		stmt.execute();
-     }catch(Exception e) {
-     }finally {
-		ConnectionUtil.close(con, stmt);
-	}
+  
+		try {
+			con = ConnectionUtil.getDbConnection();
+			String query = "insert into customers_detail(user_name,address, first_name, last_name, email, phone, password)values (?,?,?,?,?,?,?)";
+			String commit = "commit";
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, reg.getUserName());
+			stmt.setString(2, reg.getAddress());
+			stmt.setString(3, reg.getFirstName());
+			stmt.setString(4, reg.getLastName());
+			stmt.setString(5, reg.getEmail());
+			stmt.setLong  (6, reg.getPhone());
+			stmt.setString(7, reg.getPassword());
+			stmt.executeUpdate();
+			stmt = con.prepareStatement(commit);
+			stmt.execute();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionUtil.close(con, stmt);
+		}
+     
 	}
 
 	public UserReg login(String userName, String password) {
