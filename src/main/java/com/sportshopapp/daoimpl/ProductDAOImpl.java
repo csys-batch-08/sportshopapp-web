@@ -168,20 +168,20 @@ public class ProductDAOImpl implements ProductDAO {
 	public void updateProductQuantity(Product currentProduct, int qty) {
 		Connection con = null;
 		PreparedStatement pst = null;
-		try {
-			String updateQtyQuery = "update product_items set quantity =" + qty + " where products_id = "
-					+ currentProduct.getProductId() + "";
-			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(updateQtyQuery);
-			int res = pst.executeUpdate();
-			pst = con.prepareStatement("commit");
-			int res2 = pst.executeUpdate();
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			ConnectionUtil.close(con, pst);
-		}
+		
+			try {
+				String updateQtyQuery = "update product_items set quantity =" + qty + " where products_id = "
+						+ currentProduct.getProductId() + "";
+				con = ConnectionUtil.getDbConnection();
+				pst = con.prepareStatement(updateQtyQuery);
+				int res = pst.executeUpdate();
+				pst = con.prepareStatement("commit");
+				int res2 = pst.executeUpdate();
+			} catch (ClassNotFoundException | SQLException e) {
+				
+				e.printStackTrace();
+			}
+		
         
 	}
 }
