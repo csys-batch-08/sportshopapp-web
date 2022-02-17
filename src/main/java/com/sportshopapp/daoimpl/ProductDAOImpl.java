@@ -180,6 +180,8 @@ public class ProductDAOImpl implements ProductDAO {
 			} catch (ClassNotFoundException | SQLException e) {
 				
 				e.printStackTrace();
+			}finally {
+				ConnectionUtil.close(con, pst);
 			}
 		
         

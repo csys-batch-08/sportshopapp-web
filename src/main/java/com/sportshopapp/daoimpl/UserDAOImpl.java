@@ -38,6 +38,8 @@ public class UserDAOImpl implements UserDaoDAO {
 				stmt.execute();
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
+			}finally {
+				ConnectionUtil.close(con, stmt);
 			}
 		
      
