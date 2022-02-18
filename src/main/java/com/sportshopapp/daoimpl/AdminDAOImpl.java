@@ -16,11 +16,12 @@ public class AdminDAOImpl implements AdminDAO {
 
 		try {
 
-			String query = "select user_name,password,email,mobile from admin where user_name='" + userName
-					+ "' and password='" + password + "'";
+			String query = "select user_name,password,email,mobile from admin where user_name= ? and password= ?";
 
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(query);
+			stmt.setString(1, userName);
+			stmt.setString(2, password);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				Admin adminLogin = new Admin(rs.getString(1), rs.getString(2), rs.getString(3), rs.getLong(4));

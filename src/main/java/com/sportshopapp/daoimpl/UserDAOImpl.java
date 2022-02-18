@@ -34,12 +34,6 @@ public class UserDAOImpl implements UserDaoDAO {
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}finally {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
 				ConnectionUtil.close(con, stmt);
 			}
 	}
@@ -50,13 +44,14 @@ public class UserDAOImpl implements UserDaoDAO {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 	try {
-		String query = "select user_name, address, first_name, last_name, phone, password,email, my_wallet from  customers_detail where user_name = '"
-				+ userName + "' and password='" + password + "'";
+		String query = "select user_name, address, first_name, last_name, phone, password,email, my_wallet from  "
+				+ "customers_detail where user_name = ? and password= ?";
 
 		con = ConnectionUtil.getDbConnection();
-		ConnectionUtil conn = new ConnectionUtil();
 		pstm = con.prepareStatement(query);
-		rs = pstm.executeQuery(query);
+		pstm.setString(1, userName);
+		pstm.setString(2, password);
+		rs = pstm.executeQuery();
 		UserReg user = null;
 		if (rs.next()) {
 			user = new UserReg();
