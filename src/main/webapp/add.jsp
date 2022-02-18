@@ -147,7 +147,7 @@ body {
 			<li><a href="index.jsp">Sign Out</a></li>
 		</ul>
 		<div class="sidebar">
-			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em>> All users</a> <a
+			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em>>	 All users</a> <a
 				href="ShowAllProduct"><em class="fa fa-fw fa-wrench"></em> Show
 				all products</a> <a href="updateProduct.jsp"><em
 				class="fa fa-fw fa-envelope"></em> Update products</a> <a href="add.jsp"><em

@@ -10,12 +10,8 @@ import com.sportshopapp.util.ConnectionUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import org.apache.tomcat.util.http.fileupload.util.Closeable;
 
 public class UserDAOImpl implements UserDaoDAO {
 
@@ -45,10 +41,7 @@ public class UserDAOImpl implements UserDaoDAO {
 					e.printStackTrace();
 				}
 				ConnectionUtil.close(con, stmt);
-				
 			}
-		
-     
 	}
 
 	public UserReg login(String userName, String password) {
