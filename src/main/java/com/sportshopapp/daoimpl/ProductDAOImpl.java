@@ -174,9 +174,7 @@ public class ProductDAOImpl implements ProductDAO {
 						+ currentProduct.getProductId() + "";
 				con = ConnectionUtil.getDbConnection();
 				pst = con.prepareStatement(updateQtyQuery);
-				int res = pst.executeUpdate();
-				pst = con.prepareStatement("commit");
-				int res2 = pst.executeUpdate();
+				pst.executeUpdate();
 			} catch (ClassNotFoundException | SQLException e) {
 				
 				e.printStackTrace();

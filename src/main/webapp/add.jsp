@@ -144,7 +144,7 @@ body {
 	<h2 id="header" style="color: white;">Add products</h2>
 	<nav class="list">
 		<ul>
-			<li><a href="login.jsp">Sign Out</a></li>
+			<li><a href="index.jsp">Sign Out</a></li>
 		</ul>
 		<div class="sidebar">
 			<a href="ViewAllUsers"><em class="fa fa-fw fa-home"></em> All users</a> <a

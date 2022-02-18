@@ -21,7 +21,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery(query);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				Admin adminLogin = new Admin(rs.getString(1), rs.getString(2), rs.getString(3), rs.getLong(4));
 				return adminLogin;

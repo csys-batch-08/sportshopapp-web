@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDaoDAO {
 			try {
 				con = ConnectionUtil.getDbConnection();
 				String query = "insert into customers_detail(user_name,address, first_name, last_name, email, phone, password)values (?,?,?,?,?,?,?)";
-				String commit = "commit";
 				stmt = con.prepareStatement(query);
 				stmt.setString(1, reg.getUserName());
 				stmt.setString(2, reg.getAddress());
@@ -36,8 +35,6 @@ public class UserDAOImpl implements UserDaoDAO {
 				stmt.setLong  (6, reg.getPhone());
 				stmt.setString(7, reg.getPassword());
 				stmt.executeUpdate();
-				stmt = con.prepareStatement(commit);
-				stmt.execute();
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}finally {
